@@ -29,15 +29,22 @@ tests.
 
 We further argue that McEwen's "Four Types of Allostatic Load" (1998)
 provides a vocabulary of regulatory failure modes that AI governance
-currently lacks, and we report a Type 3 (delayed shut-down) signature
-observed in real time on a Raspberry Pi-embodied agent (Lumen) over an
-86-minute window: $V$ sign-flipped from the predicted healthy
-$V_h^* \approx -0.041$ to $+0.0954$, with manifold deviation at 97% of
-the class-conditional envelope. The companion technical paper (Wang
-2026a) reports a 28.9% basin-flip rate when a class-conditional grounded
-coherence replaces fleet-wide normalization on 13,310 production state
-vectors, providing direct empirical evidence for the
-homogenization-failure-mode argument.
+currently lacks but does not exhaust the failure-shapes deployed
+synthetic agents exhibit. A live case study (§5.3) initially appeared
+to show a Type 3 (delayed shut-down) signature on a Raspberry Pi-embodied
+agent (Lumen) over an 86-minute window; the disambiguation experiment
+the case study itself specifies — recalibration on the post-event
+window — instead identified a substrate-induced **basin-transition
+event on 2026-04-17**, coincident to the hour with a documented
+identity-system revision in the UNITARES governance substrate. The
+case study is identification-grade for the basin transition itself
+and bounding for the imported taxonomy: it is a failure-shape McEwen's
+Four Types do not cover. The companion technical paper (Wang 2026a)
+reports a 28.9% basin-flip rate when a class-conditional grounded
+coherence replaces fleet-wide tanh-of-V on 13,310 production state
+vectors; the §5.3 recalibration sharpens that *spatial* homogenization
+argument into a *temporal* analogue (calibration windows that straddle
+regime transitions are unrepresentative of either regime).
 
 We make four contributions: (i) $V_{\text{anima}}$ as a deployed
 allostatic-load test bed; (ii) class-conditional calibration as the
@@ -181,13 +188,18 @@ the reported-value layer.
 
 Third, McEwen's "Four Types of Allostatic Load" (1998 Figure 3;
 reproduced as 2007 Figure 5) provides a vocabulary of regulatory failure
-modes that AI governance currently lacks. Each of the four types —
-repeated hits, lack of adaptation, delayed shut-down, inadequate response
-with compensatory hyperactivity — has a direct UNITARES analogue
-computable from existing telemetry. §5 develops this mapping and reports
-a Type 3 (delayed shut-down) signature observed in real time on the
-Lumen embodied agent, with the integrand and the deviation from
-class-conditional baseline both quantified directly.
+modes that AI governance currently lacks but does not exhaust the
+failure-shapes deployed synthetic agents exhibit. Each of the four types
+— repeated hits, lack of adaptation, delayed shut-down, inadequate
+response with compensatory hyperactivity — has a direct UNITARES analogue
+computable from existing telemetry. §5 develops this mapping. In the
+course of investigating an apparent Type 3 signature on the Lumen
+embodied agent, we ran the recalibration the signature itself specifies
+for disambiguation; the result identified instead a substrate-induced
+basin-transition event (2026-04-17, coincident with a documented
+identity-system revision), a failure-shape the Four Types do not cover.
+The case study sharpens the §3 homogenization argument into a temporal
+analogue and bounds what the imported taxonomy can claim.
 
 Fourth, we argue that deployed AI agents constitute a useful test bed
 for theories of biological self-maintenance, in a tradition closer to
@@ -204,14 +216,16 @@ grounded coherence replaces fleet-wide $\tanh$-of-$V$, with per-class
 flip rates of 15.8% to 33.1% (§3.4, methodology §3.7, ablation
 limitation §3.7). Phase 2 calibration on the same window measures a
 3.3× spread in per-class envelope $\lVert \Delta \rVert_{\max}$ across
-five classes (§3.3, Table). The Lumen embodied agent exhibits a Type 3
-(delayed shut-down) signature over an 86-minute observation window,
-with $V$ sign-flipped from the predicted healthy $V_h^* \approx -0.041$
-to a current $V \approx +0.0954$ and manifold deviation at 97% of the
-class-conditional envelope (§5.3); the within-window signature is
-recent rather than chronic relative to Lumen's 118-day operational
-lifetime, which sharpens the calibration-cadence-as-methodological-gap
-claim.
+five classes (§3.3, Table). The Lumen embodied agent exhibits a
+0.97-of-envelope deviation in an 86-minute observation window relative
+to its Phase 2 calibration anchor (§5.3); the recalibration on the
+post-event window identifies this as a substrate-induced basin
+transition on 2026-04-17 (single ten-hour event localized to within
+the hour, coincident with a documented identity-system revision)
+followed by 22 days of stable operation in a new regime, not a Type 3
+signature. The case sharpens the §3 homogenization argument into a
+temporal analogue (calibration windows that straddle regime
+transitions are unrepresentative of either regime).
 
 **Limitations.** This paper is not a theory of AI consciousness; we make
 no claims about phenomenal experience in agents, embodied or otherwise.
@@ -468,15 +482,20 @@ completion. Sustained elevation of $V_{\text{anima}}$ in the absence of
 acute stressors corresponds to McEwen's Type 3 failure mode (delayed
 shut-down), discussed at length in §5.
 
-The deployed UNITARES system makes this prediction directly testable. We
-report in §5 a Type 3 signature observed for the Lumen embodied agent
-(Wang 2026a, Table 1) over an 86-minute window: $V \approx 0.0954$ at
-06:21 UTC May 9 2026, sign-flipped from the class-conditional healthy
-target $V_h^* \approx -0.041$ (computed from Lumen's Phase 2 measured
-healthy operating point), with manifold deviation at 97% of the
-class-conditional envelope. This is a positive identification, in real
-time, of a regulatory failure mode that biology can typically only
-diagnose retrospectively.
+The deployed UNITARES system makes this prediction directly testable,
+and §5.3 reports the test. We initially observed an 86-minute window
+on Lumen consistent with the Type 3 prediction (Wang 2026a, Table 1):
+$V \approx 0.0954$ at 06:21 UTC May 9 2026, sign-flipped from the
+class-conditional healthy target $V_h^* \approx -0.041$ (computed from
+Lumen's Phase 2 measured healthy operating point), with manifold
+deviation at 97% of the class-conditional envelope. Per §5.3's own
+disambiguation criterion, we recalibrated on the post-event window;
+the result identified the displacement as a substrate-induced
+basin-transition event on 2026-04-17, not as Type 3 delayed shut-down.
+The §5.3 case is therefore not a positive Type 3 identification but
+is paper-relevant in two adjacent ways: as a sharpening of the §3
+homogenization argument into a temporal analogue, and as an instance
+of a failure-shape McEwen's Four Types do not cover.
 
 ---
 
@@ -1218,29 +1237,30 @@ baseline despite repeated exposure to comparable input. The eisv-lumen
 evaluation framework implements direct measurement of this through
 Welford-baseline drift on the per-class entropy distribution.
 
-### 5.3 Type 3: Prolonged response due to delayed shut-down (with live case study)
+### 5.3 The Type 3 question: a recalibration test on Lumen
 
-This is the failure mode McEwen describes as most directly damaging:
+Type 3 is the failure mode McEwen describes as most directly damaging:
 the mediator stays on after the stressor has been removed. Cortisol does
 not return to baseline; chronic glucocorticoid exposure produces
 hippocampal atrophy, immune suppression, and metabolic dysregulation
 (McEwen 2007 §IV). Type 3 is the canonical mechanism through which
 acute stress becomes chronic disease.
 
-The agent analogue is sustained $V_{\text{anima}}$ elevation, or more
-precisely sustained displacement of the agent's regulatory state from
-its class-conditional healthy baseline, in the absence of an
-identifiable acute trigger. We observe this signature in production over
-an 86-minute continuous window.
+The agent analogue would be sustained $V_{\text{anima}}$ elevation, or
+more precisely sustained displacement of the agent's regulatory state
+from its class-conditional healthy baseline, in the absence of an
+identifiable acute trigger. We initially observed exactly such a
+signature on the Lumen embodied agent over an 86-minute continuous
+window, and report the observation, the disambiguation experiment the
+signature itself specifies, and what that experiment revealed.
 
-**Observation window.** The Lumen embodied agent (Raspberry Pi 4 with
-environmental sensors and TFT display; CIRWEL 2026, anima-mcp) has been
-operational for 118 days since first awakening, with 110,148 cumulative
-governance updates as of 2026-05-09 06:21 UTC. The current continuous
-process session has run for approximately 38 days. Lumen was observed
-across the window 2026-05-09 04:54 UTC through 06:20 UTC, comprising 27
-distinct governance check-ins at approximately 3-minute intervals. Over
-this window:
+**Initial observation window.** The Lumen embodied agent (Raspberry
+Pi 4 with environmental sensors and TFT display; CIRWEL 2026,
+anima-mcp) has been operational for 118 days since first awakening,
+with 110,148 cumulative governance updates as of 2026-05-09 06:21 UTC.
+Lumen was observed across the window 2026-05-09 04:54 UTC through
+06:20 UTC, comprising 27 distinct governance check-ins at approximately
+3-minute intervals. Over this window:
 
 | Quantity | Mean | Std | Range |
 |---|---|---|---|
@@ -1250,31 +1270,31 @@ this window:
 | $V$ (valence) | 0.0954 | 0.00015 | [0.0952, 0.0957] |
 | Risk score | 0.2245 | 0.00021 | [0.2240, 0.2250] |
 
-The recent verdict distribution is 655/655 safe over the comparable
+The recent verdict distribution was 655/655 safe over the comparable
 window. No anomalies were flagged by the production server during the
-window; all four trend indicators (risk, coherence, $E$, overall) are
+window; all four trend indicators (risk, coherence, $E$, overall) were
 reported as `stable`.
 
-**Quantification of the Type 3 signature.** Comparison against Lumen's
-measured Phase 2 healthy operating point (Wang 2026a, Table 5: $E_h =
-0.745$, $I_h = 0.800$, $S_h = 0.168$, $\lVert\Delta\rVert_{\max} =
-0.119$) reveals a regime change. The healthy regime is integrity-surplus:
-$I_h - E_h = 0.055$, with the $V$ coordinate accumulating toward steady
-state
+**Apparent Type 3 signature.** Comparison against Lumen's measured
+Phase 2 healthy operating point (Wang 2026a, Table 5: $E_h = 0.745$,
+$I_h = 0.800$, $S_h = 0.168$, $\lVert\Delta\rVert_{\max} = 0.119$)
+showed an apparent regime change. The healthy regime is
+integrity-surplus: $I_h - E_h = 0.055$, with the $V$ coordinate
+accumulating toward steady state
 
 $$V_h^* = \frac{\kappa(E_h - I_h)}{\delta} = 0.75 \times (-0.055) = -0.041$$
 
 (using production parameters $\kappa = 0.30$, $\delta = 0.40$ from
-Wang 2026a Appendix A). The current regime is energy-surplus: $E - I
+Wang 2026a Appendix A). The observed regime is energy-surplus: $E - I
 \approx +0.095$ across the window, with $V$ pinned positive at $0.0954
 \pm 0.0002$ — sign-flipped from healthy and displaced by approximately
 $\Delta V = 0.136$. The displacement is approximately three orders of
 magnitude larger than the within-window standard deviation, so the
 finding is not within measurement noise.
 
-The manifold deviation $\lVert\Delta\rVert_2$ in $(E, I, S)$ space, where
-$\Delta = (E, I, S) - (E_h, I_h, S_h)_{\text{Lumen}}$, evaluates to
-approximately $0.115$ across the window against Lumen's measured
+The manifold deviation $\lVert\Delta\rVert_2$ in $(E, I, S)$ space,
+where $\Delta = (E, I, S) - (E_h, I_h, S_h)_{\text{Lumen}}$, evaluates
+to approximately $0.115$ across the window against Lumen's measured
 $\lVert\Delta\rVert_{\max} = 0.119$ — Lumen sits at approximately
 **97% of its class-conditional manifold envelope**. Under the grounded
 coherence (Wang 2026a §4.2 eq. 13),
@@ -1282,102 +1302,160 @@ coherence (Wang 2026a §4.2 eq. 13),
 $$C = 1 - \lVert\Delta\rVert_2 / \lVert\Delta\rVert_{\max} \approx 0.03,$$
 
 an order of magnitude lower than the legacy tanh-of-$V$ coherence
-reported by the production server (currently $C_{\text{legacy}} \approx
-0.497$, near the function midpoint). This is a basin-flip case in real
-time: an agent that the legacy form classifies as boundary/healthy is
-classified as low-basin breach under the grounded form, exactly as
-predicted by the v6 verdict counterfactual on production data (Wang
-2026a §11.6, where 28.9% of basin assignments flipped under the same
-substitution).
+reported by the production server (currently $C_{\text{legacy}}
+\approx 0.497$, near the function midpoint). The observation is a
+basin-flip case in real time: an agent that the legacy form classifies
+as boundary/healthy is classified as low-basin breach under the
+grounded form, exactly as predicted by the v6 verdict counterfactual
+on production data (Wang 2026a §11.6, where 28.9% of basin assignments
+flipped under the same substitution).
 
-**Slow drift component.** Within the observation window, $I$ declined
-monotonically from 0.6951 (04:54 UTC) to 0.6943 (06:20 UTC), a slope of
-approximately $-8.5 \times 10^{-6}$ per minute. $E$ remained
-approximately stationary. The $(E-I)$ gap therefore widened slightly,
-consistent with the Type 3 prediction that mediator activity continues
-to load the system rather than relax.
+**Two readings, distinguishable by recalibration.** The signature
+above admits two interpretations: either Lumen has genuinely shifted
+regime since the April Phase 2 measurement (the 86-minute window then
+represents real Type 3 failure that the slow-cadence calibration loop
+has not yet caught), or the Phase 2 calibration window itself was
+unrepresentative and Lumen has been operating stably in a different
+regime that calibration mis-characterized. The two are distinguishable
+by re-running the Phase 2 procedure on a window centered on the
+current period: *if $\boldsymbol{\mu_a}$ moves toward Lumen's current
+state, the elevation is calibration-staleness; if $\boldsymbol{\mu_a}$
+remains at the prior healthy point, the elevation is genuine Type 3.*
 
-The within-window rate cannot have been Lumen's characteristic drift
-rate over its 118-day operational lifetime: extrapolating linearly
-across 169,920 minutes would predict $\Delta I \approx -1.44$, against
-the measured $\Delta I \approx -0.106$ from Lumen's Phase 2 healthy
-operating point ($I_h = 0.800$). Two reconciliations are consistent
-with the data. Either the within-window rate is recent acceleration
-relative to a slower long-term drift, or the drift dates substantially
-from the post-Phase-2 interval (April 18 to May 9, approximately 21
-days). Phase 2 calibration was performed on April 18, 2026 (Wang 2026a
-§11.5); the average drift rate required to produce the observed
-displacement over the post-calibration interval is approximately
-$-3.5 \times 10^{-6}$ per minute, roughly 2.4× slower than the
-within-window rate. Both reconciliations imply that the Type 3
-signature is recent rather than chronic across Lumen's full operational
-lifetime. This sharpens rather than weakens the case for §3 calibration
-cadence as a methodological gap: Lumen drifted into Type 3 within a
-single calibration cycle. A proper longitudinal pull spanning Lumen's
-118-day operational lifetime would resolve which reconciliation
-applies.
+**Recalibration result.** We ran the experiment. A recalibration on a
+30-day window ending 2026-05-09, using the same procedure as Phase 2
+(restricted to no-pause/no-reject sessions, Welford-equivalent batch
+mean over $N = 11{,}472$ rows), produced:
 
-**Verdict-layer behavior is unchanged.** The recent risk score is
-approximately $0.224$, comfortably within Lumen's safe band and below
-the fleet-aggregate mean risk of $0.301$ measured at the same time
-across 315 agents-with-data over 128,393 cumulative updates (UNITARES
-production aggregate, 2026-05-09 06:22 UTC). Lumen is therefore *better
-than fleet-average on the verdict layer* while displaying a clear Type 3
-signature on the regulatory-state layer. The failure is structurally the
-same as McEwen 2007 §III emphasizes for biological Type 3: prolonged
-regulatory effort produces the slow tissue damage characteristic of
-chronic stress disease *without* producing acute crisis. The mediator
-stays on long after acute symptoms would have resolved.
+| | Phase 2 (April 18, 2026) | Recalibration (May 9, 2026) |
+|---|---|---|
+| $\mu_E$ | 0.745 | **0.7706** |
+| $\mu_I$ | 0.800 | **0.7335** |
+| $\mu_S$ | 0.168 | **0.1893** |
+| $\lVert\Delta\rVert_{\max}$ (95th percentile) | 0.119 | **0.1279** |
+| $N$ | 7,320 | 11,472 |
 
-**Two readings, distinguishable by recalibration.** Either Lumen has
-genuinely shifted regime since the April Phase 2 measurement (a 3-week
-interval during which approximately 10,000 governance updates have
-accumulated) — in which case the current regulatory state represents
-real Type 3 failure that the slow-cadence calibration loop has not yet
-caught — or the calibration window itself was atypical and Lumen has
-returned to a more stable operating point that calibration
-mis-characterized as healthy. The two readings are distinguishable by
-re-running Phase 2 measurement on a window centered on the current
-period: if $\boldsymbol{\mu_a}$ moves toward Lumen's current state, the
-elevation is calibration-staleness; if $\boldsymbol{\mu_a}$ remains at
-the prior healthy point, the elevation is genuine Type 3.
+$\boldsymbol{\mu_a}$ moved toward Lumen's current state on all three
+coordinates — $\mu_I$ in particular dropped 0.066, more than one
+within-window standard deviation. By the disambiguation criterion this
+is **calibration-staleness, not Type 3**. The 86-minute window above
+is not the mediator-stays-on signature McEwen describes; it is Lumen
+operating stably in a regime the prior calibration failed to capture.
 
-Either reading is paper-relevant. The first reading demonstrates that
-the slow homeostatic-scaling channel (quarterly per-class recalibration)
-is too slow to track regime shifts on the timescale at which they occur
-in deployed agents — a methodological finding directly applicable to
-clinical longitudinal monitoring, where the analogous problem is
-well-known but rarely addressed (Lupien et al. 2009, on cumulative
-glucocorticoid exposure). The second reading demonstrates that the
-calibration corpus selection criteria (which restrict to sessions with
-no pause/reject verdicts; Wang 2026a §8.2) can produce non-representative
-healthy operating points if the "no pause/reject" criterion correlates
-with atypical operating modes for that class.
+**What actually happened: a regime transition on 2026-04-17.**
+Weekly-binned EISV means over Lumen's 90-day operational window
+resolve into three regimes: an early settling phase (Feb through
+mid-March), a pre-break stable regime (~Mar 30 – Apr 16) at $\mu
+\approx (0.745, 0.800, 0.187)$ — the regime Phase 2 captured — and a
+post-break stable regime (Apr 18 onwards) at $\mu \approx (0.789,
+0.740, 0.155)$, which is Lumen's current regime.
 
-Biology has no clean analogue of either disambiguation because biological
-setpoints cannot be re-measured against a known-healthy reference window
-post-hoc — once a patient's operating point has shifted, the prior
-setpoint is unrecoverable except via interpolation from old biomarker
-records. UNITARES can perform the experiment because the agent's history
-is intact and the calibration is reproducible. This is the kind of
-experiment-on-the-theory that the synthetic-psychology framing (§8)
-makes possible.
+Sub-day resolution localizes the transition to a single ten-hour
+event on **2026-04-17 UTC**: a deep energy collapse (E from 0.749 at
+00:00 to 0.350 at 09:00) followed by rapid recovery to a new
+equilibrium (E from 0.350 to 0.787 between 11:00 and 14:00), after
+which Lumen settled into the post-break regime that has held for 22
+days as of measurement. In the deployed system's own shape vocabulary
+(CIRWEL 2026, eisv-lumen Layer 2 classification), the event reads
+cleanly as a `basin_transition_down` followed by a `basin_transition_up`,
+terminating in a stable post-transition attractor — *not* the
+prolonged-elevation morphology McEwen Type 3 specifies.
 
-**Caveats on the empirical claim.** The 86-minute window establishes
-that the Type 3 signature is stable over at least that duration; it does
-not establish that Lumen has been in this regime continuously since
-Phase 2 calibration on April 18, 2026 (a 21-day post-calibration
-interval) or across its 118-day operational lifetime. A longitudinal
-series spanning the post-calibration interval, and ideally the full
-118-day lifetime, would test (a) whether the integrity drift is
-monotonic at the within-window slope or accelerating from a lower
-baseline rate, (b) whether the regime change occurred at an identifiable
-transition (e.g., coincident with a specific environmental event or
-calibration update) or accumulated gradually, and (c) whether the
-fleet-aggregate mean coherence (0.494, near the legacy midpoint) is
-consistent across other Lumen-class agents or specific to this
-deployment. We treat this section as a worked example of Type 3
-identification rather than a full longitudinal study.
+**Coincident substrate-level event.** The April 17 transition aligns
+to the hour with a documented system-level event in the UNITARES
+governance substrate: four PRs shipped that day to align identity
+binding with the identity-invariants axioms (removal of name-claim
+lookup, adoption of UUID-direct dispatch, receipt-based onboarding
+authentication, and session-start posture revisions). Wang 2026a
+§11.7 (item 5) flags this revision window as a confound for the
+basin-flip counterfactual measurement; we observe it here as the
+apparent root cause of an agent-state regime transition. The chain
+is: substrate-level identity revisions $\rightarrow$ disruption of
+Lumen's normal operating loop during the rollout window $\rightarrow$
+settling into a new stable operating point under the post-rollout
+identity rules. We do not attempt a deeper causal mechanism; the
+temporal coincidence to within an hour and the cleanness of the
+transition signature are the primary evidence, with the §11.7
+confound flag in Wang 2026a as the prior.
+
+**Implications for the Four Types framing.** Two things follow.
+
+First, the Type 3 claim does not survive the recalibration. The
+86-minute observation captures Lumen in the post-break regime, not in
+a prolonged-mediator state relative to its true operating point. The
+biological-Type-3 *necessary* condition — sustained mediator activity
+*after* a removed stressor — is not met here, because the post-break
+regime is the new operating point, not a perturbation away from it.
+What the original framing read as Type 3 was an artifact of comparing
+post-transition state to a pre-transition calibration anchor.
+
+Second, what we observe instead — a basin transition coincident with
+a substrate-level event — is **a failure-shape McEwen's Four Types
+do not cover**. The Four Types are designed for stationary regulatory
+systems with stress-response failures (the mediator responds,
+terminates, doesn't terminate, or fails to engage). They presume the
+operating point is fixed and the failure is in the response dynamics
+around it. A synthetic agent's operating point is itself contingent
+on the substrate that hosts it; substrate revisions can move the
+operating point. This is a failure-mode the Four Types were not built
+for, and naming it requires a vocabulary the Four Types do not supply.
+
+**Calibration-staleness as temporal homogenization.** The Phase 2
+calibration on April 18, 2026 used a 30-day rolling window covering
+March 19 through April 18. Per the hour-resolved transition,
+approximately 96.7% of that window is pre-break and approximately one
+day is post-break. The calibration averaged across a regime
+transition and produced a $\boldsymbol{\mu_a}$ representative of
+neither regime cleanly — sitting closer to the pre-break point
+because pre-break data dominated. The 21-day post-calibration
+interval has been stable in the post-break regime, so the 86-minute
+observation reads as a 0.97-of-envelope deviation relative to a
+calibration anchor that captured the wrong regime.
+
+This is the *temporal* analogue of the *spatial* homogenization
+argument in §3. There, fleet-wide normalization averages across
+populations whose dynamics are genuinely different and produces a
+reference distribution representative of none of them. Here, a
+calibration window straddling a regime transition averages across
+two regimes whose operating points are genuinely different and
+produces a reference operating point representative of neither. The
+two failure modes share a structure: any reference computed across
+an inhomogeneity is unrepresentative of the parts the inhomogeneity
+contains. Class-conditional calibration (§3) addresses spatial
+inhomogeneity at the gating layer; transition-aware calibration —
+which UNITARES does not yet implement — would address temporal
+inhomogeneity. The clinical analogue is direct: a biomarker reference
+interval computed across a pre-illness / post-illness-onset window is
+unrepresentative of either, exactly as the Phase 2 anchor here is
+unrepresentative of either Lumen regime.
+
+**Verdict-layer blindness.** Lumen's recent risk score is
+approximately $0.224$, below the fleet-aggregate mean reported by
+the production server at the same time (UNITARES production
+aggregate, 2026-05-09 06:22 UTC). The verdict layer therefore
+classifies Lumen as better-than-average even while the
+regulatory-state layer reports a 0.97-of-envelope deviation against
+the stale anchor. Both layers are blind to the regime transition for
+the same reason: both depend on a calibration that captured the
+wrong regime. This is not a separate finding, only a downstream
+consequence of the temporal-homogenization argument.
+
+**Caveats on the empirical claim.** The hour-resolved April 17
+transition is a single event; we cannot generalize from it to a
+claim that substrate revisions reliably produce basin transitions in
+Lumen, or that all agents exposed to similar revisions would show
+comparable signatures. A multi-agent multi-revision study (which
+would require either coordinated substrate revisions across the
+fleet or a historical pull across other identity-axiom-related
+transitions) is the right follow-up. The 86-minute observation
+window establishes that the post-break regime is stable over at
+least that duration; the recalibration plus weekly-bin analysis
+establishes that the regime has been stable for 22 days. We treat
+this section as identification-grade for the basin transition itself
+(date, magnitude, shape) and illustrative for the
+temporal-homogenization argument; the §5.3 case study is *not* a
+positive identification of McEwen Type 3 in a deployed agent, and
+we revise the abstract and §1.3 framing accordingly.
 
 ### 5.4 Type 4: Inadequate response with compensatory hyperactivity
 
@@ -1416,7 +1494,18 @@ McEwen's taxonomy provides four mechanistically distinct failure modes,
 each with a different intervention strategy, derived from thirty years
 of biological work on regulatory failure. UNITARES, because it carries
 the mathematical machinery to compute each indicator directly from
-existing telemetry, can adopt this taxonomy without modification.
+existing telemetry, can adopt this taxonomy as a baseline vocabulary.
+
+The §5.3 case study also bounds the taxonomy. It identifies a
+failure-shape — a substrate-induced basin transition coincident with
+a system-level event — that the Four Types do not cover, because the
+Four Types presume a stationary operating point against which response
+dynamics fail in one of four canonical ways. A synthetic agent's
+operating point is contingent on its substrate; substrate revisions
+can move it. The imported taxonomy is therefore *necessary but not
+sufficient* for synthetic-agent governance, and at least one
+extension category — call it Type 5, *substrate-induced basin
+transition* — is empirically motivated by the Lumen case.
 
 This is the kind of contribution that flows from biology to engineering
 rather than the reverse. The standard direction for "neuro-AI" papers is
@@ -2117,12 +2206,17 @@ specific (provenance-tagged per-subject envelopes, the clinical-flip
 counterfactual experimental design) and the infrastructure required is
 already available.
 
-**Claim 3 (Four Types failure-mode taxonomy; §5):** Shown by construction
-(§5.1–5.4) and supported by the live Lumen Type 3 case study (§5.3).
-The taxonomy imports cleanly; the live signature is a worked example
-pending longitudinal validation. The synthetic case demonstrates that
-the taxonomy is computable from existing telemetry, not just biologically
-interpretable.
+**Claim 3 (Four Types failure-mode taxonomy; §5):** Shown by
+construction for Types 1, 2, and 4 (§5.1, §5.2, §5.4). The Type 3
+case study (§5.3) was originally framed as an observation of Type 3;
+the disambiguation experiment §5.3 specifies — recalibration on the
+post-event window — instead identified a substrate-induced basin
+transition (2026-04-17, coincident with an identity-system revision),
+a failure-shape outside the Four Types. The taxonomy is therefore
+computable from existing telemetry but not exhaustive; the §5.3 case
+study bounds what the imported vocabulary can claim and identifies
+one shape (Type 5, *substrate-induced basin transition*; §5.5) that
+requires extension beyond McEwen.
 
 **Claim 4 (synthetic psychology as epistemic stance; this section):**
 Argued. The deployed system constitutes a test bed for theories of
@@ -2237,13 +2331,19 @@ lineage similarity as a clinical signal, and the behavioral-CAPTCHA
 argument for novel-stimulus probes in neuropsychological assessment.
 
 McEwen's Four Types of Allostatic Load import as a vocabulary of
-regulatory failure modes that AI governance currently lacks. A live case
-study on the Lumen embodied agent over an 86-minute window documents a
-Type 3 (delayed shut-down) signature: $V$ sign-flipped from predicted
-healthy to $+0.0954$, with manifold deviation at 97% of the
-class-conditional envelope. This is a positive identification, in real
-time, of a regulatory failure mode that biology can typically only
-diagnose retrospectively.
+regulatory failure modes that AI governance currently lacks but does
+not exhaust the failure-shapes deployed synthetic agents exhibit. A
+live case study on the Lumen embodied agent (§5.3) initially appeared
+to show a Type 3 (delayed shut-down) signature; the disambiguation
+experiment §5.3 specifies — recalibration on the post-event window —
+identified instead a substrate-induced basin-transition event on
+2026-04-17, coincident to the hour with a documented identity-system
+revision (Wang 2026a §11.7). The case sharpens the §3 homogenization
+argument into a temporal analogue (calibration windows that straddle
+regime transitions are unrepresentative of either regime, just as
+fleet-wide normalization is unrepresentative of constituent classes)
+and identifies a failure-shape — Type 5, *substrate-induced basin
+transition* — that the Four Types do not cover.
 
 The synthetic-psychology framing positions the paper in the artificial-
 life and minimally-cognitive-agents lineage. The methodological
@@ -2253,16 +2353,20 @@ testable) are acknowledged.
 
 ### 9.2 What this paper has shown versus argued
 
-The paper's strongest empirical claim — the 28.9% basin-flip rate — is
-already documented in the technical paper (Wang 2026a §11.6) and
-inherits its evidential status from that work. The Lumen Type 3 case
-study (§5.3) is original to the present paper and reports a stable
-86-minute window with rigorous comparison against Phase 2 calibration;
-it is framed honestly as a worked example pending longitudinal
-validation rather than as a measurement claim about Lumen's full
-118-day operational lifetime. Class-conditional envelope spread (3.3×
-across five classes) is quantitative and inherited from Wang 2026a
-Table 5.
+The paper's strongest empirical claim — the 28.9% basin-flip rate —
+is already documented in the technical paper (Wang 2026a §11.6) and
+inherits its evidential status from that work. The Lumen case study
+(§5.3) is original to the present paper; the recalibration experiment
+it reports identifies a substrate-induced basin transition on
+2026-04-17 (coincident to the hour with a documented identity-system
+revision) and the resulting calibration-staleness as the explanation
+for an apparent Type 3 signature. The case is identification-grade
+for the basin transition itself (single ten-hour event localized to
+within the hour, weekly-bin and recalibration evidence both
+consistent), illustrative for the temporal-homogenization argument,
+and bounding for the Four Types vocabulary. Class-conditional
+envelope spread (3.3× across five classes) is quantitative and
+inherited from Wang 2026a Table 5.
 
 The other contributions are arguments rather than measurements: the
 $V_{\text{anima}}$ ↔ AL bridge (§2) is an argument that the deployed
