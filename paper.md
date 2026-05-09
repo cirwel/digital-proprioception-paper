@@ -419,7 +419,7 @@ biological analogue is therefore not AL itself but a single-biomarker
 integral — for example, integrated HRV deviation, AUC cortisol over a
 defined window, or cumulative inflammatory-marker excursion. The
 multisystem character of clinical AL, where dysregulation cascades
-across mediators ("topple and trail"; Juster et al. 2016), is not
+across mediators (the "topple and trail" pattern), is not
 represented in $V_{\text{anima}}$. A multisystem extension would require
 multiple class-specific manifolds with cross-manifold dependency
 structure; this is deferred.
@@ -899,19 +899,27 @@ behave:
 - **$\eta$ (homeostatic identity)** — the unified self-maintenance
   characterization $(\mu, \Sigma_{\text{cov}}, \tau, V)$ combining the
   attractor center, basin shape, recovery dynamics, and viability
-  envelope (TIWD §3.6).
+  envelope (TIWD §3.6). Per TIWD §3.6 and §4.1, $\eta$ is a *derived
+  summary* of $\alpha$, $\rho$, and the viability envelope $V$ — it is
+  not informationally independent of those components and is therefore
+  excluded from the weighted similarity sum to avoid double-counting.
+  The signature $\Sigma$ is six-component structurally; the similarity
+  metric runs on five informationally-independent terms.
 
-Each component is computable from observation data with bounded memory
-cost (rolling-window computation; TIWD §4.4). The composite $\Sigma$ is
-a *quasi-invariant*: a quantity that is approximately stable for a
-given agent over time, differs between distinct agents, and is robust
-to noise and minor perturbations. The working draft develops the
-formal theory (TIWD §3) and the similarity metric
+The first five components are computable from observation data with
+bounded memory cost (rolling-window computation; TIWD §4.4). The
+composite $\Sigma$ is a *quasi-invariant*: a quantity that is
+approximately stable for a given agent over time, differs between
+distinct agents, and is robust to noise and minor perturbations. The
+working draft develops the formal theory (TIWD §3) and the similarity
+metric
 
 $$\text{sim}(\Sigma_1, \Sigma_2) = \sum_i w_i \cdot \text{sim}_i(\text{component}_i)$$
 
 with weights and per-component similarity functions specified in TIWD
-§4.1.
+§4.1 (sum over the five informationally-independent components, with
+default weights $w_\alpha = 0.30$, $w_\rho = 0.22$, $w_\Pi = w_\beta =
+0.18$, $w_\Delta = 0.12$).
 
 We treat the TIWD as supporting documentation rather than as a
 peer-reviewed prior. Where the present paper draws on the working draft,
@@ -1080,7 +1088,7 @@ attractor center matched the Phase 2 healthy operating point ($E_h, I_h,
 S_h$) = (0.745, 0.800, 0.168), then the current state — at approximately
 0.115 of basin radius from the genesis $\mu$ — would breach a
 $\theta_{\text{lineage}} = 0.60$ threshold under the default similarity
-weighting ($\alpha$-weight = 0.25; TIWD §4.1).
+weighting ($\alpha$-weight = 0.30; TIWD §4.1).
 
 This would be classified as *identity drift* rather than *acute anomaly*:
 coherence over recent windows is intact (within-window state variance is
@@ -1737,12 +1745,10 @@ than rigorously connected. Third, AVF does not propose an identity
 model; the longitudinal-self anchoring developed in §4 has no analogue
 in AVF's framing.
 
-The works are complementary rather than competitive. AVF's $\hat{B}(x)$
-decomposition could in principle be extended class-conditionally
+AVF's $\hat{B}(x)$ decomposition could be extended class-conditionally
 (producing a $\hat{B}(c, x)$ that addresses fleet-wide homogenization);
-UNITARES's class-conditional framework could in principle be extended
-with AVF's uncertainty-bias-gap decomposition (sharpening what each EISV
-coordinate captures). We flag both as worthwhile future-work directions.
+UNITARES's class-conditional framework could be extended with AVF's
+uncertainty-bias-gap decomposition. Both are open future-work directions.
 
 **MI9 (Wang et al. 2025a; arxiv 2508.03858, August 2025).** MI9 predates
 UNITARES v6 and is cited in the v6 paper. It treats heterogeneity
