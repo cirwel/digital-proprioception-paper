@@ -367,8 +367,8 @@ $$V_{\text{anima}}(t) = \int_{0}^{t} \lVert \mathbf{a}(\tau) - \boldsymbol{\mu_a
 where $\boldsymbol{\mu_a}$ is the attractor center derived from the
 agent's own observed state distribution over a sliding window — the
 $\alpha$ (Alpha) component of the trajectory signature developed in the
-trajectory identity working draft (CIRWEL 2026, anima-mcp
-`docs/theory/`, §3.3; this draft is treated in detail in §4.1). When $V_{\text{anima}}$ exceeds twice the basin standard
+trajectory identity working draft (Wang 2026b, §3.3; this draft is
+treated in detail in §4.1). When $V_{\text{anima}}$ exceeds twice the basin standard
 deviation, the deployed governance system triggers intervention:
 rest-state induction, reduced stimulation, or task pause.
 
@@ -870,11 +870,11 @@ production is the planned reproducibility artifact.
 
 ### 4.1 The trajectory signature in UNITARES
 
-The trajectory identity framework, developed in working theory
-documents accompanying the UNITARES system (CIRWEL 2026, anima-mcp
-`docs/theory/`; hereafter *the trajectory identity working draft* or
-TIWD), defines a six-component *trajectory signature* $\Sigma$ that an
-agent acquires through ongoing operation:
+The trajectory identity framework, developed in the companion paper
+(Wang 2026b; hereafter *the trajectory identity working draft* or
+TIWD, retaining the acronym from the working-draft phase), defines a
+six-component *trajectory signature* $\Sigma$ that an agent acquires
+through ongoing operation:
 
 $$\Sigma = (\Pi, \beta, \alpha, \rho, \Delta, \eta)$$
 
@@ -2390,12 +2390,7 @@ of the magnocellular visual pathway during saccadic eye movements.
 
 CIRWEL (2026). *anima-mcp: Lumen — Pi-based creature with sensors,
 display, and UNITARES governance*. Software repository.
-https://github.com/CIRWEL/anima-mcp. Includes the trajectory identity
-working draft (`docs/theory/`) — mathematical framework for enactive AI
-selfhood, including the six-component signature $\Sigma = (\Pi, \beta,
-\alpha, \rho, \Delta, \eta)$, similarity metric, and two-tier drift
-detection — referenced as TIWD in the body text. Working documentation,
-not yet published as a peer-reviewed paper.
+https://github.com/CIRWEL/anima-mcp.
 
 CIRWEL (2026). *eisv-lumen: three-layer benchmark for dynamics-emergent
 voice and governance*. Software repository.
@@ -2669,6 +2664,13 @@ Wang, K. (2026a). UNITARES: Information-theoretic governance of
 heterogeneous agent fleets. Published April 20, 2026. *Zenodo*.
 https://doi.org/10.5281/zenodo.19647159 (concept DOI; v6.9.1
 https://doi.org/10.5281/zenodo.19722512, April 24, 2026).
+
+Wang, K. (2026b). Trajectory Identity: A Mathematical Framework for
+Enactive AI Self-Hood. Published May 9, 2026. *Zenodo*.
+https://doi.org/10.5281/zenodo.20098168 (concept DOI; v0.11.1
+https://doi.org/10.5281/zenodo.20098169). Source repository:
+https://github.com/cirwel/trajectory-identity-paper. Referenced as
+*TIWD* in the body text.
 
 Wijdicks, E. F. M. (2019). Being comatose: why definition matters.
 *The Lancet Neurology* 18(11): 977.

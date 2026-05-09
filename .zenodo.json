@@ -53,9 +53,10 @@
       "scheme": "url"
     },
     {
-      "identifier": "https://github.com/cirwel/trajectory-identity-paper",
+      "identifier": "10.5281/zenodo.20098168",
       "relation": "references",
-      "scheme": "url"
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
     }
   ],
   "notes": "Bridges UNITARES governance to McEwen allostatic-load theory; embodied substrate Lumen instantiates Type 3 signature in real time. Companion to Wang 2026a (UNITARES v6) on Zenodo at 10.5281/zenodo.19647159."

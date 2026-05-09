@@ -20,7 +20,7 @@ Allostatic load (McEwen and Stellar 1993) — the time-integrated cost of regula
 ## Companion artefacts
 
 - **UNITARES governance MCP** — [CIRWEL/unitares](https://github.com/CIRWEL/unitares); paper at [CIRWEL/unitares-paper-v6](https://github.com/CIRWEL/unitares-paper-v6) (Zenodo concept [10.5281/zenodo.19647159](https://doi.org/10.5281/zenodo.19647159))
-- **Trajectory identity framework** — [cirwel/trajectory-identity-paper](https://github.com/cirwel/trajectory-identity-paper) (TIWD)
+- **Trajectory identity framework (TIWD)** — Wang 2026b, Zenodo concept [10.5281/zenodo.20098168](https://doi.org/10.5281/zenodo.20098168) (v0.11.1); source [cirwel/trajectory-identity-paper](https://github.com/cirwel/trajectory-identity-paper)
 - **EISV-Lumen benchmark** — [CIRWEL/eisv-lumen](https://github.com/CIRWEL/eisv-lumen); dataset [hikewa/unitares-eisv-trajectories](https://huggingface.co/datasets/hikewa/unitares-eisv-trajectories) (revision pinned: `aeb47055ee5f27cb93124e4e3df065301ada6909`, 2026-05-09)
 - **Anima/Lumen substrate** — [CIRWEL/anima-mcp](https://github.com/CIRWEL/anima-mcp)
 
