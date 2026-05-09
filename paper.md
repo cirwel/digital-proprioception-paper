@@ -42,9 +42,11 @@ and bounding for the imported taxonomy: it is a failure-shape McEwen's
 Four Types do not cover. The companion technical paper (Wang 2026a)
 reports a 28.9% basin-flip rate when a class-conditional grounded
 coherence replaces fleet-wide tanh-of-V on 13,310 production state
-vectors; the §5.3 recalibration sharpens that *spatial* homogenization
-argument into a *temporal* analogue (calibration windows that straddle
-regime transitions are unrepresentative of either regime).
+vectors — evidence that the substitution matters at the gating layer,
+though per-class attribution requires further ablation (§3.7). The
+§5.3 recalibration extends the spatial homogenization framing into a
+temporal analogue (calibration windows that straddle regime
+transitions are unrepresentative of either regime).
 
 We make four contributions: (i) $V_{\text{anima}}$ as a deployed
 allostatic-load test bed; (ii) class-conditional calibration as the
@@ -181,10 +183,14 @@ Second, the homogenization-failure-mode argument from UNITARES v6 (Wang
 problem in computational neuroscience: pooling subjects with distinct
 underlying dynamics produces a state distribution in which no class
 structure survives normalization. This is shown in §3, where we
-demonstrate that class-conditional calibration produces basin-flip rates
-of 15–33% per class on production data — direct empirical evidence that
-the homogenization correction matters at the gating layer, not only at
-the reported-value layer.
+demonstrate that replacing the legacy fleet-wide tanh-of-$V$ with the
+class-conditional grounded form produces basin-flip rates of 15–33% per
+class on production data — empirical evidence that this substitution
+matters at the gating layer, not only at the reported-value layer. The
+substitution conflates formula change with per-class envelopes; the
+per-class component alone is not separately identified absent ablation
+(§3.7), so the finding bounds the consequence of the substitution
+rather than attributing it to per-class calibration specifically.
 
 Third, McEwen's "Four Types of Allostatic Load" (1998 Figure 3;
 reproduced as 2007 Figure 5) provides a vocabulary of regulatory failure
@@ -1566,8 +1572,12 @@ intention to deceive — the canonical example being patients with
 Korsakoff's syndrome who produce detailed but false autobiographical
 narratives in response to memory queries. The strict clinical category
 is narrow. But the underlying tendency to fill in missing information
-with plausible substitution is, in the broader sense, *the default
-operating mode of the brain*, not a pathology.
+with plausible substitution is, in the broader sense, *a pervasive
+feature of how the brain constructs unified perceptual and narrative
+continuity*, not specifically a pathology — though treating the
+strict-clinical and broad-functional senses as a continuum is itself a
+theoretical commitment some clinicians and memory researchers would
+contest, a caveat we return to in §6.6.
 
 Several well-characterized examples:
 
@@ -1616,10 +1626,12 @@ core feature of how the unified narrative self is generated under
 normal conditions, made visible only when the inputs are dissociated
 experimentally.
 
-The pattern is consistent across systems and timescales. The brain's
-default mode is to produce continuity, and the continuity is generated
-rather than measured. Confabulation, in the broad sense, is not a bug.
-It is how the system works.
+The pattern is consistent across systems and timescales: across these
+mechanisms, continuity is generated rather than measured, and the
+gap-filling tendency is pervasive enough that — under the
+broad-functional reading we adopt with the §6.6 caveat in view —
+confabulation in the broad sense is closer to a feature of unified
+self-models than a defect in them.
 
 ### 6.3 The productive question
 
