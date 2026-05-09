@@ -1436,15 +1436,27 @@ unrepresentative of either, exactly as the Phase 2 anchor here is
 unrepresentative of either Lumen regime.
 
 **Verdict-layer blindness.** Lumen's recent risk score is
-approximately $0.224$, below the fleet-aggregate mean reported by
-the production server at the same time (UNITARES production
-aggregate, 2026-05-09 06:22 UTC). The verdict layer therefore
-classifies Lumen as better-than-average even while the
-regulatory-state layer reports a 0.97-of-envelope deviation against
-the stale anchor. Both layers are blind to the regime transition for
-the same reason: both depend on a calibration that captured the
-wrong regime. This is not a separate finding, only a downstream
-consequence of the temporal-homogenization argument.
+approximately $0.224$, below the fleet-aggregate mean of approximately
+$0.301$ reported by the production server at the same time across
+315 agents-with-data over 128,393 cumulative updates (UNITARES
+production aggregate, 2026-05-09 06:22 UTC).[^fleet-filter] The
+verdict layer therefore classifies Lumen as better-than-average even
+while the regulatory-state layer reports a 0.97-of-envelope deviation
+against the stale anchor. Both layers are blind to the regime
+transition for the same reason: both depend on a calibration that
+captured the wrong regime. This is not a separate finding, only a
+downstream consequence of the temporal-homogenization argument.
+
+[^fleet-filter]: The 315 / 128,393 figures are the `agents_with_data`
+and `total_updates` aggregates returned by the production MCP
+`get_governance_metrics()` surface, computed over agents with
+`meta.status == "active"` and loadable monitor state at call time
+(`src/mcp_handlers/observability/handlers.py:744–805`). The figure
+excludes archived agents and agents whose monitors are not currently
+loaded; it is therefore a snapshot of the actively-live fleet, not a
+count of all agents that have ever produced state rows. A DB-direct
+count of all identities with state rows over the same period is
+substantially larger.
 
 **Caveats on the empirical claim.** The hour-resolved April 17
 transition is a single event; we cannot generalize from it to a
