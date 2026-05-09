@@ -687,15 +687,47 @@ a clinically validated healthy window, with explicit timestamping and
 re-measurement cadence.
 
 **Proposal 2: A clinical analogue of the basin-flip counterfactual.**
-The basin-flip experimental design translates cleanly to clinical data.
-Given a longitudinal biomarker time series for a patient cohort, one can
-compute a clinical-decision indicator (e.g., flag-for-review) under (a)
-population-derived reference intervals and (b) per-subject envelopes
-derived from the patient's own pre-illness baseline. The percentage of
-flag-state changes between (a) and (b) is the clinical analogue of the
-28.9% basin-flip rate. We are unaware of any clinical study that has
-reported this number directly, but the design is straightforward and the
-tools to implement it are standard.
+The basin-flip experimental design translates cleanly to clinical data
+as a retrospective re-analysis of an existing longitudinal biomarker
+cohort. We sketch the protocol at the level of detail a clinical
+biostatistician could implement.
+
+- *Setting:* Adults with $\geq 3$ years of pre-event biomarker
+  measurements followed by an incident clinical event of interest
+  (e.g., first episode of major depressive disorder, first myocardial
+  infarction, first dementia diagnosis). $N \geq 500$ to support 95%
+  confidence intervals on the flip rate at $\pm 5$ percentage points.
+- *Biomarkers:* Cortisol diurnal curve (or AUC), heart rate variability
+  (SDNN, RMSSD), systolic and diastolic blood pressure, and
+  inflammatory markers (IL-6, CRP) — selected for established
+  population reference intervals plus sufficient longitudinal coverage
+  in the chosen cohort.
+- *Two indicator definitions:* (a) the standard clinical
+  flag-for-review against the population-derived reference interval
+  (typically 95th percentile of healthy adults), and (b) a per-subject
+  flag against the patient's own pre-event 12-month baseline,
+  restricted to windows with no documented clinical event.
+- *Primary endpoint:* The per-subject flag-disagreement rate between
+  (a) and (b), reported with a binomial 95% CI — the clinical analogue
+  of the 28.9% basin-flip rate.
+- *Secondary endpoint:* The direction of disagreement (b-flag /
+  a-no-flag versus a-flag / b-no-flag) and its association with
+  subsequent event hazard, modeled by Cox proportional-hazards
+  regression of event-time on flag-disagreement indicator with
+  standard covariates (age, sex, comorbidity index).
+- *Pre-registered success criterion:* Flip rate $\geq 10\%$
+  (clinically meaningful disagreement) and flip-positive observations
+  carry higher event hazard than flip-negative observations
+  ($p < 0.05$ with Bonferroni correction across biomarkers).
+- *Regulatory and privacy:* Retrospective analysis of de-identified or
+  HIPAA-Safe-Harbor data with appropriate IRB. Cohorts that already
+  contain the required structure include the All of Us Research
+  Program (NIH), the Framingham Heart Study, and the Whitehall II
+  cohort.
+
+We are unaware of any clinical study that has reported this number
+directly. The design above is implementable as a one-pass re-analysis
+of existing data; no new collection is required.
 
 **Proposal 3: A specific clinical prediction.** The asymmetry of flip
 direction in UNITARES (predominantly into the low basin under per-class
@@ -1033,44 +1065,65 @@ The two-tier framework is, structurally, what clinical neurology has
 needed for slow-drift conditions but rarely implemented. Several specific
 proposals follow.
 
-**Proposal 1: Pre-illness behavioral signatures as longitudinal
-anchors.** Digital phenotyping research (Insel 2017; Onnela and Rauch
-2016; Torous et al. 2016) has demonstrated that smartphone-derived
-behavioral metrics — call patterns, location traces, sleep schedules,
-typing dynamics — can capture stable individual behavioral signatures
-with a feature space rich enough to support identity-level inference.
-Wearable monitoring extends this into autonomic state (HRV, sleep
-architecture, activity rhythms; Bent et al. 2020). The technical
-infrastructure to capture an analogue of $\Sigma_0$ exists and is
-improving rapidly. What is missing is the *formal anchoring discipline*:
-a clinical convention that designates a window of validated healthy
-behavior as the patient's $\Sigma_0$, persists it as a fixed reference,
-and runs the two-tier check against it routinely.
+**Proposal 1+2: $\Sigma_0$ anchoring and lineage-similarity testing —
+a prospective protocol.** Digital phenotyping research (Insel 2017;
+Onnela and Rauch 2016; Torous et al. 2016) has demonstrated that
+smartphone-derived behavioral metrics can capture stable individual
+behavioral signatures with a feature space rich enough to support
+identity-level inference; wearable monitoring extends this into
+autonomic state (Bent et al. 2020). The infrastructure to capture an
+analogue of $\Sigma_0$ exists. What is missing is the *formal
+anchoring discipline* — a clinical convention that persists a window
+of validated healthy behavior as the patient's $\Sigma_0$ and runs
+the two-tier check against it routinely — together with a
+prospective study that tests whether the lineage-similarity signal
+$\text{sim}(\Sigma_t, \Sigma_0)$ outperforms standard rating-scale
+screening for slow-drift conditions. We sketch a protocol at
+implementation depth.
 
-This is a methodological proposal, not an architectural one. The
-infrastructure for capturing behavioral signatures already exists;
-adopting a convention for anchoring them and using them as references in
-subsequent monitoring is a low-cost change with potentially significant
-diagnostic value for slow-drift conditions.
+- *Setting:* Prospective extension of an existing digital phenotyping
+  cohort with prodromal endpoint coverage. $N \geq 200$ for adequate
+  power to detect a 0.05 AUC improvement over rating-scale screening.
+- *Cohort candidates already containing the required data structure:*
+  Mayo Clinic Study of Aging (AD prodrome), Australian Imaging
+  Biomarkers and Lifestyle (AIBL) study, Beiwe-platform studies of
+  bvFTD or schizophrenia prodrome (Onnela lab), and digital
+  sub-cohorts of All of Us with sufficient passive-stream coverage.
+- *$\Sigma_0$ computation:* Per-subject signature computed from the
+  first 90 days of valid passive data — call patterns, GPS, sleep
+  architecture, screen-time, typing dynamics, plus wearable-derived
+  HRV and activity rhythms — restricted to a window with no
+  documented clinical event. Components $(\Pi, \beta, \alpha, \rho,
+  \Delta)$ computed via the rolling-window estimators of TIWD §4.4.
+- *$\Sigma_t$ computation:* Same procedure on a sliding 30-day window
+  updated weekly. Two-tier check at each update: coherence
+  ($\text{sim}(\Sigma_t, \Sigma_{t-1})$, threshold 0.70 per TIWD
+  §4.3) and lineage ($\text{sim}(\Sigma_t, \Sigma_0)$, threshold 0.60).
+- *Primary endpoint:* Time-to-clinical-event (e.g., incident
+  depressive episode, prodrome-to-diagnosis transition) modeled as a
+  Cox proportional-hazards function of lineage-similarity-below-
+  threshold, with coherence-similarity-below-threshold as a
+  time-varying covariate.
+- *Secondary endpoint:* Sensitivity and specificity of lineage-
+  similarity-below-threshold for predicting the clinical event within
+  90 days, compared head-to-head against standard rating-scale
+  screening (PHQ-9 for depression, MMSE/MoCA for cognitive decline,
+  PANSS for psychosis spectrum) administered at routine clinical
+  visit cadence.
+- *Pre-registered success criterion:* Lineage-similarity AUC for
+  90-day event prediction exceeds the rating-scale AUC by $\geq 0.05$
+  at matched specificity.
+- *Regulatory and privacy:* IRB approval for ambient behavioral
+  signature collection with informed consent that explicitly covers
+  behavioral fingerprinting — the signature is identifiable by
+  construction (TIWD §5.5 acknowledges this). $\Sigma_0$ stored under
+  HIPAA/GDPR-compliant encryption at rest with documented retention
+  policy. Re-analysis access requires a data-use agreement.
 
-**Proposal 2: Lineage similarity as a clinical signal.** The specific
-quantity $\text{sim}(\Sigma_t, \Sigma_0)$ — how similar a patient's
-current behavioral signature is to their pre-illness baseline — is, to
-our knowledge, not routinely computed in clinical practice, despite
-being a natural target for early-detection programs in the conditions
-listed in §4.2. The technical apparatus to compute it (Bhattacharyya
-coefficient on attractor basins, log-ratio similarity on recovery time
-constants, cosine similarity on preference vectors, etc.; TIWD §4.2) is
-straightforward.
-
-A clinical study testing this would need (a) a cohort with sufficient
-pre-illness baseline data to compute $\Sigma_0$, (b) longitudinal
-follow-up across the prodrome, and (c) a comparison condition (e.g.,
-clinical-rating-scale-based detection) to evaluate sensitivity and
-specificity. The Mayo Clinic Study of Aging, the Australian Imaging
-Biomarkers and Lifestyle (AIBL) study, and similar large longitudinal
-cohorts may already have the data structure required, with prodromal
-phenotyping rich enough to support $\Sigma$-component computation.
+This is a single executable study; the methodological convention
+(designating $\Sigma_0$ at enrollment) and the empirical test
+(lineage-similarity vs rating-scale) advance together. The
+infrastructure exists; what remains is the convention.
 
 **Proposal 3: The "behavioral CAPTCHA" as adversarial defense.** The
 trajectory identity working draft proposes (TIWD §5.5) using $\rho$
@@ -1094,6 +1147,16 @@ include genuinely novel stimuli rather than only repeated standard
 batteries — a methodological point that has been raised intermittently
 in the neuropsychology literature (Howieson 2019) but is rarely
 implemented systematically.
+
+We treat this as a methodological observation about clinical
+neuropsychological practice rather than as a clinical study to be
+designed from scratch in this paper. The design space — which novel
+stimuli, with what scoring rubric, validated against which preserved-
+function endpoint — is the proper responsibility of clinical
+neuropsychology and is beyond what we can responsibly specify here.
+Proposals 1+2 above (the prospective $\Sigma_0$-anchored study) are
+the executable protocol contribution from §4; the
+behavioral-CAPTCHA point is offered as adjacent argument.
 
 ### 4.5 Worked example: lineage drift on Lumen
 
