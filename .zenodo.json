@@ -1,0 +1,62 @@
+{
+  "title": "Digital Proprioception and Allostatic Load: A Working Implementation of the Cumulative-Deviation Hypothesis in a Deployed Multi-Agent System",
+  "description": "<p>Allostatic load (McEwen and Stellar 1993) &mdash; the time-integrated cost of regulating an adaptive system away from its operating point &mdash; has been an influential theoretical construct in physiology and psychiatry for thirty years. Its mathematical core has remained, in clinical practice, difficult to test as a real-time control signal: biomarkers are sampled rather than integrated, and the loop between detection and intervention closes over weeks rather than seconds. We present UNITARES, a governance framework for heterogeneous AI agent fleets in production since November 2025, as a deployed instantiation of the mathematical core of allostatic load on a four-dimensional informational manifold. The Anima Void Integral V_anima is computed end-to-end, observable at every check-in, and coupled to intervention. Three structural disanalogies (single-system, fixed reference, no body) sharpen what the test bed tests.</p><p>We further argue that McEwen's &lsquo;Four Types of Allostatic Load&rsquo; (1998) provides a vocabulary of regulatory failure modes that AI governance currently lacks, and we report a Type 3 (delayed shut-down) signature observed in real time on a Raspberry Pi-embodied agent (Lumen) over an 86-minute window. We make four contributions: V_anima as a deployed allostatic-load test bed; class-conditional calibration as the cosmological-soup correction with proposals back to clinical longitudinal monitoring; the Four Types as an imported failure-mode taxonomy; and a synthetic-psychology epistemic stance in the lineage of artificial life and minimally cognitive agents.</p>",
+  "creators": [
+    {
+      "name": "Wang, Kenny",
+      "affiliation": "CIRWEL Systems",
+      "orcid": "0009-0006-7544-2374"
+    }
+  ],
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "access_right": "open",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "allostatic load",
+    "allostasis",
+    "AI agent governance",
+    "trajectory identity",
+    "digital proprioception",
+    "computational psychiatry",
+    "synthetic psychology",
+    "free-energy principle",
+    "embodied AI",
+    "McEwen Four Types",
+    "cumulative deviation"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.19647159",
+      "relation": "references",
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "https://github.com/CIRWEL/unitares",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/CIRWEL/anima-mcp",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/CIRWEL/eisv-lumen",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://huggingface.co/datasets/hikewa/unitares-eisv-trajectories",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/cirwel/trajectory-identity-paper",
+      "relation": "references",
+      "scheme": "url"
+    }
+  ],
+  "notes": "Bridges UNITARES governance to McEwen allostatic-load theory; embodied substrate Lumen instantiates Type 3 signature in real time. Companion to Wang 2026a (UNITARES v6) on Zenodo at 10.5281/zenodo.19647159."
+}

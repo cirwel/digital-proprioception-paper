@@ -1,0 +1,31 @@
+# Editor / OS
+*.swp
+.DS_Store
+.vscode/
+.idea/
+
+# LaTeX build artefacts (when paper.md is converted to paper.tex)
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+paper.pdf
+
+# Pandoc / build outputs
+build/
+_build/
+
+# Python (if scripts/ is added)
+__pycache__/
+*.pyc
+.venv/
+
+# Local notes / scratch
+NOTES.md
+TODO.md
+.scratch/
