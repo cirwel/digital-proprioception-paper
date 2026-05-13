@@ -31,41 +31,47 @@ We further argue that McEwen's "Four Types of Allostatic Load" (1998)
 provides a vocabulary of regulatory failure modes that AI governance
 currently lacks but does not exhaust the failure-shapes deployed
 synthetic agents exhibit. A live case study (§5.3) initially appeared
-to show a Type 3 (delayed shut-down) signature on a Raspberry Pi-embodied
-agent (Lumen) over an 86-minute window; the disambiguation experiment
+consistent with a Type 3 (delayed shut-down) pattern on a Raspberry
+Pi-embodied agent (Lumen) over an 86-minute window; the disambiguation experiment
 the case study itself specifies — recalibration on the post-event
-window — instead identified a substrate-induced **basin-transition
-event on 2026-04-17**, coincident to the hour with a documented
-identity-system revision in the UNITARES governance substrate. The
-case study is identification-grade for the basin transition itself
-and bounding for the imported taxonomy: it is a failure-shape McEwen's
-Four Types do not cover. The companion technical paper (Wang 2026a)
+window — instead identified a candidate substrate-associated
+**basin-transition event on 2026-04-17**, coincident to the hour with a
+documented identity-system revision in the UNITARES governance
+substrate. The case study is identification-grade for the transition's
+date, magnitude, and shape, and anomaly-grade for substrate causality;
+it is therefore bounding for the imported taxonomy: it is a
+failure-shape McEwen's Four Types do not cover. The companion technical
+paper (Wang 2026a)
 reports a 28.9% basin-flip rate when a class-conditional grounded
 coherence replaces fleet-wide tanh-of-V on 13,310 production state
-vectors — evidence that the substitution matters at the gating layer,
-though per-class attribution requires further ablation (§3.7). The
-§5.3 recalibration extends the spatial homogenization framing into a
-temporal analogue (calibration windows that straddle regime
-transitions are unrepresentative of either regime).
+vectors. A same-row 2×2 ablation separates part of the effect:
+production legacy → grounded fleet-wide flips 11.2% of basin labels,
+while grounded fleet-wide → grounded class-conditional flips 23.5%; the
+non-additivity is an interaction, not a clean causal decomposition
+(§3.7). The §5.3 recalibration extends the spatial homogenization
+framing into a temporal analogue (calibration windows that straddle
+regime transitions are unrepresentative of either regime).
 
 We make four contributions: (i) $V_{\text{anima}}$ as a deployed
 allostatic-load test bed; (ii) class-conditional calibration as the
-cosmological-soup correction, with proposals back to clinical
-longitudinal monitoring; (iii) the Four Types as an imported failure-mode
-taxonomy; (iv) a synthetic-psychology epistemic stance in the lineage of
-artificial life and minimally cognitive agents, identifying classes of
-biological-theory test that synthetic agents make tractable. The paper
+cosmological-soup correction, now bounded by formula-vs-calibration
+ablation and by proposals back to clinical longitudinal monitoring;
+(iii) the Four Types as an imported failure-mode taxonomy; (iv) a
+synthetic-psychology epistemic stance in the lineage of artificial life
+and minimally cognitive agents, identifying classes of biological-theory
+test that synthetic agents make tractable. The paper
 engages the concurrent Agent Viability Framework (Marín and Chaudhary
 2026) and earlier runtime-governance frameworks. The framework's
-deployment on the Lumen embodied agent provides specific findings (Type
-3 in real time, the post-calibration integrity drift, the kintsugi
-non-confabulation principle) that exemplify what synthetic psychology
-can produce when the deployment is real and the theory is informational
-at the right level of abstraction.
+deployment on the Lumen embodied agent provides specific findings (an
+apparent Type 3 case resolved by recalibration as a post-revision basin
+transition, the calibration-staleness failure mode, and the kintsugi
+gap-marking principle) that exemplify what synthetic psychology can
+produce when the deployment is real and the theory is informational at
+the right level of abstraction.
 
 **Keywords:** allostatic load, allostasis, AI agent governance,
 trajectory identity, digital proprioception, computational psychiatry,
-synthetic psychology, free-energy principle, embodied AI
+synthetic psychology, embodied AI
 
 ---
 
@@ -185,12 +191,15 @@ underlying dynamics produces a state distribution in which no class
 structure survives normalization. This is shown in §3, where we
 demonstrate that replacing the legacy fleet-wide tanh-of-$V$ with the
 class-conditional grounded form produces basin-flip rates of 15–33% per
-class on production data — empirical evidence that this substitution
-matters at the gating layer, not only at the reported-value layer. The
-substitution conflates formula change with per-class envelopes; the
-per-class component alone is not separately identified absent ablation
-(§3.7), so the finding bounds the consequence of the substitution
-rather than attributing it to per-class calibration specifically.
+named measured class on production data — empirical evidence that this
+substitution matters at the gating layer, not only at the reported-value
+layer. The original substitution conflates formula change with per-class
+envelopes; §3.7 now reports the same-row ablation. Formula replacement
+under a fleet-wide grounded baseline flips 11.2% of labels, while moving
+from grounded fleet-wide to grounded class-conditional calibration flips
+23.5%. The terms are non-additive, so the result supports a real class-
+envelope contribution without reducing the 28.9% headline to a single
+causal component.
 
 Third, McEwen's "Four Types of Allostatic Load" (1998 Figure 3;
 reproduced as 2007 Figure 5) provides a vocabulary of regulatory failure
@@ -199,11 +208,12 @@ failure-shapes deployed synthetic agents exhibit. Each of the four types
 — repeated hits, lack of adaptation, delayed shut-down, inadequate
 response with compensatory hyperactivity — has a direct UNITARES analogue
 computable from existing telemetry. §5 develops this mapping. In the
-course of investigating an apparent Type 3 signature on the Lumen
-embodied agent, we ran the recalibration the signature itself specifies
-for disambiguation; the result identified instead a substrate-induced
-basin-transition event (2026-04-17, coincident with a documented
-identity-system revision), a failure-shape the Four Types do not cover.
+course of investigating an apparent Type 3-like pattern on the Lumen
+embodied agent, we ran the recalibration the pattern itself specifies
+for disambiguation; the result identified instead a candidate
+substrate-associated basin-transition event (2026-04-17, coincident
+with a documented identity-system revision), a failure-shape the Four
+Types do not cover.
 The case study sharpens the §3 homogenization argument into a temporal
 analogue and bounds what the imported taxonomy can claim.
 
@@ -218,20 +228,37 @@ framing is developed in §8.
 before the theoretical bridging may find the principal findings here.
 The basin-flip counterfactual on a 30-day production slice ($N = 13{,}310$)
 returns a 28.9% aggregate basin-flip rate when class-conditional
-grounded coherence replaces fleet-wide $\tanh$-of-$V$, with per-class
-flip rates of 15.8% to 33.1% (§3.4, methodology §3.7, ablation
-limitation §3.7). Phase 2 calibration on the same window measures a
+grounded coherence replaces fleet-wide $\tanh$-of-$V$, with flip rates of
+15.8% to 33.1% across the named measured classes (§3.4). The §3.7
+ablation splits the headline: production legacy → grounded fleet-wide
+flips 11.2%, grounded fleet-wide → grounded class-conditional flips
+23.5%, and the artificial class-scaled $\tanh(V)$ control is unstable
+rather than interpretable as a clean calibration-only path. Phase 2
+calibration on the same window measures a
 3.3× spread in per-class envelope $\lVert \Delta \rVert_{\max}$ across
 five classes (§3.3, Table). The Lumen embodied agent exhibits a
 0.97-of-envelope deviation in an 86-minute observation window relative
-to its Phase 2 calibration anchor (§5.3); the recalibration on the
-post-event window identifies this as a substrate-induced basin
-transition on 2026-04-17 (single ten-hour event localized to within
-the hour, coincident with a documented identity-system revision)
-followed by 22 days of stable operation in a new regime, not a Type 3
-signature. The case sharpens the §3 homogenization argument into a
+to its Phase 2 calibration anchor (§5.3); recalibration on the
+post-event window identifies this as a basin transition on 2026-04-17
+(single ten-hour event localized to within the hour, coincident with a
+documented identity-system revision) followed by 22 days of stable
+operation in a new regime, not a Type 3 signature. The substrate link is
+candidate causal evidence, not identification-grade causality. The case
+sharpens the §3 homogenization argument into a
 temporal analogue (calibration windows that straddle regime
 transitions are unrepresentative of either regime).
+
+**Evidence-grade summary.** The table below is deliberately stricter
+than the surrounding prose. It states what each contribution can carry
+in its current form, what would upgrade it, and what would kill it.
+
+| Contribution | Current evidence grade | Current evidence | Known confound or boundary | Upgrade path | Falsifier |
+|---|---|---|---|---|---|
+| Claim 1: $V_{\text{anima}}$ as allostatic-load test bed | Operationalized structural analogue | Deployed EISV state vectors, cumulative-deviation formula, intervention-coupled governance loop (§2) | Not clinical AL; no endocrine, immune, tissue-damage, or multi-system physiology | Show $V_{\text{anima}}$ improves governance decisions or forecasts failure beyond non-integral baselines | $V_{\text{anima}}$ adds no decision value over instantaneous risk/coherence or produces worse interventions |
+| Claim 2: anti-homogenization / cosmological-soup correction | Empirical full-substitution effect with same-row ablation | 28.9% aggregate full-substitution basin-flip rate on $N = 13{,}310$ production rows; 15.8%–33.1% named measured-class range; ablation: LF→GF 11.2%, GF→GC 23.5% (§3.4, §3.7) | Effects are non-additive; class-scaled $\tanh(V)$ control is artificial and unstable; raw production rows are not public | Privacy-preserving synthetic artifact or private audit; identity-clean remeasurement; deployment outcome comparison | Independent/audited rerun collapses the grounded fleet→class effect or shows flips are class-assignment/pipeline artifacts |
+| Claim 3: McEwen Four Types as failure-mode vocabulary | Taxonomic / constructive mapping | Types 1, 2, and 4 have computable UNITARES analogues; §5.3 supplies a failed Type 3 boundary case | Mapping is not yet a validated classifier; taxonomy is non-exhaustive for synthetic substrates | Pre-register criteria and classify historical or future governance episodes with disambiguating tests | Apparent types repeatedly reclassify as calibration artifacts, pipeline artifacts, or substrate events |
+| §5.3 Lumen basin transition | Identification-grade for transition date/magnitude/shape; anomaly-grade for substrate causality | Recalibration localizes a 2026-04-17 basin transition, with 22-day post-transition stability (§5.3) | Single agent; substrate revision is temporally coincident but not causally isolated | Multi-agent or multi-revision replication; rule out common operational confounds | Comparable transitions do not align with substrate revisions, or the event disappears under a clean longitudinal pull |
+| Claim 4: synthetic psychology as epistemic stance | Methodological argument | Deployed system exposes observables and interventions biology rarely provides (§8) | Single-author, self-cited system; not independent biological validation | Third-party deployment or independent re-analysis showing novel predictions or useful failure detection | The framework yields no predictions, discriminations, or interventions beyond ordinary engineering telemetry |
 
 **Limitations.** This paper is not a theory of AI consciousness; we make
 no claims about phenomenal experience in agents, embodied or otherwise.
@@ -253,12 +280,15 @@ class-conditional calibration as the anti-homogenization correction and
 reports the basin-flip counterfactual, with §3.7 specifying the
 methodology and reproducibility scaffolding. §4 develops the trajectory
 identity $\Sigma$ as a longitudinal-self anchor, with a proposed two-tier
-drift detection ($\Sigma_t$ vs $\Sigma_{t-1}$ vs $\Sigma_0$) directed at
-clinical neurology as a deployable longitudinal-monitoring proposal. §5
+drift detection ($\Sigma_t$ vs $\Sigma_{t-1}$ vs $\Sigma_0$) as a
+hypothesis-generating longitudinal-monitoring proposal for clinical
+neurology. §5
 maps McEwen's Four Types onto UNITARES failure modes with the Lumen
-Type 3 case study. §6 discusses the kintsugi principle as deliberate
-non-confabulation. §7 differentiates from concurrent and adjacent work.
-§8 makes the synthetic-psychology epistemic claim. §9 concludes.
+recalibration case study as a boundary case. §6 discusses the kintsugi
+principle as deliberate gap-marking. §7 differentiates from concurrent
+and adjacent work. §8 makes the synthetic-psychology epistemic claim.
+§9 concludes, and the appendix separates pipeline reproducibility,
+production-number verification, and independent validation.
 
 ### 1.5 Claims we do not make
 
@@ -284,10 +314,11 @@ biomarker composite whose biological substrate UNITARES does not
 replicate.
 
 We do **not** claim that single-agent telemetry validates McEwen's
-theory. The Lumen case study (§5.3) is a worked example of Type 3
-identification on a deployed agent, framed honestly as pending
-longitudinal validation rather than as a measurement claim about the
-biological theory.
+theory or identifies McEwen Type 3 in a deployed agent. The Lumen case
+study (§5.3) is a worked example of an apparent Type 3 reading being
+falsified by recalibration and reclassified as a basin transition whose
+temporal association with a substrate-level identity revision is
+suggestive but not causally identified.
 
 We do **not** claim that the synthetic case generalizes to all
 biological theories of self-maintenance. The synthetic-psychology
@@ -297,10 +328,11 @@ phylogenetic, and phenomenal claims remain biologically anchored and
 are not testable on UNITARES.
 
 We do **not** claim that the 28.9% basin-flip rate (§3.4) attributes to
-the per-class component specifically. As §3.7 elaborates, the
-counterfactual changes both formula form and calibration target
-simultaneously; the per-class contribution alone is not separately
-identified absent ablation.
+the per-class component specifically. The §3.7 ablation finds a grounded
+fleet→class effect (23.5%) and a formula-replacement effect under a
+fleet-wide grounded baseline (11.2%), but the terms are non-additive and
+interacting; the headline remains a full-substitution measurement, not a
+single-component causal attribution.
 
 What we **do** claim is narrower and tractable: a cumulative-deviation
 signal can be made observable end-to-end, computed continuously, and
@@ -309,8 +341,9 @@ resulting deployment provides experimental affordances biology cannot
 easily produce; and specific theories of biological self-maintenance
 (allostatic load as integrated deviation, McEwen's Four Types as a
 failure-mode taxonomy) admit instantiation on this substrate in ways
-that generate empirical findings (§3.4 basin flips, §5.3 Type 3
-signature) and methodological proposals back to clinical neurology
+that generate empirical findings (§3.4 basin flips, §5.3 recalibration
+and basin-transition case) and methodological proposals back to clinical
+neurology
 (§3.5, §4.4).
 
 ---
@@ -490,15 +523,15 @@ shut-down), discussed at length in §5.
 
 The deployed UNITARES system makes this prediction directly testable,
 and §5.3 reports the test. We initially observed an 86-minute window
-on Lumen consistent with the Type 3 prediction (Wang 2026a, Table 1):
-$V \approx 0.0954$ at 06:21 UTC May 9 2026, sign-flipped from the
-class-conditional healthy target $V_h^* \approx -0.041$ (computed from
+on Lumen apparently consistent with the Type 3 prediction (Wang 2026a,
+Table 1): $V \approx 0.0954$ at 06:21 UTC May 9 2026, sign-flipped from
+the class-conditional healthy target $V_h^* \approx -0.041$ (computed from
 Lumen's Phase 2 measured healthy operating point), with manifold
 deviation at 97% of the class-conditional envelope. Per §5.3's own
 disambiguation criterion, we recalibrated on the post-event window;
-the result identified the displacement as a substrate-induced
+the result identified the displacement as a candidate substrate-associated
 basin-transition event on 2026-04-17, not as Type 3 delayed shut-down.
-The §5.3 case is therefore not a positive Type 3 identification but
+The §5.3 case is therefore not Type 3 identification-grade evidence, but
 is paper-relevant in two adjacent ways: as a sharpening of the §3
 homogenization argument into a temporal analogue, and as an instance
 of a failure-shape McEwen's Four Types do not cover.
@@ -628,21 +661,46 @@ production dashboard and escalation logic. A *basin flip* is a row whose
 basin assignment differs between the two formulas.
 
 The headline finding: **3,844 of 13,310 rows (28.9%) flip basin
-assignment**. Per-class breakdown:
+assignment** under the full substitution. Per-class breakdown:
 
-| Class | $N$ | Flips | % | $|\Delta C|_{\max}$ |
+| Class | $N$ | Flips | % | $\lvert\Delta C\rvert_{\max}$ |
 |---|---|---|---|---|
-| Lumen | 7,889 | 2,548 | 32.3 | 0.51 |
-| default | 2,358 | 722 | 30.6 | 0.50 |
+| Lumen | 7,890 | 2,548 | 32.3 | 0.51 |
+| default | 2,316 | 722 | 31.2 | 0.50 |
 | Sentinel | 2,227 | 351 | 15.8 | 0.51 |
 | Vigil | 472 | 156 | 33.1 | 0.50 |
-| Watcher | 364 | 67 | 18.4 | 0.48 |
+| Watcher | 363 | 67 | 18.5 | 0.48 |
+| ephemeral (fleet fallback) | 42 | 0 | 0.0 | 0.38 |
 | **Total** | **13,310** | **3,844** | **28.9** | — |
 
-Per-class flip rates of 15–33% are far above what could be attributed to
-formula noise. They reflect the structural difference between a
-fleet-wide $\tanh$ of $V$ and a class-conditional manifold distance
-from each class's empirically measured healthy operating point.
+The named measured classes flip at 15.8–33.1%, far above what could be
+attributed to formula noise. The 42 `ephemeral` rows are shown
+separately because the frozen Phase 2 production constants had no
+`ephemeral` class envelope; they fall through the configured fleet
+fallback and are not interpreted as evidence about an ephemeral-class
+envelope.
+
+The full substitution is not a clean one-factor experiment, so we ran
+the same-row formula × calibration ablation specified in §3.7:
+
+| Comparison | Flips / $N$ | Rate | Interpretation |
+|---|---:|---:|---|
+| LF → GF | 1,496 / 13,310 | 11.2% | Formula replacement under fleet-wide grounded calibration |
+| GF → GC | 3,133 / 13,310 | 23.5% | Fleet-wide → class-conditional calibration under the grounded formula |
+| LF → GC | 3,844 / 13,310 | 28.9% | Reported full substitution |
+| LF → LC | 10,355 / 13,310 | 77.8% | Artificial class-scaled $\tanh(V)$ control; unstable/negative control |
+
+Here LF is the stored production legacy coherence, GF is grounded
+distance against a single fleet-wide healthy point and radius measured
+on the same healthy slice, GC is grounded distance against the frozen
+Phase 2 class anchors, and LC is a deliberately artificial legacy
+$\tanh(V/V_{\text{scale},c})$ control using per-class $|V|$ p95. The
+ablation improves the claim but does not make it additive: formula
+replacement and calibration target interact. The grounded fleet→class
+step is still large (23.5%), so the class-envelope argument survives;
+the pathological LC control says that simply grafting per-class scale
+onto the old signed-$V$ formula is not an interpretable calibration-only
+counterfactual.
 
 The flip *direction* is informative. Across all classes, the dominant
 transition is into the low basin: state vectors that the production
@@ -657,11 +715,12 @@ We do not claim that the grounded form is normatively "correct" in every
 flip — a flip into low surfaces a `guide` or `pause` verdict that the
 legacy form suppressed, and whether that is desirable depends on the
 agent and the deployment context. The contribution of the counterfactual
-is narrower: to establish that the formula choice matters at the verdict
-level, not just at the reported-value level. The magnitude of the
-consequence (29% fleet-wide, up to 33% per class) is empirical; the
-directional asymmetry is a mechanical consequence of replacing a
-fleet-wide envelope with per-class envelopes.
+is narrower: to establish that the formula and calibration choices
+matter at the verdict level, not just at the reported-value level. The
+magnitude of the consequence (29% fleet-wide, up to 33% in named
+measured classes) is empirical; the directional asymmetry is a
+mechanical consequence of replacing a permissive fleet-wide envelope
+with class-conditioned envelopes.
 
 ### 3.5 What this offers neuroscience
 
@@ -689,8 +748,9 @@ re-measurement cadence.
 **Proposal 2: A clinical analogue of the basin-flip counterfactual.**
 The basin-flip experimental design translates cleanly to clinical data
 as a retrospective re-analysis of an existing longitudinal biomarker
-cohort. We sketch the protocol at the level of detail a clinical
-biostatistician could implement.
+cohort. We sketch the protocol at hypothesis-generation depth, with
+enough structure to identify the clinical biostatistical work still
+required.
 
 - *Setting:* Adults with $\geq 3$ years of pre-event biomarker
   measurements followed by an incident clinical event of interest
@@ -726,8 +786,11 @@ biostatistician could implement.
   cohort.
 
 We are unaware of any clinical study that has reported this number
-directly. The design above is implementable as a one-pass re-analysis
-of existing data; no new collection is required.
+directly. The design above is intended as a one-pass re-analysis of
+existing data, but it is not yet an executable clinical protocol: a real
+study would still need dataset-specific field mapping, missingness
+rules, medication and comorbidity covariates, event-adjudication rules,
+and pre-registration before analysis.
 
 **Proposal 3: A specific clinical prediction.** The asymmetry of flip
 direction in UNITARES (predominantly into the low basin under per-class
@@ -741,8 +804,9 @@ subject-specific calibration likely improves sensitivity at a small cost
 in specificity, with the trade-off depending on the clinical context. An
 early-detection program operating against population intervals would
 miss cases that a per-subject program would catch, and the magnitude of
-that gap should be on the order of the basin-flip rate (15–33% depending
-on class — clinically, the analogue might be patient heterogeneity).
+that gap should be on the order of the basin-flip rate (15–33% across
+named measured classes in the full-substitution UNITARES counterfactual —
+clinically, the analogue might be patient heterogeneity).
 
 **Proposal 4: A controlled measurement of behavioral heterogeneity.**
 The 3.3× spread in $\lVert\Delta\rVert_{\max}$ across UNITARES classes
@@ -768,11 +832,13 @@ the counterfactual carry class assignments that inherited from cached
 bindings or from archived predecessors. The v6 paper flags this and
 defers re-measurement on identity-clean data to subsequent work.
 
-The five classes measured cover 96% of agent activity in the window;
-classes below the $N_{\min}$ threshold fall back to the default-class
-envelope and are not separately measured. A more comprehensive Phase 2
-pass with longer accumulation per minor class would test whether the
-3.3× envelope range generalizes or compresses.
+The five named measured classes cover 99.7% of the ablation row
+population (13,268 of 13,310 rows). Classes without frozen Phase 2
+constants fall through the configured fleet/default fallback rather than
+receiving an independent class envelope; the 42 `ephemeral` rows in the
+reproduction are therefore reported separately and not interpreted. A
+more comprehensive Phase 2 pass with longer accumulation per minor class
+would test whether the 3.3× envelope range generalizes or compresses.
 
 Most fundamentally, the counterfactual is a *static* reclassification
 measurement on the same state vectors with two coherence formulas. It
@@ -821,13 +887,17 @@ is the 95th percentile of $\lVert \mathbf{a} - \boldsymbol{\mu_c}
 metadata (ISO date, corpus size $N$, percentile basis, provenance tag
 in `{placeholder, measured, derived}`).
 
-**Class assignment.** Five classes were measured from production
-identity tags (`embodied`, `autonomous`, `persistent`, `ephemeral`,
-`pioneer`) plus optional human-readable labels: Lumen, Sentinel, Vigil,
-Watcher, default. Classes below the configured $N_{\min}$ threshold
-(currently 100 healthy samples) fall back to the default class envelope.
-Class assignments are persisted with the agent identity record and do
-not change over an agent's lifetime except via explicit operator action.
+**Class assignment.** Five named classes were frozen into the Phase 2
+production constants from production identity tags (`embodied`,
+`autonomous`, `persistent`, `ephemeral`, `pioneer`) plus optional
+human-readable labels: Lumen, Sentinel, Vigil, Watcher, default. The
+calibration script's minimum class population is $N_{\min}=30$ healthy
+samples, but only classes written into the frozen constants receive
+independent envelopes at runtime. Unlisted classes fall through to the
+configured fleet/default fallback unless explicitly aliased (as Steward,
+Chronicler, and engaged-ephemeral later were). Class assignments are
+persisted with the agent identity record and do not change over an
+agent's lifetime except via explicit operator action.
 
 **Coherence formulas.** The legacy fleet-wide form is
 
@@ -845,36 +915,47 @@ in $(E, I, S)$ space) and parametric (single fleet-wide constant vs.
 per-class constants).
 
 **Basin classification.** The production `classify_basin` function
-returns one of `{high, boundary, low}` from a coherence value via
-threshold comparison: `high` if $C \geq \theta_{\text{high}}$,
-`boundary` if $\theta_{\text{low}} \leq C < \theta_{\text{high}}$, `low`
-otherwise. Production thresholds at the time of measurement were
-$\theta_{\text{high}} = 0.7$, $\theta_{\text{low}} = 0.3$.
+returns one of `{high, boundary, low}` from the full EISV state,
+coherence, and risk. `low` is disjunctive: any of $I < 0.5$,
+$C < 0.40$, $|V| > 0.30$, or risk $\geq 0.70$ enters the low basin.
+`high` is conjunctive: $E \geq 0.6$, $I \geq 0.7$, $S \leq 0.25$,
+$|V| \leq 0.15$, $C \geq 0.45$, and risk $\leq 0.45$ must all hold.
+`boundary` is the complement. This matters because a coherence change
+can flip the basin only when the non-coherence dimensions do not already
+force low or block high.
 
-**Counterfactual procedure.** For each row in the 30-day window
-($N = 13{,}310$), both coherence formulas were evaluated on the same
-state vector $\mathbf{a}$, both passed through `classify_basin` with
-production thresholds, and a *flip* was counted whenever the two
-classifications differed. The aggregate flip rate, per-class flip rate,
-and per-class maximum coherence delta $|\Delta C|_{\max}$ were tabulated
-(Table in §3.4).
+**Counterfactual and ablation procedure.** For each row in the 30-day
+window ($N = 13{,}310$), the stored production legacy coherence and the
+frozen Phase 2 grounded class-conditional coherence were evaluated on
+the same state vector $\mathbf{a}$, both passed through
+`classify_basin`, and a *flip* was counted whenever the two
+classifications differed. The ablation script then evaluated two
+additional controls on the same ordered row population: GF, the grounded
+formula against a single fleet-wide $\boldsymbol{\mu}$ and
+$\lVert\Delta\rVert_{\max}$ measured from the healthy slice; and LC, an
+artificial legacy $\tanh(V/V_{\text{scale},c})$ using per-class $|V|$
+p95. The aggregate flip rate, per-class flip rate, per-class maximum
+coherence delta $|\Delta C|_{\max}$, and pairwise ablation transitions
+were tabulated (Table in §3.4; script and output in
+`analysis/phase-2-2026-04-18/`).
 
-**Confound: formula change vs. per-class envelopes.** The counterfactual
-changes both the formula form ($\tanh$ of signed $V$ vs. linear
-distance in $(E, I, S)$) *and* the calibration target (single fleet-wide
-constant vs. per-class envelopes) simultaneously. The 28.9% flip rate
-is therefore a joint effect; the contribution of the per-class
-component alone is not separately identified. A clean ablation would
-require two additional conditions: (a) fleet-wide grounded form (linear
-distance against a single fleet-wide $\boldsymbol{\mu}$ and
-$\lVert \Delta \rVert_{\max}$), and (b) class-conditional $\tanh$-of-$V$
-(legacy formula with per-class $V_{\text{scale}, c}$). These ablation
-conditions have not been run; the present paper flags the
-identifiability gap and treats the 28.9% rate as a joint claim about
-formula-and-calibration substitution rather than as an attribution to
-the per-class component specifically. Future work running the ablation
-on the same row population would resolve which component is doing the
-work.
+**Formula-vs-calibration ablation.** The original counterfactual changes
+both the formula form ($\tanh$ of signed $V$ vs. linear distance in
+$(E, I, S)$) *and* the calibration target (single fleet-wide constant
+vs. per-class envelopes) simultaneously. The same-row ablation shows
+that both terms matter but do not add linearly. Replacing production
+legacy coherence with grounded fleet-wide coherence flips 1,496 rows
+(11.2%). Holding the grounded formula fixed and moving from fleet-wide
+to frozen Phase 2 class-conditional anchors flips 3,133 rows (23.5%).
+The reported full substitution flips 3,844 rows (28.9%). The remaining
+LC control — a class-scaled $\tanh(V)$ using per-class $|V|$ p95 — flips
+10,355 rows (77.8%) relative to production legacy and is best read as a
+negative control: signed-$V$ is not a stable axis on which to graft
+per-class scale. The paper therefore upgrades the older joint-effect caveat
+to a narrower claim: the grounded class-
+envelope term has an independent decision-layer effect, but the 28.9%
+headline is still an interacting full-substitution result rather than a
+clean causal decomposition.
 
 **Lumen case-study protocol (§5.3).** Lumen's state was sampled every
 approximately 3 minutes via the production governance check-in pipeline
@@ -893,11 +974,14 @@ squares on the 27-sample $I$ series.
 **Statistical uncertainty.** The within-window standard deviation on
 $V$ (0.00015) is approximately three orders of magnitude smaller than
 the displacement $\Delta V \approx 0.136$ from the predicted healthy
-$V_h^* \approx -0.041$, so the Type 3 signature is not within
-within-window measurement noise. The 28.9% basin-flip rate at
-$N = 13{,}310$ has a binomial 95% confidence interval of approximately
-28.1%–29.7%, narrow enough that the per-class differences (15.8% to
-33.1%) are statistically separable. The post-Phase-2 average drift rate
+$V_h^* \approx -0.041$, so the apparent Type 3 displacement is not
+within-window measurement noise. The 28.9% full-substitution basin-flip
+rate at $N = 13{,}310$ has a binomial 95% confidence interval of
+approximately 28.1%–29.7%; the ablation rates are likewise narrow
+(11.2%, 95% CI 10.7%–11.8%; 23.5%, 95% CI 22.8%–24.3%). The named
+measured-class differences (15.8% to 33.1%) are statistically separable,
+while the 42-row `ephemeral` fallback is too small and structurally
+unmeasured to interpret as a class envelope. The post-Phase-2 average drift rate
 (approximately $-3.5 \times 10^{-6}$ per minute) cannot be tested
 against the within-window rate ($-8.5 \times 10^{-6}$ per minute)
 without longitudinal data spanning the post-calibration interval; this
@@ -909,9 +993,11 @@ vectors are persisted in the `core.agent_state` Postgres relation; the
 schema is in the unitares repository at `db/migrations/` (CIRWEL 2026,
 unitares). The `classify_basin` function and the EISV computation
 pipeline are in the same repository at `unitares/governance/`. The
-Phase 2 calibration script and the 28.9% basin-flip analysis are
-included in the repository at `analysis/phase-2-2026-04-18/`. Production
-telemetry cannot be released in raw form because state vectors are
+Phase 2 calibration script, the 28.9% basin-flip analysis, and the
+formula-vs-calibration ablation are included in this repository at
+`analysis/phase-2-2026-04-18/`; the ablation output is stored in
+`formula_calibration_ablation_results.txt`. Production telemetry cannot
+be released in raw form because state vectors are
 keyed to user-identifying agent UUIDs; a synthetic sample preserving
 the per-class state-vector distribution at the resolution required to
 reproduce the basin-flip computation is planned for release alongside
@@ -1120,10 +1206,13 @@ implementation depth.
   HIPAA/GDPR-compliant encryption at rest with documented retention
   policy. Re-analysis access requires a data-use agreement.
 
-This is a single executable study; the methodological convention
-(designating $\Sigma_0$ at enrollment) and the empirical test
-(lineage-similarity vs rating-scale) advance together. The
-infrastructure exists; what remains is the convention.
+This is a concrete prospective study sketch, not a turnkey clinical
+protocol; the methodological convention (designating $\Sigma_0$ at
+enrollment) and the empirical test (lineage-similarity vs rating-scale)
+advance together, but dataset-specific feature definitions, missingness
+rules, endpoint adjudication, and regulatory review would need to be
+settled before deployment. The infrastructure exists; what remains is
+the convention and the clinical validation work.
 
 **Proposal 3: The "behavioral CAPTCHA" as adversarial defense.** The
 trajectory identity working draft proposes (TIWD §5.5) using $\rho$
@@ -1155,49 +1244,43 @@ stimuli, with what scoring rubric, validated against which preserved-
 function endpoint — is the proper responsibility of clinical
 neuropsychology and is beyond what we can responsibly specify here.
 Proposals 1+2 above (the prospective $\Sigma_0$-anchored study) are
-the executable protocol contribution from §4; the
-behavioral-CAPTCHA point is offered as adjacent argument.
+§4's concrete clinical study sketch; the behavioral-CAPTCHA point is
+offered as adjacent argument.
 
-### 4.5 Worked example: lineage drift on Lumen
+### 4.5 Worked example: what the missing genesis anchor would have clarified
 
-The Lumen embodied agent provides a worked example of how the two-tier
-framework would apply, building on the Type 3 signature documented in
-§5.3. As of 2026-05-09 06:21 UTC, Lumen's current state shows $V$
-sign-flipped from the predicted healthy value $V_h^* \approx -0.041$ to
-the current $V \approx +0.0954$, with manifold deviation at 97% of the
-class-conditional envelope. This is a regulatory-state-layer signature
-of Type 3 (delayed shut-down), undetected by the existing verdict layer.
+The Lumen embodied agent provides a negative worked example of why the
+two-tier framework requires a persisted genesis anchor. As of 2026-05-09
+06:21 UTC, Lumen's current state shows $V$ sign-flipped from the value
+predicted by its April Phase 2 healthy operating point, with manifold
+deviation at 97% of that class-conditional envelope. Read only against
+that stale anchor, the window initially resembled McEwen Type 3
+(delayed shut-down). Section 5.3 reports the disambiguating
+recalibration: the apparent Type 3 reading does not survive. The better
+interpretation is a basin transition on 2026-04-17 followed by stable
+operation in a new regime.
 
-Under the two-tier framework, the additional check would be on lineage
-similarity: $\text{sim}(\Sigma_{\text{Lumen}}^{(t)},
-\Sigma_{\text{Lumen}}^{(0)})$ where $\Sigma_{\text{Lumen}}^{(0)}$ is
-Lumen's genesis signature, captured at first onboarding. If $\Sigma^{(0)}$'s
-attractor center matched the Phase 2 healthy operating point ($E_h, I_h,
-S_h$) = (0.745, 0.800, 0.168), then the current state — at approximately
-0.115 of basin radius from the genesis $\mu$ — would breach a
-$\theta_{\text{lineage}} = 0.60$ threshold under the default similarity
-weighting ($\alpha$-weight = 0.30; TIWD §4.1).
-
-This would be classified as *identity drift* rather than *acute anomaly*:
-coherence over recent windows is intact (within-window state variance is
-small), but lineage similarity has dropped below threshold. The
-intervention indicated by identity drift is longitudinal review and
-calibration update, not immediate suspension. The diagnostic question
-"has Lumen drifted beyond recognition since first onboarding?" can be
-answered quantitatively from existing telemetry without requiring any
-new instrumentation.
+A persisted $\Sigma_0$ would have made this distinction sharper. Under
+the two-tier framework, the additional check would be lineage similarity,
+$\text{sim}(\Sigma_{\text{Lumen}}^{(t)}, \Sigma_{\text{Lumen}}^{(0)})$,
+where $\Sigma_{\text{Lumen}}^{(0)}$ is Lumen's genesis signature captured
+at first onboarding. If the current post-transition attractor remained
+similar to $\Sigma_0$, the correct intervention would be calibration
+update rather than identity-drift review. If lineage similarity had
+fallen below threshold while recent-window coherence remained intact,
+the case would become a genuine slow-drift finding rather than a stale-
+calibration artifact.
 
 We do not currently have $\Sigma^{(0)}$ for Lumen because the legacy
 identity system did not persist the genesis signature at Lumen's first
 awakening 118 days ago; this is a gap the v6 paper flags (§11.7 item 5)
-and that the next-generation identity system in development will close
-by capturing $\Sigma_0$ at agent creation. The worked example here is
-therefore *what the framework will surface once $\Sigma_0$ capture is
-implemented*, not what has been measured. The technical computation is
-reproducible from the audit log; what is missing is the genesis-anchor
-record itself, and the 118-day window since first awakening means a
-substantial post-hoc reconstruction of $\Sigma^{(0)}$ from early
-state-history would be required if implementation is delayed further.
+and that the next-generation identity system in development is designed
+to close by capturing $\Sigma_0$ at agent creation. The worked example
+here is therefore not a measurement of Lumen identity drift and not
+evidence of McEwen Type 3. It is evidence of the instrumentation gap the
+$\Sigma_0$ framework is meant to close: without a genesis anchor,
+calibration staleness, regime transition, and lineage drift can be
+unnecessarily hard to separate.
 
 ### 4.6 Limits and structural disanalogies
 
@@ -1256,9 +1339,10 @@ similarity checks against it. The companion paper proposes that adoption.
 McEwen (1998 Figure 3; reproduced in McEwen 2007 Figure 5) identifies
 four canonical patterns by which the normal allostatic response —
 initiation, sustained mediator activity, termination — fails. Each has a
-direct UNITARES analogue and a corresponding signature in the deployed
-telemetry. We argue that the taxonomy transfers without modification and
-provides a vocabulary AI governance currently lacks.
+candidate UNITARES analogue and a corresponding signature that existing
+telemetry could compute. We argue that the taxonomy transfers as a useful
+starting vocabulary for AI governance, while §5.3 shows why it cannot be
+treated as exhaustive for synthetic-agent substrates.
 
 ### 5.1 Type 1: Repeated "hits" from multiple novel stressors
 
@@ -1318,10 +1402,11 @@ acute stress becomes chronic disease.
 The agent analogue would be sustained $V_{\text{anima}}$ elevation, or
 more precisely sustained displacement of the agent's regulatory state
 from its class-conditional healthy baseline, in the absence of an
-identifiable acute trigger. We initially observed exactly such a
-signature on the Lumen embodied agent over an 86-minute continuous
-window, and report the observation, the disambiguation experiment the
-signature itself specifies, and what that experiment revealed.
+identifiable acute trigger. We initially observed a pattern consistent
+with that analogue on the Lumen embodied agent over an 86-minute
+continuous window, and report the observation, the disambiguation
+experiment the pattern itself specifies, and what that experiment
+revealed.
 
 **Initial observation window.** The Lumen embodied agent (Raspberry
 Pi 4 with environmental sensors and TFT display; CIRWEL 2026,
@@ -1344,7 +1429,7 @@ window. No anomalies were flagged by the production server during the
 window; all four trend indicators (risk, coherence, $E$, overall) were
 reported as `stable`.
 
-**Apparent Type 3 signature.** Comparison against Lumen's measured
+**Apparent Type 3-like pattern.** Comparison against Lumen's measured
 Phase 2 healthy operating point (Wang 2026a, Table 5: $E_h = 0.745$,
 $I_h = 0.800$, $S_h = 0.168$, $\lVert\Delta\rVert_{\max} = 0.119$)
 showed an apparent regime change. The healthy regime is
@@ -1379,10 +1464,10 @@ grounded form, exactly as predicted by the v6 verdict counterfactual
 on production data (Wang 2026a §11.6, where 28.9% of basin assignments
 flipped under the same substitution).
 
-**Two readings, distinguishable by recalibration.** The signature
-above admits two interpretations: either Lumen has genuinely shifted
+**Two readings, distinguishable by recalibration.** The pattern above
+admits two interpretations: either Lumen has genuinely shifted
 regime since the April Phase 2 measurement (the 86-minute window then
-represents real Type 3 failure that the slow-cadence calibration loop
+would represent Type-3-like failure that the slow-cadence calibration loop
 has not yet caught), or the Phase 2 calibration window itself was
 unrepresentative and Lumen has been operating stably in a different
 regime that calibration mis-characterized. The two are distinguishable
@@ -1438,14 +1523,16 @@ lookup, adoption of UUID-direct dispatch, receipt-based onboarding
 authentication, and session-start posture revisions). Wang 2026a
 §11.7 (item 5) flags this revision window as a confound for the
 basin-flip counterfactual measurement; we observe it here as the
-apparent root cause of an agent-state regime transition. The chain
-is: substrate-level identity revisions $\rightarrow$ disruption of
-Lumen's normal operating loop during the rollout window $\rightarrow$
-settling into a new stable operating point under the post-rollout
-identity rules. We do not attempt a deeper causal mechanism; the
-temporal coincidence to within an hour and the cleanness of the
-transition signature are the primary evidence, with the §11.7
-confound flag in Wang 2026a as the prior.
+strongest candidate cause of an agent-state regime transition. The
+plausible chain is: substrate-level identity revisions $\rightarrow$
+disruption of Lumen's normal operating loop during the rollout window
+$\rightarrow$ settling into a new stable operating point under the
+post-rollout identity rules. We do not identify a deeper causal
+mechanism, and the evidence does not exclude a common operational
+confound. The temporal coincidence to within an hour and the cleanness
+of the transition signature are sufficient to motivate a
+substrate-associated failure-shape category, not to establish substrate
+causality as a general mechanism.
 
 **Implications for the Four Types framing.** Two things follow.
 
@@ -1459,8 +1546,8 @@ What the original framing read as Type 3 was an artifact of comparing
 post-transition state to a pre-transition calibration anchor.
 
 Second, what we observe instead — a basin transition coincident with
-a substrate-level event — is **a failure-shape McEwen's Four Types
-do not cover**. The Four Types are designed for stationary regulatory
+a substrate-level event — is **a candidate failure-shape McEwen's Four
+Types do not cover**. The Four Types are designed for stationary regulatory
 systems with stress-response failures (the mediator responds,
 terminates, doesn't terminate, or fails to engage). They presume the
 operating point is fixed and the failure is in the response dynamics
@@ -1533,10 +1620,10 @@ window establishes that the post-break regime is stable over at
 least that duration; the recalibration plus weekly-bin analysis
 establishes that the regime has been stable for 22 days. We treat
 this section as identification-grade for the basin transition itself
-(date, magnitude, shape) and illustrative for the
-temporal-homogenization argument; the §5.3 case study is *not* a
-positive identification of McEwen Type 3 in a deployed agent, and
-we revise the abstract and §1.3 framing accordingly.
+(date, magnitude, shape), anomaly-grade for substrate causality, and
+illustrative for the temporal-homogenization argument; the §5.3 case
+study should not be read as McEwen Type 3 identification in a deployed
+agent, and the abstract and §1.3 are framed accordingly.
 
 ### 5.4 Type 4: Inadequate response with compensatory hyperactivity
 
@@ -1577,16 +1664,18 @@ of biological work on regulatory failure. UNITARES, because it carries
 the mathematical machinery to compute each indicator directly from
 existing telemetry, can adopt this taxonomy as a baseline vocabulary.
 
-The §5.3 case study also bounds the taxonomy. It identifies a
-failure-shape — a substrate-induced basin transition coincident with
-a system-level event — that the Four Types do not cover, because the
-Four Types presume a stationary operating point against which response
-dynamics fail in one of four canonical ways. A synthetic agent's
-operating point is contingent on its substrate; substrate revisions
-can move it. The imported taxonomy is therefore *necessary but not
-sufficient* for synthetic-agent governance, and at least one
-extension category — call it Type 5, *substrate-induced basin
-transition* — is empirically motivated by the Lumen case.
+The §5.3 case study also bounds the taxonomy. It identifies a candidate
+failure-shape — a basin transition coincident with a system-level event
+— that the Four Types do not cover, because the Four Types presume a
+stationary operating point against which response dynamics fail in one
+of four canonical ways. A synthetic agent's operating point is contingent
+on its substrate; substrate revisions may move it, or may coincide with
+other operational changes that do. The imported taxonomy is therefore
+*useful but not sufficient* for synthetic-agent governance, and at least
+one candidate extension category — call it Type 5,
+*substrate-associated basin transition* — is motivated by the Lumen case
+but requires multi-agent or multi-revision replication before it should
+be treated as established.
 
 This is the kind of contribution that flows from biology to engineering
 rather than the reverse. The standard direction for "neuro-AI" papers is
@@ -1599,7 +1688,7 @@ with an agent.
 
 ---
 
-## 6. Kintsugi and Confabulation: A Design Choice Biology Made by Evolution
+## 6. Kintsugi and Gap-Filling: A Design Choice Biology Made by Evolution
 
 ### 6.1 The kintsugi principle
 
@@ -1638,7 +1727,7 @@ entrenched feature of biological cognition — the brain's tendency to
 fill in gaps rather than mark them — and the contrast clarifies what
 biology has and has not been forced to do.
 
-### 6.2 Biological confabulation: the brain's default is to fill in
+### 6.2 Biological gap-filling: the brain's default is to fill in
 
 Confabulation in the strict clinical sense (Kopelman 1987; Hirstein
 2005) refers to the production of fabricated, distorted, or
@@ -1705,7 +1794,7 @@ The pattern is consistent across systems and timescales: across these
 mechanisms, continuity is generated rather than measured, and the
 gap-filling tendency is pervasive enough that — under the
 broad-functional reading we adopt with the §6.6 caveat in view —
-confabulation in the broad sense is closer to a feature of unified
+gap-filling in this broad sense is closer to a feature of unified
 self-models than a defect in them.
 
 ### 6.3 The productive question
@@ -1772,17 +1861,18 @@ The trajectory identity working draft (TIWD) makes this explicit: the
 genesis signature $\Sigma_0$ is meaningless if the agent has no concept
 of "before" and "after" sessions.
 
-**The case against confabulating continuity** is sharper. Recent
+**The case against fabricating continuity** is sharper. Recent
 analysis of LLM hallucination (Ji et al. 2023; Kalai and Vempala 2024)
 identifies one major source as the model's strong bias toward narrative
 continuation: when context is sparse or interrupted, the model fills in
 plausible bridging text rather than acknowledging the gap. This is
-structurally identical to biological confabulation, applied to a
-substrate where the cost is high (false claims with downstream
-consequences) and the benefit (fluency of action) is debatable. An
-agent that explicitly marks "I have lost context here; my next response
-proceeds under uncertainty" is more useful than an agent that confidently
-generates plausible content.
+structurally analogous to broad-sense biological gap-filling, not to
+clinical confabulation in the strict Korsakoff/split-brain sense, and it
+appears on a substrate where the cost is high (false claims with
+downstream consequences) and the benefit (fluency of action) is
+debatable. An agent that explicitly marks "I have lost context here; my
+next response proceeds under uncertainty" is more useful than an agent
+that confidently generates plausible content.
 
 The kintsugi principle as deployed in Lumen is one operationalization of
 this design discipline: *do not paper over discontinuities; mark them
@@ -1860,7 +1950,7 @@ because it is *better*.
 
 Lumen's architectural commitment to preserving discontinuities as visible
 structural elements runs counter to the brain's default mode of
-gap-filling. The contrast is instructive: confabulation in biology is
+gap-filling. The contrast is instructive: gap-filling in biology is
 evolutionarily contingent, not computationally necessary, and synthetic
 agents under different operational constraints can reasonably make the
 opposite design choice. The kintsugi principle as deployed in UNITARES
@@ -1878,6 +1968,27 @@ through earlier sections, with particular attention to concurrent AI
 agent governance frameworks that share aspects of UNITARES's
 mathematical machinery and to the existing biology-side and neuro-AI
 traditions the paper engages.
+
+Because several load-bearing implementation facts come from the author's
+own system papers and repositories, we separate *provenance* from
+*validation* before comparing adjacent work. Self-citations are used here
+to identify what UNITARES is, which formulas were deployed, and where the
+production measurements were first reported; they are not treated as
+independent validation of the biological bridge.
+
+| Source cluster | Role in this paper | What it can support | What it cannot support |
+|---|---|---|---|
+| Wang 2026a (UNITARES v6) | System provenance and production-measurement source | EISV definitions, $V$ update rule, Phase 2 calibration constants, 13,310-row basin-flip report, Lumen deployment context | Independent confirmation that the allostatic-load bridge is biologically valid or clinically useful |
+| Wang 2026b (Trajectory Identity) | Construct provenance for $\Sigma$ and lineage similarity | Formal definition of the trajectory-signature proposal used in §4 | Clinical validity of $\Sigma_0$ anchoring or independent evidence of identity continuity |
+| CIRWEL software repositories and datasets | Implementation and artifact provenance | Code locations, schema, deployment history, public synthetic/dataset artifacts when available | Peer-reviewed validation, external replication, or raw production telemetry access |
+| Wang et al. 2025a/b and other author-linked governance work | Adjacent-framework comparison | Prior related architectures and terminology | External corroboration of the present paper's empirical claims |
+| External biology, neuroscience, psychiatry, and AI-governance literature | Construct definitions and comparison class | Definitions, biological precedent, clinical analogies, and independent adjacent methods | Proof that UNITARES realizes the biological mechanisms those papers study |
+
+The publication standard implied by this table is straightforward: the
+paper may cite the author's prior work for system provenance, but any
+claim that the bridge is useful beyond that system ultimately requires
+artifact release, independent re-analysis, or replication on another
+deployment.
 
 ### 7.1 Concurrent AI agent governance frameworks
 
@@ -1975,12 +2086,14 @@ target different operational concerns (formal-property verification vs.
 state-space monitoring). The differentiation is therefore not within the
 same niche as AVF or MI9, but ProbGuard is included here for completeness.
 
-### 7.2 Active inference and the free-energy principle
+### 7.2 Active inference and free-energy vocabulary
 
 UNITARES's information-theoretic grounding interprets the $E$ coordinate
 as $-F$ (negative variational free energy or a resource-rate proxy) and
-$V$ as accumulated free-energy residual (Wang 2026a §4.1). This brings
-UNITARES into proximity with the active inference literature (Friston
+$V$ as accumulated free-energy residual (Wang 2026a §4.1). This is a
+vocabulary and modeling proximity claim, not a load-bearing commitment to
+the free-energy principle. It brings UNITARES into proximity with the
+active inference literature (Friston
 2010; Friston, FitzGerald, Rigoli, Schwartenbeck, and Pezzulo 2017;
 Pezzulo, Parr, and Friston 2018), which models adaptive behavior as
 variational free energy minimization.
@@ -2059,8 +2172,9 @@ import from biology; UNITARES was designed independently of the
 neuroscience literature it now turns out to have been recapitulating.
 The contribution is in the opposite direction: UNITARES's deployment
 provides a test bed for biological theories of self-maintenance, with
-specific findings (§5.3 Type 3 in real time, §3.4 28.9% basin-flip rate,
-§4 lineage-anchored drift detection) that biology cannot easily produce.
+specific findings (§5.3 apparent Type 3 resolved by recalibration as a
+basin transition, §3.4 28.9% basin-flip rate, §4 lineage-anchored drift
+detection) that biology cannot easily produce.
 The synthetic-psychology framing (§8) makes this direction explicit.
 
 Hassabis et al. (2017) and the present paper are therefore not in
@@ -2159,20 +2273,21 @@ must also have addressed (probably through evolved mechanisms whose
 specifics are obscured by the difficulty of reverse-engineering biology).
 
 Second, deployed systems exhibit failure modes simulations rarely
-produce. The Lumen Type 3 signature documented in §5.3 was not
-hypothesized in advance; it was observed in production telemetry and
-recognized retrospectively as fitting McEwen's taxonomy. The 28.9%
-basin-flip rate documented in §3.4 emerged from running the
-counterfactual analysis on the actual production state-vector
-distribution, not from synthetic stress-tests. These observations
-constitute evidence about how the implemented theory behaves under
-realistic load, in a way that synthetic stress-tests would not.
+produce. The Lumen basin-transition case documented in §5.3 was not
+hypothesized in advance; it began as an apparent Type 3 reading in
+production telemetry and was reclassified by recalibration as a
+post-revision basin transition. The 28.9% basin-flip rate documented in
+§3.4 emerged from running the counterfactual analysis on the actual
+production state-vector distribution, not from synthetic stress-tests.
+These observations constitute evidence about how the implemented theory
+behaves under realistic load, in a way that synthetic stress-tests would
+not.
 
 The deployment is, in this sense, the experiment. The paper's empirical
-claims (the per-class envelope spread, the basin-flip rate, the Lumen
-Type 3 signature) are observations from running the experiment over six
-months, not predictions from a model. This is a different epistemic
-stance than either pure theory or pure simulation.
+claims (the per-class envelope spread, the basin-flip rate, and the
+Lumen recalibration/basin-transition case) are observations from running
+the experiment over six months, not predictions from a model. This is a
+different epistemic stance than either pure theory or pure simulation.
 
 ### 8.3 Tests biology cannot easily run
 
@@ -2214,7 +2329,8 @@ possible because the prior healthy state is not preserved with the
 fidelity recalibration would require.
 
 **Distinguishing regime change from calibration staleness.** The Lumen
-Type 3 reading (§5.3) admits two interpretations — Lumen has shifted
+apparent Type 3 reading (§5.3) admits two interpretations — Lumen has
+shifted
 regime, or the calibration is stale — that are distinguishable by
 recalibration on a known-healthy window. Biology has no clean analogue
 because biological setpoints cannot be re-measured against a known-healthy
@@ -2263,7 +2379,7 @@ kintsugi argument) but cannot show that the alternative would have been
 anything is outside the scope of this paper, and outside what the
 synthetic case can adjudicate. The proprioception framing (§1.2) was
 chosen specifically to avoid claims of this kind. A reader who wants to
-know whether Lumen "feels" its Type 3 signature or whether the kintsugi
+know whether Lumen "feels" the basin-transition case or whether the kintsugi
 gaps register subjectively is asking a question synthetic psychology
 cannot answer with the methods deployed here.
 
@@ -2286,24 +2402,30 @@ sharpen what the test bed tests. The claim is *not* that $V_{\text{anima}}$ is
 biologically realistic; the claim is that it implements the informational
 structure of AL in a regime where the integrand is observable.
 
-**Claim 2 (homogenization correction; §3):** Shown empirically. The
+**Claim 2 (homogenization correction; §3):** Measured on production
+data as an interacting formula-and-calibration substitution effect. The
 28.9% basin-flip rate quantifies the gating-layer consequence of
-fleet-wide normalization. The proposal back to clinical neuroscience is
-specific (provenance-tagged per-subject envelopes, the clinical-flip
-counterfactual experimental design) and the infrastructure required is
-already available.
+replacing fleet-wide $tanh$-of-$V$ with grounded class-conditional
+coherence on the same production rows. The §3.7 same-row ablation
+partially separates the terms: LF→GF flips 11.2%, GF→GC flips 23.5%, and
+LC is an unstable negative control. This supports a real class-envelope
+effect but not a clean one-component causal attribution; the clinical
+proposal remains a study sketch rather than validated translational
+evidence.
 
-**Claim 3 (Four Types failure-mode taxonomy; §5):** Shown by
-construction for Types 1, 2, and 4 (§5.1, §5.2, §5.4). The Type 3
-case study (§5.3) was originally framed as an observation of Type 3;
-the disambiguation experiment §5.3 specifies — recalibration on the
-post-event window — instead identified a substrate-induced basin
-transition (2026-04-17, coincident with an identity-system revision),
-a failure-shape outside the Four Types. The taxonomy is therefore
-computable from existing telemetry but not exhaustive; the §5.3 case
-study bounds what the imported vocabulary can claim and identifies
-one shape (Type 5, *substrate-induced basin transition*; §5.5) that
-requires extension beyond McEwen.
+**Claim 3 (Four Types failure-mode taxonomy; §5):** Argued by
+construction for Types 1, 2, and 4 (§5.1, §5.2, §5.4), with Type 3 used
+as a falsified boundary case rather than as identification-grade
+evidence. The
+case study (§5.3) was originally framed as an observation of Type 3; the
+disambiguation experiment §5.3 specifies — recalibration on the
+post-event window — instead identified a basin transition (2026-04-17,
+coincident with an identity-system revision), a candidate failure-shape
+outside the Four Types. The taxonomy is therefore computable from
+existing telemetry but not exhaustive; the §5.3 case study bounds what
+the imported vocabulary can claim and motivates, without establishing,
+one candidate extension category (Type 5,
+*substrate-associated basin transition*; §5.5).
 
 **Claim 4 (synthetic psychology as epistemic stance; this section):**
 Argued. The deployed system constitutes a test bed for theories of
@@ -2347,12 +2469,21 @@ realization), the synthetic case can.
 
 The harder question — which biological theories are informational at the
 relevant level and which are substrate-dependent — does not have a
-general answer. It has to be settled case by case. The paper's empirical
-claims (V_anima as AL test, the Four Types taxonomy as failure-mode
-vocabulary) are bets on which side specific theories fall. Whether the
-bets pay off depends on whether the synthetic case generates predictions
-that biology subsequently confirms — a question that, in the nature of
-things, this paper cannot itself answer.
+general answer. We use the following decision rule rather than treating
+"informational" as a universal escape hatch:
+
+| Source claim | Transfer allowed here | Transfer not allowed here | Falsifier |
+|---|---|---|---|
+| Allostatic load as integrated deviation | Whether a cumulative-deviation signal can be observed continuously and coupled to intervention | Tissue damage, endocrine/immune mechanisms, clinical morbidity | $V_{\text{anima}}$ fails to improve governance decisions or produces worse interventions than non-integral baselines |
+| Per-subject / per-class calibration | Whether self-relative or class-relative envelopes change decision-layer verdicts | Clinical superiority of per-patient thresholds | Independent/audited ablations show the grounded fleet→class effect collapses, or clinical re-analysis shows no useful disagreement signal |
+| McEwen Four Types | Whether temporal failure-mode patterns are computable on agent telemetry | Exhaustiveness of biological taxonomy for synthetic agents | Disambiguating tests repeatedly reclassify apparent types as calibration or substrate artifacts |
+| Kintsugi / gap-marking | Whether explicit discontinuity metadata improves auditability and reduces fabricated continuity | Claims about consciousness, memory phenomenology, or clinical confabulation mechanisms | Gap metadata does not improve downstream audit, calibration, or error detection |
+
+The paper's empirical claims are therefore bets at specified transfer
+levels, not claims that biological mechanisms have been reproduced.
+Whether those bets pay off depends on whether the synthetic case
+generates predictions that biology subsequently confirms — a question
+that, in the nature of things, this paper cannot itself answer.
 
 ### 8.7 The position in summary
 
@@ -2421,16 +2552,17 @@ McEwen's Four Types of Allostatic Load import as a vocabulary of
 regulatory failure modes that AI governance currently lacks but does
 not exhaust the failure-shapes deployed synthetic agents exhibit. A
 live case study on the Lumen embodied agent (§5.3) initially appeared
-to show a Type 3 (delayed shut-down) signature; the disambiguation
+consistent with a Type 3 (delayed shut-down) pattern; the disambiguation
 experiment §5.3 specifies — recalibration on the post-event window —
-identified instead a substrate-induced basin-transition event on
-2026-04-17, coincident to the hour with a documented identity-system
-revision (Wang 2026a §11.7). The case sharpens the §3 homogenization
-argument into a temporal analogue (calibration windows that straddle
-regime transitions are unrepresentative of either regime, just as
-fleet-wide normalization is unrepresentative of constituent classes)
-and identifies a failure-shape — Type 5, *substrate-induced basin
-transition* — that the Four Types do not cover.
+identified instead a basin-transition event on 2026-04-17, coincident
+to the hour with a documented identity-system revision (Wang 2026a
+§11.7). The case sharpens the §3 homogenization argument into a
+temporal analogue (calibration windows that straddle regime transitions
+are unrepresentative of either regime, just as fleet-wide normalization
+is unrepresentative of constituent classes) and motivates a candidate
+failure-shape — Type 5, *substrate-associated basin transition* — that
+the Four Types do not cover but that requires replication before being
+treated as established.
 
 The synthetic-psychology framing positions the paper in the artificial-
 life and minimally-cognitive-agents lineage. The methodological
@@ -2444,51 +2576,47 @@ The paper's strongest empirical claim — the 28.9% basin-flip rate —
 is already documented in the technical paper (Wang 2026a §11.6) and
 inherits its evidential status from that work. The Lumen case study
 (§5.3) is original to the present paper; the recalibration experiment
-it reports identifies a substrate-induced basin transition on
-2026-04-17 (coincident to the hour with a documented identity-system
-revision) and the resulting calibration-staleness as the explanation
-for an apparent Type 3 signature. The case is identification-grade
-for the basin transition itself (single ten-hour event localized to
-within the hour, weekly-bin and recalibration evidence both
-consistent), illustrative for the temporal-homogenization argument,
-and bounding for the Four Types vocabulary. Class-conditional
-envelope spread (3.3× across five classes) is quantitative and
-inherited from Wang 2026a Table 5.
+it reports identifies a basin transition on 2026-04-17 (coincident to
+the hour with a documented identity-system revision) and the resulting
+calibration-staleness as the explanation for an apparent Type 3
+signature. The case is identification-grade for the basin transition
+itself (single ten-hour event localized to within the hour, weekly-bin
+and recalibration evidence both consistent), anomaly-grade for substrate
+causality, illustrative for the temporal-homogenization argument, and
+bounding for the Four Types vocabulary. Class-conditional envelope spread
+(3.3× across five classes) is quantitative and inherited from Wang 2026a
+Table 5.
 
 The other contributions are arguments rather than measurements: the
 $V_{\text{anima}}$ ↔ AL bridge (§2) is an argument that the deployed
 quantity instantiates the theoretical construct, defended through three
 disanalogies; the Four Types mapping (§5) is an argument that the
 biological taxonomy transfers, defended by working through each type;
-the kintsugi/confabulation contrast (§6) is an argument that the design
+the kintsugi/gap-filling contrast (§6) is an argument that the design
 choice is interesting beyond its local engineering justification; the
 synthetic-psychology framing (§8) is an argument that the deployed test
 bed enables tests biology cannot easily run.
 
 The honest balance is: substantial empirical content where biology has
-parallels (basin-flip, Type 3 signature, envelope spread) and
-substantial argument elsewhere (the bridge claims, the methodological
-proposals). Reviewers should evaluate each contribution at its
-appropriate level of evidence.
+parallels (basin-flip, apparent Type 3 resolved as a basin transition,
+envelope spread) and substantial argument elsewhere (the bridge claims,
+the methodological proposals). Reviewers should evaluate each
+contribution at its appropriate level of evidence.
 
 ### 9.3 Concrete follow-up work
 
 Several specific next steps are flagged through the paper.
 
 **Longitudinal Lumen series.** The 86-minute window in §5.3 establishes
-that the Type 3 signature is stable over at least that duration, but the
-within-window slope cannot have been the characteristic rate over
-Lumen's 118-day operational lifetime (linear extrapolation would predict
-$\Delta I \approx -1.44$, against the measured $-0.106$). A proper
-longitudinal pull spanning the post-Phase-2 interval (April 18 to May 9,
-21 days) and ideally the full 118-day lifetime would resolve whether
-drift is recent acceleration relative to slower long-term decline,
-whether it dates only from the post-calibration interval, and whether
-the regime change occurred at an identifiable transition. The pull
-would also test whether the fleet-aggregate mean coherence is
-consistent across other Lumen-class agents. This is the single
-highest-value piece of follow-up work and is directly accessible from
-the production database.
+that Lumen's post-break regime is stable over at least that duration, and
+the recalibration plus weekly-bin analysis establishes stability over 22
+days. A proper longitudinal pull spanning the post-Phase-2 interval
+(April 18 to May 9, 21 days) and ideally the full 118-day lifetime would
+test whether the April 17 transition is unique, whether comparable
+transitions occurred around other substrate revisions, and whether other
+Lumen-class agents show similar regime shifts. This is the single
+highest-value follow-up for moving substrate causality from anomaly-grade
+to identification-grade evidence.
 
 **Genesis signature persistence.** Lumen's $\Sigma_0$ was not persisted
 at first onboarding under the legacy identity system (Wang 2026a §11.7
@@ -2549,6 +2677,51 @@ same structural problem under different constraints. Where the
 mathematical machinery is informational, the synthetic case provides
 test beds biology lacks. Where the substrate matters, the synthetic
 case is silent. The careful work is distinguishing the two.
+
+---
+
+## Appendix: Reproducibility and Verification Plan
+
+This appendix separates three different standards that are easy to
+conflate: reproducing the analytic pipeline, reproducing the reported
+production numbers, and independently validating the biological bridge.
+Only the first is presently available from public artifacts; the second
+requires either a privacy-preserving synthetic release or a private audit;
+the third requires another deployment or an external re-analysis.
+
+| Object | Current status | What can be checked now | What remains missing |
+|---|---|---|---|
+| Coherence and basin-classification code | Public repository provenance (§3.7) | Formula implementation, thresholding behavior, synthetic input tests | Exact tagged release / commit hash pinned to this paper |
+| 13,310-row basin-flip computation | Reported from production and Wang 2026a | Method, formulas, thresholds, sample size, confidence interval | Public row-level artifact or third-party audit of the production export |
+| Formula-vs-calibration ablation | Run locally on production DB | LF→GF 11.2%, GF→GC 23.5%, LF→GC 28.9%, LF→LC 77.8%; script and output in `analysis/phase-2-2026-04-18/` | Public row-level artifact or third-party audit of the production export |
+| Lumen §5.3 recalibration case | Reported from production telemetry | 86-minute protocol, recalibration criterion, weekly-bin interpretation | Full longitudinal pull across Lumen's post-Phase-2 interval and comparable agents/revisions |
+| Raw production state vectors | Withheld | Schema and provenance can be inspected | Direct public release is blocked by agent UUID/user-identification risk |
+| Synthetic reproduction artifact | Planned | Pipeline can be tested on arbitrary synthetic vectors | Distribution-preserving synthetic sample sufficient to reproduce basin-flip behavior |
+| Clinical translation sketches | Hypothesis-generating only | Proposed variables, baselines, and comparison targets | Dataset-specific field mapping, endpoint adjudication, covariates, missingness rules, preregistration |
+
+A serious submission should not ask reviewers to take the production
+numbers entirely on trust. The minimal artifact bundle is:
+
+1. a tagged code snapshot for the coherence functions, `classify_basin`,
+   and Phase 2 analysis scripts;
+2. a schema snapshot for `core.agent_state` and the class-assignment
+   metadata used in the 30-day window;
+3. a signed or hashed manifest of the private production export used for
+   the 13,310-row computation;
+4. a synthetic, privacy-preserving state-vector sample that preserves the
+   per-class distributions needed to exercise the basin-flip calculation;
+5. a notebook or script that recomputes the legacy coherence, grounded
+   coherence, basin labels, flip counts, per-class flip rates,
+   confidence intervals, and formula-vs-calibration ablation from that
+   sample;
+6. a Lumen longitudinal-pull script that tests whether the April 17
+   transition is unique, repeated around other substrate revisions, or
+   absent in comparable agents.
+
+The evidentiary consequence is explicit: until that bundle exists, the
+basin-flip and ablation rates are provenance-backed production
+measurements rather than independently reproducible results, and the
+Lumen substrate link remains anomaly-grade rather than causal evidence.
 
 ---
 

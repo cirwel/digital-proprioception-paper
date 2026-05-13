@@ -1,0 +1,63 @@
+PHASE 2 FORMULA × CALIBRATION ABLATION
+Window: 2026-03-19 21:28:53.257824-06 -> 2026-04-18 21:28:53.257824-06
+Rows: 13310
+Healthy calibration rows: 11913
+Fleet grounded mu: (0.7453, 0.7990, 0.1736)
+Fleet grounded delta95: 0.2184
+Fleet |V| p95 for LC control: 0.1261
+
+Class calibration measured from the same healthy slice:
+  Lumen                healthy_n= 7324 delta95=0.1187 v_abs95=0.1255
+  Sentinel             healthy_n= 1878 delta95=0.1695 v_abs95=0.0985
+  Vigil                healthy_n=  384 delta95=0.1705 v_abs95=0.0883
+  Watcher              healthy_n=  293 delta95=0.3976 v_abs95=0.4260
+  default              healthy_n= 1992 delta95=0.1997 v_abs95=0.1725
+  ephemeral            healthy_n=   42 delta95=0.0080 v_abs95=0.0050
+
+Condition basin distributions:
+  LF_stored_legacy_fleet         high=10069 boundary= 2804 low=  437
+  LC_legacy_class_vscale         high= 1673 boundary= 1278 low=10359
+  GF_grounded_fleet              high=10027 boundary= 1392 low= 1891
+  GC_grounded_class_frozen       high= 7927 boundary= 1830 low= 3553
+
+Pairwise disagreement rates:
+  LF_stored_legacy_fleet -> GF_grounded_fleet: 1496/13310 = 11.2% (95% CI 10.7%-11.8%)  [formula change under fleet calibration]
+    boundary->low: 1442
+    high->boundary: 36
+    high->low: 12
+    boundary->high: 6
+  GF_grounded_fleet -> GC_grounded_class_frozen: 3133/13310 = 23.5% (95% CI 22.8%-24.3%)  [class calibration under grounded formula]
+    high->low: 1380
+    high->boundary: 728
+    boundary->low: 652
+    low->boundary: 365
+    low->high: 5
+    boundary->high: 3
+  LF_stored_legacy_fleet -> GC_grounded_class_frozen: 3844/13310 = 28.9% (95% CI 28.1%-29.7%)  [reported full substitution]
+    boundary->low: 1702
+    high->low: 1414
+    high->boundary: 728
+  LF_stored_legacy_fleet -> LC_legacy_class_vscale: 10355/13310 = 77.8% (95% CI 77.1%-78.5%)  [artificial legacy class-V-scale control]
+    high->low: 7963
+    boundary->low: 1959
+    high->boundary: 433
+  LC_legacy_class_vscale -> GC_grounded_class_frozen: 9677/13310 = 72.7% (95% CI 71.9%-73.5%)  [formula change under class-ish calibration]
+    low->high: 6757
+    low->boundary: 1244
+    boundary->low: 605
+    high->low: 590
+    boundary->high: 284
+    high->boundary: 197
+
+Reported full substitution by class (LF -> GC):
+  Lumen                N= 7890 flips= 2548  32.3% (95% CI 31.3%-33.3%)  high->low:1169, boundary->low:758, high->boundary:621
+  default              N= 2316 flips=  722  31.2% (95% CI 29.3%-33.1%)  boundary->low:518, high->low:140, high->boundary:64
+  Sentinel             N= 2227 flips=  351  15.8% (95% CI 14.3%-17.3%)  boundary->low:289, high->low:35, high->boundary:27
+  Vigil                N=  472 flips=  156  33.1% (95% CI 29.0%-37.4%)  high->low:70, boundary->low:70, high->boundary:16
+  Watcher              N=  363 flips=   67  18.5% (95% CI 14.8%-22.8%)  boundary->low:67
+  ephemeral            N=   42 flips=    0   0.0% (95% CI 0.0%-8.4%)  none
+
+Interpretation guard:
+  LC_legacy_class_vscale is an artificial scale-only tanh(V) control, not a deployed alternative.
+  It shows that a naive per-class V-scale graft onto the legacy formula is unstable/pathological.
+  The grounded-form fleet->class comparison is the cleaner calibration ablation.
