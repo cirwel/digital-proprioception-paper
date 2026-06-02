@@ -2514,7 +2514,7 @@ stance with three commitments:
    testable on the synthetic substrate) and which are substrate-specific
    (and therefore not).
 
-The companion paper exemplifies this stance through the four claims of
+This paper exemplifies this stance through the four claims of
 §1.3 and the empirical work of §2–§5. Whether the stance generalizes —
 whether other biological theories of self-maintenance can be similarly
 operationalized and tested — is an open question. The contribution of this
@@ -2666,7 +2666,7 @@ two-tier similarity over follow-up data would test whether the
 methodology produces clinical signal beyond what standard rating-scale
 detection achieves.
 
-**Engagement with concurrent AVF.** The companion paper notes the
+**Engagement with concurrent AVF.** This paper notes the
 concurrent Agent Viability Framework (Marín and Chaudhary 2026) and
 sketches differentiation in §7.1. A more detailed engagement, possibly
 including a head-to-head comparison of the two frameworks on shared
