@@ -1,6 +1,6 @@
 {
-  "title": "Digital Proprioception and Allostatic Load: A Working Implementation of the Cumulative-Deviation Hypothesis in a Deployed Multi-Agent System",
-  "description": "<p>Allostatic load (McEwen and Stellar 1993) &mdash; the time-integrated cost of regulating an adaptive system away from its operating point &mdash; has been an influential theoretical construct in physiology and psychiatry for thirty years. Its mathematical core has remained, in clinical practice, difficult to test as a real-time control signal: biomarkers are sampled rather than integrated, and the loop between detection and intervention closes over weeks rather than seconds. We present UNITARES, a governance framework for heterogeneous AI agent fleets in production since November 2025, as a deployed instantiation of the mathematical core of allostatic load on a four-dimensional informational manifold. The Anima Void Integral V_anima is computed end-to-end, observable at every check-in, and coupled to intervention. Three structural disanalogies (single-system, fixed reference, no body) sharpen what the test bed tests.</p><p>We further argue that McEwen's &lsquo;Four Types of Allostatic Load&rsquo; (1998) provides a vocabulary of regulatory failure modes that AI governance currently lacks, and we report a Type 3 (delayed shut-down) signature observed in real time on a Raspberry Pi-embodied agent (Lumen) over an 86-minute window. We make four contributions: V_anima as a deployed allostatic-load test bed; class-conditional calibration as the cosmological-soup correction with proposals back to clinical longitudinal monitoring; the Four Types as an imported failure-mode taxonomy; and a synthetic-psychology epistemic stance in the lineage of artificial life and minimally cognitive agents.</p>",
+  "title": "Digital Proprioception and Allostatic Load: A Deployed Synthetic-System Report on the Cumulative-Deviation Hypothesis",
+  "description": "<p>Allostatic load (McEwen and Stellar 1993) &mdash; the time-integrated cost of regulating an adaptive system away from its operating point &mdash; has been an influential theoretical construct in physiology and psychiatry for thirty years. Its mathematical core has remained, in clinical practice, difficult to test as a real-time control signal. This paper presents UNITARES, a governance framework for heterogeneous AI agent fleets in production since November 2025, as a deployed structural analogue for the mathematical core of allostatic load on a four-dimensional informational manifold. The Anima Void Integral V_anima is computed end-to-end, observable at every check-in, and coupled to intervention; it is a control-signal analogue, not a biological or clinical allostatic-load measure.</p><p>The paper makes four bounded contributions: V_anima as a deployed cumulative-deviation control-signal analogue; class-conditional calibration as a quantified anti-homogenization intervention, now bounded by a same-row formula-vs-calibration ablation; McEwen's Four Types as an imported but non-exhaustive failure-mode taxonomy; and a synthetic-psychology stance for generating and stress-testing informational hypotheses about adaptive systems. A Lumen case study that initially appeared Type-3-like under a stale calibration anchor is resolved by recalibration as a candidate substrate-associated basin transition. That case is provenance-backed single-agent case-report evidence for the transition's date, magnitude, and shape, and anomaly-grade for substrate causality pending artifact release, independent audit, or replication.</p>",
   "creators": [
     {
       "name": "Wang, Kenny",
@@ -18,9 +18,7 @@
     "AI agent governance",
     "trajectory identity",
     "digital proprioception",
-    "computational psychiatry",
     "synthetic psychology",
-    "free-energy principle",
     "embodied AI",
     "McEwen Four Types",
     "cumulative deviation"
@@ -59,5 +57,5 @@
       "resource_type": "publication-preprint"
     }
   ],
-  "notes": "Bridges UNITARES governance to McEwen allostatic-load theory; embodied substrate Lumen instantiates Type 3 signature in real time. Companion to Wang 2026a (UNITARES v6) on Zenodo at 10.5281/zenodo.19647159."
+  "notes": "Bridges UNITARES governance to McEwen allostatic-load theory as a deployed synthetic-system report. The Lumen case is framed as a Type-3-like stale-anchor reading resolved by recalibration as a candidate substrate-associated basin transition; substrate causality remains anomaly-grade pending independent audit or replication. Companion to Wang 2026a (UNITARES v6) on Zenodo at 10.5281/zenodo.19647159."
 }

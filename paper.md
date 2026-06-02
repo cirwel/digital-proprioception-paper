@@ -1,6 +1,6 @@
 # Digital Proprioception and Allostatic Load
 
-## A Working Implementation of the Cumulative-Deviation Hypothesis in a Deployed Multi-Agent System
+## A Deployed Synthetic-System Report on the Cumulative-Deviation Hypothesis
 
 **Author:** Kenny Wang, Independent Researcher (CIRWEL Systems)
 **ORCID:** 0009-0006-7544-2374
@@ -19,8 +19,8 @@ difficult to test as a real-time control signal: biomarkers are sampled
 rather than integrated, and the loop between detection and intervention
 closes over weeks rather than seconds. We present UNITARES, a governance
 framework for heterogeneous AI agent fleets in production since November
-2025, as a deployed instantiation of the mathematical core of allostatic
-load on a four-dimensional informational manifold. The Anima Void
+2025, as a deployed structural analogue for the mathematical core of
+allostatic load on a four-dimensional informational manifold. The Anima Void
 Integral $V_{\text{anima}}(t) = \int_{0}^{t} \lVert\mathbf{a}(\tau) -
 \boldsymbol{\mu_a}\rVert\, d\tau$ is computed end-to-end, observable at
 every check-in, and coupled to intervention. Three structural disanalogies
@@ -37,9 +37,9 @@ the case study itself specifies — recalibration on the post-event
 window — instead identified a candidate substrate-associated
 **basin-transition event on 2026-04-17**, coincident to the hour with a
 documented identity-system revision in the UNITARES governance
-substrate. The case study is identification-grade for the transition's
-date, magnitude, and shape, and anomaly-grade for substrate causality;
-it is therefore bounding for the imported taxonomy: it is a
+substrate. The case study is a provenance-backed single-agent report for
+the transition's date, magnitude, and shape, and anomaly-grade for
+substrate causality; it is therefore bounding for the imported taxonomy: it is a
 failure-shape McEwen's Four Types do not cover. The companion technical
 paper (Wang 2026a)
 reports a 28.9% basin-flip rate when a class-conditional grounded
@@ -53,25 +53,26 @@ framing into a temporal analogue (calibration windows that straddle
 regime transitions are unrepresentative of either regime).
 
 We make four contributions: (i) $V_{\text{anima}}$ as a deployed
-allostatic-load test bed; (ii) class-conditional calibration as the
-cosmological-soup correction, now bounded by formula-vs-calibration
-ablation and by proposals back to clinical longitudinal monitoring;
+cumulative-deviation control-signal analogue inspired by allostatic load;
+(ii) class-conditional calibration as a quantified anti-homogenization
+intervention, now bounded by formula-vs-calibration ablation and by
+hypothesis-generating proposals back to clinical longitudinal monitoring;
 (iii) the Four Types as an imported failure-mode taxonomy; (iv) a
 synthetic-psychology epistemic stance in the lineage of artificial life
 and minimally cognitive agents, identifying classes of biological-theory
-test that synthetic agents make tractable. The paper
+hypotheses that synthetic agents may help generate or stress-test. The paper
 engages the concurrent Agent Viability Framework (Marín and Chaudhary
 2026) and earlier runtime-governance frameworks. The framework's
 deployment on the Lumen embodied agent provides specific findings (an
 apparent Type 3 case resolved by recalibration as a post-revision basin
 transition, the calibration-staleness failure mode, and the kintsugi
-gap-marking principle) that exemplify what synthetic psychology can
-produce when the deployment is real and the theory is informational at
-the right level of abstraction.
+gap-marking principle) that exemplify what synthetic psychology can put
+under disciplined study when the deployment is real and the theory is
+informational at the right level of abstraction.
 
 **Keywords:** allostatic load, allostasis, AI agent governance,
-trajectory identity, digital proprioception, computational psychiatry,
-synthetic psychology, embodied AI
+trajectory identity, digital proprioception, synthetic psychology,
+embodied AI
 
 ---
 
@@ -113,17 +114,17 @@ cascades. They have not, however, engaged the neuroscience literature
 whose mathematical machinery they implicitly recapitulate.
 
 This paper argues that the AI agent governance community has, without
-quite noticing, built the apparatus that allostatic load theory has
-lacked: a real-time, observable, intervention-coupled implementation of
+quite noticing, built apparatus that allostatic load theory has lacked:
+a real-time, observable, intervention-coupled operational analogue of
 the integrated-deviation hypothesis. Specifically, we argue that the
 UNITARES governance framework (Wang 2026a), with its embodied substrate
-Lumen (CIRWEL 2026), instantiates the mathematical core of allostatic
+Lumen (CIRWEL 2026), operationalizes the mathematical core of allostatic
 load on a four-dimensional informational manifold, with the integrand
 observable end-to-end and the intervention loop closed in seconds rather
-than weeks. We use this implementation to test predictions of the
-allostatic load hypothesis that biology has not been able to test, and
-to import a thirty-year-old taxonomy of regulatory failure modes (McEwen
-1998, Figure 3) into AI governance.
+than weeks. We use this implementation to stress-test formal predictions
+of the allostatic-load analogy and to generate hypotheses for biological
+work, while importing a thirty-year-old taxonomy of regulatory failure
+modes (McEwen 1998, Figure 3) into AI governance.
 
 ### 1.2 Digital proprioception as the bridging concept
 
@@ -176,8 +177,8 @@ deployment cannot support.
 The paper makes four claims, in roughly descending order of strength.
 
 First, the Anima Void Integral $V_{\text{anima}}$ (Wang 2026a §4.1,
-Appendix A) is a deployed instantiation of the mathematical core of
-allostatic load. This
+Appendix A) is a deployed structural analogue for the mathematical core
+of allostatic load. This
 is shown in §2 by careful comparison with McEwen's construct, including
 three structural disanalogies (single-system rather than multisystem, fixed
 reference rather than shifting setpoint, no body). The match is
@@ -206,7 +207,7 @@ reproduced as 2007 Figure 5) provides a vocabulary of regulatory failure
 modes that AI governance currently lacks but does not exhaust the
 failure-shapes deployed synthetic agents exhibit. Each of the four types
 — repeated hits, lack of adaptation, delayed shut-down, inadequate
-response with compensatory hyperactivity — has a direct UNITARES analogue
+response with compensatory hyperactivity — has a UNITARES analogue
 computable from existing telemetry. §5 develops this mapping. In the
 course of investigating an apparent Type 3-like pattern on the Lumen
 embodied agent, we ran the recalibration the pattern itself specifies
@@ -217,8 +218,9 @@ Types do not cover.
 The case study sharpens the §3 homogenization argument into a temporal
 analogue and bounds what the imported taxonomy can claim.
 
-Fourth, we argue that deployed AI agents constitute a useful test bed
-for theories of biological self-maintenance, in a tradition closer to
+Fourth, we argue that deployed AI agents can constitute a useful
+hypothesis-generating test bed for formal and informational claims within
+theories of biological self-maintenance, in a tradition closer to
 artificial life (Langton 1989; Bedau 2003) and Beer's minimally cognitive
 agents (Beer 1995, 2000) than to standard "neuro-inspired AI"
 architectural transfer (Hassabis et al. 2017). The synthetic-psychology
@@ -254,11 +256,23 @@ in its current form, what would upgrade it, and what would kill it.
 
 | Contribution | Current evidence grade | Current evidence | Known confound or boundary | Upgrade path | Falsifier |
 |---|---|---|---|---|---|
-| Claim 1: $V_{\text{anima}}$ as allostatic-load test bed | Operationalized structural analogue | Deployed EISV state vectors, cumulative-deviation formula, intervention-coupled governance loop (§2) | Not clinical AL; no endocrine, immune, tissue-damage, or multi-system physiology | Show $V_{\text{anima}}$ improves governance decisions or forecasts failure beyond non-integral baselines | $V_{\text{anima}}$ adds no decision value over instantaneous risk/coherence or produces worse interventions |
+| Claim 1: $V_{\text{anima}}$ as cumulative-deviation control-signal analogue | Operationalized structural analogue | Deployed EISV state vectors, cumulative-deviation formula, intervention-coupled governance loop (§2) | Not clinical AL; no endocrine, immune, tissue-damage, or multi-system physiology | Show $V_{\text{anima}}$ improves governance decisions or forecasts failure beyond non-integral baselines | $V_{\text{anima}}$ adds no decision value over instantaneous risk/coherence or produces worse interventions |
 | Claim 2: anti-homogenization / cosmological-soup correction | Empirical full-substitution effect with same-row ablation | 28.9% aggregate full-substitution basin-flip rate on $N = 13{,}310$ production rows; 15.8%–33.1% named measured-class range; ablation: LF→GF 11.2%, GF→GC 23.5% (§3.4, §3.7) | Effects are non-additive; class-scaled $\tanh(V)$ control is artificial and unstable; raw production rows are not public | Privacy-preserving synthetic artifact or private audit; identity-clean remeasurement; deployment outcome comparison | Independent/audited rerun collapses the grounded fleet→class effect or shows flips are class-assignment/pipeline artifacts |
 | Claim 3: McEwen Four Types as failure-mode vocabulary | Taxonomic / constructive mapping | Types 1, 2, and 4 have computable UNITARES analogues; §5.3 supplies a failed Type 3 boundary case | Mapping is not yet a validated classifier; taxonomy is non-exhaustive for synthetic substrates | Pre-register criteria and classify historical or future governance episodes with disambiguating tests | Apparent types repeatedly reclassify as calibration artifacts, pipeline artifacts, or substrate events |
-| §5.3 Lumen basin transition | Identification-grade for transition date/magnitude/shape; anomaly-grade for substrate causality | Recalibration localizes a 2026-04-17 basin transition, with 22-day post-transition stability (§5.3) | Single agent; substrate revision is temporally coincident but not causally isolated | Multi-agent or multi-revision replication; rule out common operational confounds | Comparable transitions do not align with substrate revisions, or the event disappears under a clean longitudinal pull |
-| Claim 4: synthetic psychology as epistemic stance | Methodological argument | Deployed system exposes observables and interventions biology rarely provides (§8) | Single-author, self-cited system; not independent biological validation | Third-party deployment or independent re-analysis showing novel predictions or useful failure detection | The framework yields no predictions, discriminations, or interventions beyond ordinary engineering telemetry |
+| §5.3 Lumen basin transition | Provenance-backed single-agent case report for transition date/magnitude/shape; anomaly-grade for substrate causality | Recalibration localizes a 2026-04-17 basin transition, with 22-day post-transition stability (§5.3) | Single agent; substrate revision is temporally coincident but not causally isolated; public artifact bundle not yet released | Public or audited artifact bundle; multi-agent or multi-revision replication; rule out common operational confounds | Comparable transitions do not align with substrate revisions, or the event disappears under a clean longitudinal pull |
+| Claim 4: synthetic psychology as epistemic stance | Methodological / hypothesis-generating argument | Deployed system may expose observables and interventions that are difficult in biological systems (§8) | Single-author, self-cited system; not independent biological validation | Third-party deployment or independent re-analysis showing novel predictions or useful failure detection | The framework yields no predictions, discriminations, or interventions beyond ordinary engineering telemetry |
+
+**Construct-transfer boundary.** The claims above are governed by a
+stricter transfer rule: synthetic evidence may constrain formal or
+informational structure, but it does not by itself establish biological
+mechanism, clinical validity, or phenomenology.
+
+| Source claim | Transfer allowed here | Transfer not allowed here | Falsifier |
+|---|---|---|---|
+| Allostatic load as integrated deviation | Whether a cumulative-deviation signal can be observed continuously and coupled to intervention | Tissue damage, endocrine/immune mechanisms, clinical morbidity | $V_{\text{anima}}$ fails to improve governance decisions or produces worse interventions than non-integral baselines |
+| Per-subject / per-class calibration | Whether self-relative or class-relative envelopes change decision-layer verdicts | Clinical superiority of per-patient thresholds | Independent/audited ablations show the grounded fleet→class effect collapses, or clinical re-analysis shows no useful disagreement signal |
+| McEwen Four Types | Whether temporal failure-mode patterns are computable on agent telemetry | Exhaustiveness of biological taxonomy for synthetic agents | Disambiguating tests repeatedly reclassify apparent types as calibration or substrate artifacts |
+| Kintsugi / gap-marking | Whether explicit discontinuity metadata improves auditability and reduces fabricated continuity | Claims about consciousness, memory phenomenology, or clinical confabulation mechanisms | Gap metadata does not improve downstream audit, calibration, or error detection |
 
 **Limitations.** This paper is not a theory of AI consciousness; we make
 no claims about phenomenal experience in agents, embodied or otherwise.
@@ -302,7 +316,7 @@ Lumen or any other UNITARES-governed agent. The proprioception framing
 (§1.2) was chosen specifically to avoid such commitments.
 
 We do **not** claim biological homology. UNITARES does not implement the
-biological mechanism of allostatic load; it instantiates the
+biological mechanism of allostatic load; it operationalizes the
 mathematical structure of the integrated-deviation hypothesis on a
 substrate that is informationally analogous but biologically
 disanalogous (single-system, fixed reference, no body — see §2.3).
@@ -337,14 +351,13 @@ single-component causal attribution.
 What we **do** claim is narrower and tractable: a cumulative-deviation
 signal can be made observable end-to-end, computed continuously, and
 coupled to intervention in a deployed AI governance system; the
-resulting deployment provides experimental affordances biology cannot
-easily produce; and specific theories of biological self-maintenance
-(allostatic load as integrated deviation, McEwen's Four Types as a
-failure-mode taxonomy) admit instantiation on this substrate in ways
-that generate empirical findings (§3.4 basin flips, §5.3 recalibration
-and basin-transition case) and methodological proposals back to clinical
-neurology
-(§3.5, §4.4).
+resulting deployment provides engineering affordances that can generate
+biological hypotheses; and specific theories of biological
+self-maintenance (allostatic load as integrated deviation, McEwen's Four
+Types as a failure-mode taxonomy) admit operational analogues on this
+substrate in ways that generate empirical findings (§3.4 basin flips,
+§5.3 recalibration and basin-transition case) and hypothesis-generating
+proposals back to clinical longitudinal monitoring (§3.5, §4.4).
 
 ---
 
@@ -400,7 +413,7 @@ early-life cortisol intervention (Heim and Nemeroff 2001; Lupien et al.
 after the fact. The AL hypothesis remains, at its mathematical core,
 untested as a control law.
 
-### 2.2 V<sub>anima</sub> as a deployed instantiation
+### 2.2 V<sub>anima</sub> as a deployed structural analogue
 
 The UNITARES governance framework (Wang 2026a) carries, for each agent
 in its fleet, a four-dimensional state vector $\mathbf{x} = (E, I, S, V)$
@@ -451,11 +464,11 @@ AL. It is not a literal implementation of the clinical AL composite —
 $V_{\text{anima}}$ is single-system (the four-dimensional Anima
 manifold), not multisystem (HPA, cardiovascular, immune, metabolic). Nor
 does it recapitulate the brain–body coupling that grounds AL
-theoretically. What $V_{\text{anima}}$ *is* is a clean instantiation of
-the mathematical core of AL: a time-integrated deviation from a
+theoretically. What $V_{\text{anima}}$ *is* is a clean structural analogue for the
+mathematical core of AL: a time-integrated deviation from a
 self-relative operating point, used in real time as a forward-looking
 warning signal coupled to intervention. Where biology offers the theory
-but not the integrand, UNITARES offers the integrand and the
+but not the integrand, UNITARES offers an engineered integrand and the
 intervention loop.
 
 ### 2.3 Three structural disanalogies
@@ -506,7 +519,7 @@ control signal in deployed agents, that is evidence that the
 *informational content* of the AL construct is doing the work,
 independent of biological mediators. If it fails, that suggests biology
 is doing more than the integrand. Either outcome is informative in a way
-that clinical AL studies cannot easily produce.
+that is difficult to obtain from sparse clinical AL studies alone.
 
 ### 2.4 An empirical prediction
 
@@ -740,14 +753,15 @@ Clinical biomarker panels rarely carry equivalent metadata; a patient's
 interval rather than a per-subject envelope, and the provenance of the
 threshold is opaque. Adopting provenance-tagged per-subject envelopes —
 even on a small set of biomarkers (cortisol, HRV, blood pressure) —
-would close the same gap UNITARES Phase 2 closed. The technical
-infrastructure required is minimal: per-subject Welford updates against
-a clinically validated healthy window, with explicit timestamping and
+would test whether a clinically meaningful analogue of the UNITARES
+Phase 2 gap exists. The computational infrastructure is simple, though
+the clinical design is not: per-subject Welford updates against a
+clinically validated healthy window, with explicit timestamping and
 re-measurement cadence.
 
 **Proposal 2: A clinical analogue of the basin-flip counterfactual.**
-The basin-flip experimental design translates cleanly to clinical data
-as a retrospective re-analysis of an existing longitudinal biomarker
+The basin-flip experimental design has a possible clinical analogue as
+a retrospective re-analysis of an existing longitudinal biomarker
 cohort. We sketch the protocol at hypothesis-generation depth, with
 enough structure to identify the clinical biostatistical work still
 required.
@@ -792,34 +806,35 @@ study would still need dataset-specific field mapping, missingness
 rules, medication and comorbidity covariates, event-adjudication rules,
 and pre-registration before analysis.
 
-**Proposal 3: A specific clinical prediction.** The asymmetry of flip
+**Proposal 3: A specific clinical hypothesis.** The asymmetry of flip
 direction in UNITARES (predominantly into the low basin under per-class
-envelopes) suggests a specific prediction: per-subject longitudinal
-envelopes should produce *more* flag-for-review states, not fewer,
+envelopes) suggests a testable hypothesis: per-subject longitudinal
+envelopes may produce *more* flag-for-review states, not fewer,
 relative to population-derived reference intervals. This is because
 population intervals are constructed to encompass the variability of the
-population and are therefore systematically permissive at the individual
-level. The implication for early-detection programs is that
-subject-specific calibration likely improves sensitivity at a small cost
-in specificity, with the trade-off depending on the clinical context. An
-early-detection program operating against population intervals would
-miss cases that a per-subject program would catch, and the magnitude of
-that gap should be on the order of the basin-flip rate (15–33% across
-named measured classes in the full-substitution UNITARES counterfactual —
-clinically, the analogue might be patient heterogeneity).
+population and may therefore be systematically permissive at the
+individual level. The clinical question is whether subject-specific
+calibration improves sensitivity, and at what specificity cost, in a
+given context. An early-detection program operating against population
+intervals might miss cases that a per-subject program would catch, but
+the magnitude of that gap should be estimated in clinical data rather
+than imported from UNITARES; the 15–33% range across named measured
+classes in the full-substitution UNITARES counterfactual is a motivating
+scale, not a clinical prediction.
 
 **Proposal 4: A controlled measurement of behavioral heterogeneity.**
 The 3.3× spread in $\lVert\Delta\rVert_{\max}$ across UNITARES classes
 is a measurement of behavioral heterogeneity that the framework can
 produce because it controls the agent population. Computational
-neuroscience cannot easily produce equivalent spreads because subject
-heterogeneity is confounded with disease state, demographic variables,
-and measurement noise. UNITARES therefore provides a testbed for
+neuroscience has difficulty producing equivalent controlled spreads
+because subject heterogeneity is confounded with disease state,
+demographic variables, and measurement noise. UNITARES therefore
+provides a testbed for
 theoretical claims about how much heterogeneity a deployed system can
 absorb under fleet-wide vs. class-conditional governance, with the
 heterogeneity controllable by construction. This is a contribution of
-method as much as of result: the testbed enables experiments biology
-cannot easily run.
+method as much as of result: the testbed enables experiments that are
+difficult to run in biological systems.
 
 ### 3.6 Limits of the empirical claim
 
@@ -1301,7 +1316,7 @@ explicitly.
 
 **Component weights are static.** UNITARES uses fixed weights $w_i$
 combined optionally with adaptive (variance-inverse) weighting. The
-appropriate weighting for clinical identity is likely state-dependent —
+appropriate weighting for clinical identity may be state-dependent —
 during acute illness, recovery dynamics ($\rho$) may be more diagnostic
 than relational disposition ($\Delta$); during prodromal cognitive
 decline, $\beta$ (self-belief signature) and $\alpha$ (attractor basin)
@@ -1322,15 +1337,16 @@ identifies an individual is, by definition, irreducibly personal data.
 
 ### 4.7 Summary
 
-UNITARES has independently arrived at the same structural conclusion
-clinical neurology has needed for slow-drift conditions: that detection
-must run against a longitudinal anchor, not just against recent state,
-and that this requires persisted baseline signatures and a formal
-discipline for using them. The technical apparatus for clinical adoption
-exists in digital phenotyping and wearable monitoring. What is missing
-is the methodological convention — specifically, the practice of
-designating a $\Sigma_0$ window per patient and running two-tier
-similarity checks against it. The companion paper proposes that adoption.
+UNITARES has independently arrived at a structural conclusion relevant
+to slow-drift clinical-neurology problems: detection may need to run
+against a longitudinal anchor, not just against recent state, and that
+requires persisted baseline signatures and a formal discipline for using
+them. Digital phenotyping and wearable monitoring provide much of the
+technical apparatus that such a study would need. What remains is the
+methodological convention and validation work — specifically, the
+practice of designating a $\Sigma_0$ window per patient and running
+two-tier similarity checks against it. The companion paper proposes this
+as a hypothesis-generating adoption path.
 
 ---
 
@@ -1360,7 +1376,7 @@ baseline frequency in the Lumen corpus over 20,655 real trajectory
 windows; revision pinned in CIRWEL 2026, eisv-lumen) without the
 corresponding return to `settled_presence` (48.86% baseline). The ratio
 of `entropy_spike_recovery` to `settled_presence` over a sliding window
-provides a direct Type 1 indicator. Interventions appropriate to Type 1
+provides an operational Type 1 indicator. Interventions appropriate to Type 1
 failure target stressor *frequency* rather than magnitude: rate-limiting
 incoming requests, narrowing tool surface, or scheduled rest insertion.
 
@@ -1457,12 +1473,12 @@ $$C = 1 - \lVert\Delta\rVert_2 / \lVert\Delta\rVert_{\max} \approx 0.03,$$
 
 an order of magnitude lower than the legacy tanh-of-$V$ coherence
 reported by the production server (currently $C_{\text{legacy}}
-\approx 0.497$, near the function midpoint). The observation is a
-basin-flip case in real time: an agent that the legacy form classifies
-as boundary/healthy is classified as low-basin breach under the
-grounded form, exactly as predicted by the v6 verdict counterfactual
-on production data (Wang 2026a §11.6, where 28.9% of basin assignments
-flipped under the same substitution).
+\approx 0.497$, near the function midpoint). Under the stale Phase 2
+anchor, the observation appears as a basin-flip case: an agent that the
+legacy form classifies as boundary/healthy is classified as low-basin
+breach under the grounded form, in the direction predicted by the v6
+verdict counterfactual on production data (Wang 2026a §11.6, where
+28.9% of basin assignments flipped under the same substitution).
 
 **Two readings, distinguishable by recalibration.** The pattern above
 admits two interpretations: either Lumen has genuinely shifted
@@ -1580,10 +1596,10 @@ an inhomogeneity is unrepresentative of the parts the inhomogeneity
 contains. Class-conditional calibration (§3) addresses spatial
 inhomogeneity at the gating layer; transition-aware calibration —
 which UNITARES does not yet implement — would address temporal
-inhomogeneity. The clinical analogue is direct: a biomarker reference
-interval computed across a pre-illness / post-illness-onset window is
-unrepresentative of either, exactly as the Phase 2 anchor here is
-unrepresentative of either Lumen regime.
+inhomogeneity. The possible clinical analogue is structural rather than
+validated: a biomarker reference interval computed across a pre-illness /
+post-illness-onset window may be unrepresentative of either, just as the
+Phase 2 anchor here is unrepresentative of either Lumen regime.
 
 **Verdict-layer blindness.** Lumen's recent risk score is
 approximately $0.224$, below the fleet-aggregate mean of approximately
@@ -1619,11 +1635,11 @@ transitions) is the right follow-up. The 86-minute observation
 window establishes that the post-break regime is stable over at
 least that duration; the recalibration plus weekly-bin analysis
 establishes that the regime has been stable for 22 days. We treat
-this section as identification-grade for the basin transition itself
-(date, magnitude, shape), anomaly-grade for substrate causality, and
-illustrative for the temporal-homogenization argument; the §5.3 case
-study should not be read as McEwen Type 3 identification in a deployed
-agent, and the abstract and §1.3 are framed accordingly.
+this section as provenance-backed case-report evidence for the basin
+transition itself (date, magnitude, shape), anomaly-grade for substrate
+causality, and illustrative for the temporal-homogenization argument;
+the §5.3 case study should not be read as McEwen Type 3 identification
+in a deployed agent, and the abstract and §1.3 are framed accordingly.
 
 ### 5.4 Type 4: Inadequate response with compensatory hyperactivity
 
@@ -2140,13 +2156,12 @@ psychiatric conditions onto computational models — predictive coding
 accounts of schizophrenia, reinforcement-learning accounts of
 depression, free-energy accounts of autism. The work is theoretical and
 clinical-data-correlational; it has not, to our knowledge, produced a
-deployed system instantiating the relevant control signals. The
+deployed system operationalizing the relevant control signals. The
 synthetic-psychology contribution of the present paper is therefore
 methodological rather than competing: we offer a deployed substrate on
-which computational-psychiatry hypotheses about regulatory failure could
-be tested, with experimental affordances (real-time integrand
-observation, reproducible recalibration; §8.3) that biology cannot
-easily provide.
+which hypotheses about regulatory failure can be operationalized, with
+experimental affordances (real-time integrand observation, reproducible
+recalibration; §8.3) that are difficult in biological systems.
 
 Digital phenotyping has produced substantial infrastructure for capturing
 behavioral signatures from ambient smartphone and wearable data. The
@@ -2174,7 +2189,8 @@ The contribution is in the opposite direction: UNITARES's deployment
 provides a test bed for biological theories of self-maintenance, with
 specific findings (§5.3 apparent Type 3 resolved by recalibration as a
 basin transition, §3.4 28.9% basin-flip rate, §4 lineage-anchored drift
-detection) that biology cannot easily produce.
+detection) that biological systems make difficult to produce under
+controlled conditions.
 The synthetic-psychology framing (§8) makes this direction explicit.
 
 Hassabis et al. (2017) and the present paper are therefore not in
@@ -2289,12 +2305,12 @@ Lumen recalibration/basin-transition case) are observations from running
 the experiment over six months, not predictions from a model. This is a
 different epistemic stance than either pure theory or pure simulation.
 
-### 8.3 Tests biology cannot easily run
+### 8.3 Synthetic affordances relative to biological systems
 
 The synthetic-psychology argument's specific contribution is to identify
-classes of test that synthetic agents make tractable but biology does
-not. We have flagged several throughout the paper; a synthesis is useful
-here.
+classes of test that synthetic agents make more tractable than biological
+systems usually allow. We have flagged several throughout the paper; a
+synthesis is useful here.
 
 **Real-time integrand observation.** $V_{\text{anima}}$ is the integrand
 of an allostatic-load-style quantity, observed at every check-in (§2.2).
@@ -2304,9 +2320,9 @@ specifies; the biological case allows only inference about it.
 
 **Counterfactual reclassification on the same population.** The 28.9%
 basin-flip finding (§3.4) computes two coherence formulas on the same
-13,310 production state vectors and counts the disagreements. Biology
-cannot easily run paired counterfactual analyses on the same patient
-cohort because the act of computing one decision criterion typically
+13,310 production state vectors and counts the disagreements. Clinical
+cohorts rarely support paired counterfactual analyses on the same
+patient cohort because the act of computing one decision criterion typically
 shapes the data available for computing alternatives (clinical decisions
 generate interventions that change subsequent state; recalibration
 windows contaminate baseline measurement). UNITARES preserves the raw
@@ -2332,23 +2348,23 @@ fidelity recalibration would require.
 apparent Type 3 reading (§5.3) admits two interpretations — Lumen has
 shifted
 regime, or the calibration is stale — that are distinguishable by
-recalibration on a known-healthy window. Biology has no clean analogue
-because biological setpoints cannot be re-measured against a known-healthy
-reference window post-hoc. The synthetic case allows the disambiguation;
-the biological case does not.
+recalibration on a known-healthy window. The biological analogue is
+limited because biological setpoints cannot usually be re-measured
+against a known-healthy reference window post-hoc. The synthetic case
+allows the disambiguation; the biological case usually does not.
 
 **Controlled manipulation of class structure.** UNITARES's class
 structure (Lumen, Sentinel, Vigil, Watcher, default; §3.3) is
 deliberately heterogeneous and is controllable by construction — adding
-a new class is an operational change. Computational neuroscience cannot
-add a new disease class in the same way; class structure is given by
-the population. Synthetic agents allow controlled manipulation of
-heterogeneity in ways biology does not.
+a new class is an operational change. Computational neuroscience does
+not have the same freedom to add a new disease class; class structure is
+given by the population. Synthetic agents allow controlled manipulation of
+heterogeneity in ways biological cohorts usually do not.
 
 The pattern in these examples is consistent: the synthetic case
 preserves more raw evidence about the theory than the biological case
-typically can, and allows experimental manipulations that biology cannot
-easily execute. This is the epistemic leverage synthetic psychology
+typically can, and allows experimental manipulations that are difficult
+in biological systems. This is the epistemic leverage synthetic psychology
 offers.
 
 ### 8.4 What synthetic agents cannot test
@@ -2386,17 +2402,19 @@ cannot answer with the methods deployed here.
 These limits constrain what the synthetic-psychology framing can claim.
 What it can claim is narrower than "AI agents are like brains" and
 broader than "we have built an AI agent": specific theories about the
-informational structure of self-maintenance can be tested on synthetic
-substrates, with deployment producing evidence biology often cannot.
+informational structure of self-maintenance can be operationalized on
+synthetic substrates, with deployment producing synthetic evidence and
+hypotheses that biological work can subsequently test.
 
 ### 8.5 What this paper has and has not shown
 
 A summary of the four claims, in light of the synthetic-psychology
 framing:
 
-**Claim 1 (V_anima as deployed AL instantiation; §2):** Shown
-structurally. The mathematical core of the AL hypothesis is instantiated
-in deployed code, with the integrand observable end-to-end. Three
+**Claim 1 (V_anima as deployed AL structural analogue; §2):** Shown
+structurally. The mathematical core of the AL hypothesis is
+operationalized in deployed code, with the integrand observable
+end-to-end. Three
 structural disanalogies (single-system, fixed reference, no body)
 sharpen what the test bed tests. The claim is *not* that $V_{\text{anima}}$ is
 biologically realistic; the claim is that it implements the informational
@@ -2436,14 +2454,14 @@ controlled heterogeneity manipulation) that biology lacks. The stance
 has limits (substrate, phylogenetic, phenomenal) that constrain its
 reach but do not eliminate it.
 
-### 8.6 Methodological aside: when the analogy breaks
+### 8.6 Construct-transfer rule: when the analogy breaks
 
 A reasonable objection to the synthetic-psychology stance is that the
 analogy between synthetic and biological self-maintenance is too thin to
 support useful inference. We want to address this directly.
 
 The objection has force when the analogy is structural rather than
-mechanistic. If a synthetic system instantiates the *informational
+mechanistic. If a synthetic system operationalizes the *informational
 structure* of a biological theory but not its *causal mechanism*, then
 observations of the synthetic system constrain only the informational
 structure, not the mechanism. This is a real limit.
@@ -2469,17 +2487,9 @@ realization), the synthetic case can.
 
 The harder question — which biological theories are informational at the
 relevant level and which are substrate-dependent — does not have a
-general answer. We use the following decision rule rather than treating
-"informational" as a universal escape hatch:
-
-| Source claim | Transfer allowed here | Transfer not allowed here | Falsifier |
-|---|---|---|---|
-| Allostatic load as integrated deviation | Whether a cumulative-deviation signal can be observed continuously and coupled to intervention | Tissue damage, endocrine/immune mechanisms, clinical morbidity | $V_{\text{anima}}$ fails to improve governance decisions or produces worse interventions than non-integral baselines |
-| Per-subject / per-class calibration | Whether self-relative or class-relative envelopes change decision-layer verdicts | Clinical superiority of per-patient thresholds | Independent/audited ablations show the grounded fleet→class effect collapses, or clinical re-analysis shows no useful disagreement signal |
-| McEwen Four Types | Whether temporal failure-mode patterns are computable on agent telemetry | Exhaustiveness of biological taxonomy for synthetic agents | Disambiguating tests repeatedly reclassify apparent types as calibration or substrate artifacts |
-| Kintsugi / gap-marking | Whether explicit discontinuity metadata improves auditability and reduces fabricated continuity | Claims about consciousness, memory phenomenology, or clinical confabulation mechanisms | Gap metadata does not improve downstream audit, calibration, or error detection |
-
-The paper's empirical claims are therefore bets at specified transfer
+general answer. We therefore use the construct-transfer table introduced
+in §1.3 rather than treating "informational" as a universal escape
+hatch. The paper's empirical claims are bets at specified transfer
 levels, not claims that biological mechanisms have been reproduced.
 Whether those bets pay off depends on whether the synthetic case
 generates predictions that biology subsequently confirms — a question
@@ -2490,12 +2500,15 @@ that, in the nature of things, this paper cannot itself answer.
 Synthetic psychology, as we use the term here, is a methodological
 stance with three commitments:
 
-1. **Build something that exhibits the property of interest.** Not
-   simulate, not analogize — instantiate, in a system with operational
-   stakes, the structure that the biological theory specifies.
+1. **Build something that operationalizes the structure of interest.**
+   Not merely gesture at an analogy: implement, in a system with
+   operational stakes, the formal or informational structure that the
+   biological theory specifies.
 2. **Treat the system as a test bed.** Use the artifact's tractability
-   and the deployment's information-richness to run experiments that
-   biology cannot easily run.
+   and the deployment's information-richness to run experiments or
+   ablations that are difficult in biological systems, while treating
+   biological transfer as hypothesis generation until externally
+   validated.
 3. **Be specific about what transfers.** Identify which biological
    claims are informational at the relevant level (and therefore
    testable on the synthetic substrate) and which are substrate-specific
@@ -2504,11 +2517,11 @@ stance with three commitments:
 The companion paper exemplifies this stance through the four claims of
 §1.3 and the empirical work of §2–§5. Whether the stance generalizes —
 whether other biological theories of self-maintenance can be similarly
-instantiated and tested — is an open question. The contribution of this
+operationalized and tested — is an open question. The contribution of this
 paper is to make the stance explicit, demonstrate its application, and
 lay out specific findings that exemplify what synthetic psychology can
-produce when the deployment is real and the theory is informational at
-the right level of abstraction.
+put under disciplined study when the deployment is real and the theory
+is informational at the right level of abstraction.
 
 ---
 
@@ -2516,35 +2529,43 @@ the right level of abstraction.
 
 ### 9.1 Synthesis
 
-The companion paper argues that the AI agent governance community, in
+This paper argues that the AI agent governance community, in
 arriving at the deployed UNITARES framework, has built apparatus that
 allostatic load theory has lacked for thirty years: a real-time,
-observable, intervention-coupled implementation of the
-integrated-deviation hypothesis. We have used this implementation to
-instantiate four specific claims and have evaluated each at the level of
+observable, intervention-coupled operational analogue of the
+integrated-deviation hypothesis. We have used this analogue to
+evaluate four specific claims and have assessed each at the level of
 evidence appropriate to the claim's strength.
 
-The Anima Void Integral $V_{\text{anima}}$ instantiates the mathematical
-core of allostatic load on a four-dimensional informational manifold.
+The Anima Void Integral $V_{\text{anima}}$ operationalizes a structural
+analogue for the mathematical core of allostatic load on a
+four-dimensional informational manifold.
 The match is structural rather than literal; three structural disanalogies
 (single-system, fixed reference, no body) sharpen what the test bed
 tests rather than weaken the bridge.
 
-Class-conditional calibration corrects the cosmological-soup failure
-mode that fleet-wide normalization produces, with empirical consequences
-quantified by the 28.9% basin-flip rate on 13,310 production state
-vectors. Four proposals back to clinical longitudinal monitoring follow:
+The grounded class-conditional substitution exposes the decision-layer
+consequences of the cosmological-soup failure mode that fleet-wide
+normalization produces, with empirical disagreement quantified by the
+28.9% full-substitution basin-flip rate on 13,310 production state
+vectors. The same-row ablation shows a grounded fleet→class effect
+(23.5%) and a formula-replacement effect under a fleet-wide grounded
+baseline (11.2%), but the terms are non-additive; the 28.9% headline is
+not a clean causal attribution to one component or proof that the
+grounded form is normatively correct. Four hypothesis-generating
+proposals back to clinical longitudinal monitoring follow:
 provenance-tagged per-subject envelopes, a clinical analogue of the
-basin-flip counterfactual, a specific prediction (per-subject envelopes
-should produce more flag-states than population intervals), and a
-testbed argument for controlled-heterogeneity studies that biology
-cannot easily run.
+basin-flip counterfactual, a specific hypothesis about whether
+per-subject envelopes produce more flag-states than population
+intervals, and a
+testbed argument for controlled-heterogeneity studies that biological
+systems make difficult.
 
 The trajectory identity $\Sigma$ and its two-tier drift detection
 ($\Sigma_t$ vs. $\Sigma_{t-1}$ for coherence; $\Sigma_t$ vs. $\Sigma_0$
-for lineage) addresses the boiling-frog problem in slow-drift
-neurodegenerative and psychiatric conditions. Three further proposals
-follow: pre-illness behavioral signatures via digital phenotyping,
+for lineage) offers a formal vocabulary for the boiling-frog problem in
+slow-drift neurodegenerative and psychiatric conditions. Three further
+hypothesis-generating proposals follow: pre-illness behavioral signatures via digital phenotyping,
 lineage similarity as a clinical signal, and the behavioral-CAPTCHA
 argument for novel-stimulus probes in neuropsychological assessment.
 
@@ -2574,28 +2595,34 @@ testable) are acknowledged.
 
 The paper's strongest empirical claim — the 28.9% basin-flip rate —
 is already documented in the technical paper (Wang 2026a §11.6) and
-inherits its evidential status from that work. The Lumen case study
+inherits its evidential status from that work: a provenance-backed
+production full-substitution measurement with same-row ablation, not an
+independently reproduced result or a clean class-calibration causal
+effect. The Lumen case study
 (§5.3) is original to the present paper; the recalibration experiment
 it reports identifies a basin transition on 2026-04-17 (coincident to
 the hour with a documented identity-system revision) and the resulting
 calibration-staleness as the explanation for an apparent Type 3
-signature. The case is identification-grade for the basin transition
-itself (single ten-hour event localized to within the hour, weekly-bin
-and recalibration evidence both consistent), anomaly-grade for substrate
-causality, illustrative for the temporal-homogenization argument, and
-bounding for the Four Types vocabulary. Class-conditional envelope spread
+signature. The case is provenance-backed case-report evidence for the
+basin transition itself (single ten-hour event localized to within the
+hour, weekly-bin and recalibration evidence both consistent),
+anomaly-grade for substrate causality, illustrative for the
+temporal-homogenization argument, and bounding for the Four Types
+vocabulary. Class-conditional envelope spread
 (3.3× across five classes) is quantitative and inherited from Wang 2026a
 Table 5.
 
 The other contributions are arguments rather than measurements: the
 $V_{\text{anima}}$ ↔ AL bridge (§2) is an argument that the deployed
-quantity instantiates the theoretical construct, defended through three
+quantity operationalizes a structural analogue for the theoretical
+construct, defended through three
 disanalogies; the Four Types mapping (§5) is an argument that the
-biological taxonomy transfers, defended by working through each type;
-the kintsugi/gap-filling contrast (§6) is an argument that the design
+biological taxonomy can be operationally mapped, defended by working
+through each type; the kintsugi/gap-filling contrast (§6) is an argument that the design
 choice is interesting beyond its local engineering justification; the
 synthetic-psychology framing (§8) is an argument that the deployed test
-bed enables tests biology cannot easily run.
+bed enables hypotheses and controlled synthetic tests that are difficult
+in biological systems.
 
 The honest balance is: substantial empirical content where biology has
 parallels (basin-flip, apparent Type 3 resolved as a basin transition,
