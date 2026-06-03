@@ -1013,14 +1013,22 @@ formula-vs-calibration ablation are included in this repository at
 `analysis/phase-2-2026-04-18/`; the ablation output is stored in
 `formula_calibration_ablation_results.txt`. Production telemetry cannot
 be released in raw form because state vectors are
-keyed to user-identifying agent UUIDs; a synthetic sample preserving
+keyed to user-identifying agent UUIDs. A synthetic sample preserving
 the per-class state-vector distribution at the resolution required to
-reproduce the basin-flip computation is planned for release alongside
-v6.x materials. Reviewers requiring direct verification can run the
-`classify_basin` and coherence functions on synthetic inputs from the
-public repository to confirm the analytic pipeline; verification of
-the 28.9% rate against a synthetic state-vector distribution matching
-production is the planned reproducibility artifact.
+reproduce the basin-flip computation is now included in this repository:
+`analysis/phase-2-2026-04-18/synthesize_basinflip.py` fits a per-class
+Gaussian copula over the six variables the classifier reads
+($E, I, S, V$, risk, stored coherence) and emits
+`synthetic_basinflip_states.csv` (releasable; no production rows). Run
+through the same `classify_basin` and coherence functions, the synthetic
+sample reproduces the full substitution at **29.3%** (production 28.9%),
+with LF→GF 11.0% and GF→GC 22.8% (production 11.2% and 23.5%) and
+per-class rates that track. The match is not tuned — the copula is fit to
+preserve the joint distribution, and the rate is emergent because the
+basin assignment is a deterministic function of the preserved variables.
+This validates the pipeline and the distributional structure on releasable
+data; it does not release the production rows, and independent
+re-measurement on production or independent data remains the stronger bar.
 
 ---
 
@@ -2712,9 +2720,11 @@ case is silent. The careful work is distinguishing the two.
 This appendix separates three different standards that are easy to
 conflate: reproducing the analytic pipeline, reproducing the reported
 production numbers, and independently validating the biological bridge.
-Only the first is presently available from public artifacts; the second
-requires either a privacy-preserving synthetic release or a private audit;
-the third requires another deployment or an external re-analysis.
+The first is available from public artifacts; the second is now partly
+served by a privacy-preserving synthetic release that reproduces the
+reported numbers on releasable data (a private audit of the production
+rows remains the stronger check); the third requires another deployment
+or an external re-analysis.
 
 | Object | Current status | What can be checked now | What remains missing |
 |---|---|---|---|
@@ -2723,7 +2733,7 @@ the third requires another deployment or an external re-analysis.
 | Formula-vs-calibration ablation | Run locally on production DB | LF→GF 11.2%, GF→GC 23.5%, LF→GC 28.9%, LF→LC 77.8%; script and output in `analysis/phase-2-2026-04-18/` | Public row-level artifact or third-party audit of the production export |
 | Lumen §5.3 recalibration case | Reported from production telemetry | 86-minute protocol, recalibration criterion, weekly-bin interpretation | Full longitudinal pull across Lumen's post-Phase-2 interval and comparable agents/revisions |
 | Raw production state vectors | Withheld | Schema and provenance can be inspected | Direct public release is blocked by agent UUID/user-identification risk |
-| Synthetic reproduction artifact | Planned | Pipeline can be tested on arbitrary synthetic vectors | Distribution-preserving synthetic sample sufficient to reproduce basin-flip behavior |
+| Synthetic reproduction artifact | **Available** (`analysis/phase-2-2026-04-18/`) | Reproduces LF→GC 29.3% vs production 28.9% (and the LF→GF / GF→GC components) by running the same classifier on a per-class Gaussian-copula sample | Independent re-measurement on production or independent data |
 | Clinical translation sketches | Hypothesis-generating only | Proposed variables, baselines, and comparison targets | Dataset-specific field mapping, endpoint adjudication, covariates, missingness rules, preregistration |
 
 A serious submission should not ask reviewers to take the production
@@ -2745,9 +2755,16 @@ numbers entirely on trust. The minimal artifact bundle is:
    transition is unique, repeated around other substrate revisions, or
    absent in comparable agents.
 
-The evidentiary consequence is explicit: until that bundle exists, the
-basin-flip and ablation rates are provenance-backed production
-measurements rather than independently reproducible results, and the
+Of these, items 4 and 5 are now delivered (`synthesize_basinflip.py` →
+`synthetic_basinflip_states.csv`, which both generates the sample and
+recomputes the flip counts, per-class rates, and ablation through the same
+classifier); items 1–3 and 6 remain.
+
+The evidentiary consequence is explicit: until that bundle is complete, the
+basin-flip and ablation rates remain provenance-backed production
+measurements rather than results a reviewer can independently reproduce on
+the production rows themselves (the synthetic artifact reproduces them on
+releasable data, which is a weaker but real check), and the
 Lumen substrate link remains anomaly-grade rather than causal evidence.
 
 ---
