@@ -7,8 +7,8 @@ authors:
     given-names: Kenny
     affiliation: "CIRWEL Systems"
     orcid: "https://orcid.org/0009-0006-7544-2374"
-date-released: 2026-05-09
-version: "v0.3-draft"
+date-released: 2026-08-14
+version: "v1.0"
 url: "https://github.com/cirwel/digital-proprioception-paper"
 license: CC-BY-4.0
 keywords:
@@ -31,9 +31,11 @@ abstract: >
   fleets in production since November 2025, as a deployed structural
   analogue for the mathematical core of allostatic load on a
   four-dimensional informational manifold. The Anima Void Integral
-  V_anima is computed end-to-end, observable at every check-in, and
-  coupled to intervention; it is a control-signal analogue, not a
-  biological or clinical allostatic-load measure.
+  V_anima has its integrand recorded at every check-in, making the
+  integral computable end-to-end over any window; its coupling to
+  intervention is specified by the companion trajectory-identity
+  framework but not yet wired in production. It is a control-signal
+  analogue, not a biological or clinical allostatic-load measure.
 
   The paper makes four bounded contributions: V_anima as a deployed
   cumulative-deviation control-signal analogue; class-conditional
