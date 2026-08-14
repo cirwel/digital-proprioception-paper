@@ -22,7 +22,7 @@ on:
 env:
   # Concept DOI for this paper. Leave empty before the first release; the
   # first deposit mints it — then set it here and add it to ORCID.
-  CONCEPT_DOI: ""
+  CONCEPT_DOI: "10.5281/zenodo.21930092"
 
 jobs:
   tag-guard:

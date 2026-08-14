@@ -37,4 +37,4 @@ The 28.9% basin-flip rate (§3.4) is inherited from Wang 2026a §11.6 and now ha
 
 ## Citation
 
-See [CITATION.cff](CITATION.cff). DOI will be minted on first stable tag via Zenodo-GitHub integration.
+See [CITATION.cff](CITATION.cff). Zenodo concept DOI (resolves to latest version): [10.5281/zenodo.21930092](https://doi.org/10.5281/zenodo.21930092).
