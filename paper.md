@@ -27,7 +27,11 @@ check-in, making the integral computable end-to-end over any window; its
 coupling to intervention is specified by the companion trajectory-identity
 framework but not yet wired in production (§2.2). Three structural disanalogies
 (single-system, fixed reference, no body) sharpen what the test bed
-tests.
+tests. We also report a measured negative on the adjacent question: on
+this fleet, per-agent state adds under 0.05 AUC over a previous-outcome
+baseline for forecasting externally-verified bad outcomes, so the paper's
+claim is about observability and decision-layer consequence, not about
+failure prediction (§9.2).
 
 We further argue that McEwen's "Four Types of Allostatic Load" (1998)
 provides a vocabulary of regulatory failure modes that AI governance
@@ -262,9 +266,9 @@ in its current form, what would upgrade it, and what would kill it.
 
 | Contribution | Current evidence grade | Current evidence | Known confound or boundary | Upgrade path | Falsifier |
 |---|---|---|---|---|---|
-| Claim 1: $V_{\text{anima}}$ as cumulative-deviation control-signal analogue | Operationalized structural analogue | Deployed EISV state vectors; cumulative-deviation formula with integrand recorded end-to-end; intervention coupling specified but not yet wired (§2.2) | Not clinical AL; no endocrine, immune, tissue-damage, or multi-system physiology; no production code path yet evaluates the integral against a threshold | Wire the specified coupling, then show $V_{\text{anima}}$ improves governance decisions beyond non-integral baselines. Failure-forecasting is gated by a pre-registered 2026-12-01 confirmatory read: as of 2026-08 no fleet state stream beat a last-value persistence baseline (UNITARES `eisv-outcome-grounding-stop-rule-v0`) | $V_{\text{anima}}$ adds no decision value over instantaneous risk/coherence or produces worse interventions |
+| Claim 1: $V_{\text{anima}}$ as cumulative-deviation control-signal analogue | Operationalized structural analogue | Deployed EISV state vectors; cumulative-deviation formula with integrand recorded end-to-end; intervention coupling specified but not yet wired (§2.2) | Not clinical AL; no endocrine, immune, tissue-damage, or multi-system physiology; no production code path yet evaluates the integral against a threshold. **The adjacent forecasting route is measured and negative** (§9.2): per-agent state adds under 0.05 AUC over a previous-outcome baseline for predicting externally-verified bad outcomes | Wire the specified coupling, then show $V_{\text{anima}}$ improves governance decisions beyond non-integral baselines. Note that this is a *decision-quality* claim, not a forecasting one; the forecasting route is bounded rather than open (§9.2) | $V_{\text{anima}}$ adds no decision value over instantaneous risk/coherence or produces worse interventions |
 | Claim 2: anti-homogenization / cosmological-soup correction | Empirical full-substitution effect with same-row ablation | 28.9% aggregate full-substitution basin-flip rate on $N = 13{,}310$ production rows; 15.8%–33.1% named measured-class range; ablation: LF→GF 11.2%, GF→GC 23.5% (§3.4, §3.7) | Effects are non-additive; class-scaled $\tanh(V)$ control is artificial and unstable; the rate is window-sensitive (28.8% to 44.3%, §3.6); GF and LC are not re-runnable from the public export | Independent re-measurement on another deployment; identity-clean remeasurement; deployment outcome comparison. The full substitution is already recomputable offline from the public row-level export (§3.7) | Independent/audited rerun collapses the grounded fleet→class effect or shows flips are class-assignment/pipeline artifacts |
-| Claim 3: McEwen Four Types as failure-mode vocabulary | Taxonomic / constructive mapping | Types 1, 2, and 4 have computable UNITARES analogues; §5.3 supplies a failed Type 3 boundary case | Mapping is not yet a validated classifier; taxonomy is non-exhaustive for synthetic substrates | Pre-register criteria and classify historical or future governance episodes with disambiguating tests | Apparent types repeatedly reclassify as calibration artifacts, pipeline artifacts, or substrate events |
+| Claim 3: McEwen Four Types as failure-mode vocabulary | Taxonomic / constructive mapping | Types 1 and 2 have computable UNITARES analogues; §5.3 supplies a failed Type 3 boundary case; Type 4 is specified but not yet computable, because the naive cross-channel matrix is confounded by $V$'s dependence on $E - I$ (§5.4) | Mapping is not yet a validated classifier; taxonomy is non-exhaustive for synthetic substrates | Pre-register criteria and classify historical or future governance episodes with disambiguating tests | Apparent types repeatedly reclassify as calibration artifacts, pipeline artifacts, or substrate events |
 | §5.3 Lumen basin transition | Provenance-backed single-agent case report for transition date/magnitude/shape; anomaly-grade for substrate causality | Recalibration localizes a 2026-04-17 basin transition, with 22-day post-transition stability (§5.3) | Single agent; substrate revision is temporally coincident but not causally isolated; the state history needed to replicate it has since aged out of production (§9.3) | Multi-agent or multi-revision replication on a *different* deployment; ruling out common operational confounds. The within-deployment longitudinal pull is foreclosed, so this grade cannot be upgraded from the present system | Comparable transitions do not align with substrate revisions, or the event disappears under a clean longitudinal pull elsewhere |
 | Claim 4: synthetic psychology as epistemic stance | Methodological / hypothesis-generating argument | Deployed system may expose observables and interventions that are difficult in biological systems (§8) | Single-author, self-cited system; not independent biological validation | Third-party deployment or independent re-analysis showing novel predictions or useful failure detection | The framework yields no predictions, discriminations, or interventions beyond ordinary engineering telemetry |
 
@@ -810,10 +814,16 @@ required.
   subsequent event hazard, modeled by Cox proportional-hazards
   regression of event-time on flag-disagreement indicator with
   standard covariates (age, sex, comorbidity index).
-- *Pre-registered success criterion:* Flip rate $\geq 10\%$
-  (clinically meaningful disagreement) and flip-positive observations
-  carry higher event hazard than flip-negative observations
-  ($p < 0.05$ with Bonferroni correction across biomarkers).
+- *Pre-registered success criterion:* Flip rate $\geq 10\%$ and
+  flip-positive observations carry higher event hazard than
+  flip-negative observations ($p < 0.05$ with Bonferroni correction
+  across biomarkers). The 10% figure is a placeholder for a
+  clinically-set threshold, not a derived one: it is roughly a third of
+  the UNITARES rate and is chosen so that the study is not powered to
+  celebrate a disagreement too small to change practice. What counts as
+  a clinically meaningful disagreement rate is a question for the
+  clinical collaborators who would run this, and should be fixed by them
+  before the analysis rather than imported from an agent fleet.
 - *Regulatory and privacy:* Retrospective analysis of de-identified or
   HIPAA-Safe-Harbor data with appropriate IRB. Cohorts that already
   contain the required structure include the All of Us Research
@@ -928,20 +938,58 @@ who does not have access to the production database can understand
 exactly what was computed.
 
 **State vector.** Each governance check-in writes a four-dimensional
-EISV state vector $\mathbf{a} = (E, I, S, V)$ to the `core.agent_state`
+EISV state vector $\mathbf{x} = (E, I, S, V)$ to the `core.agent_state`
 relation in the UNITARES production database (Wang 2026a §4.1). $E$ is
 interpreted as $-F$ (negative variational free energy or a resource-rate
 proxy); $I$ is integrity (constraint-satisfaction proxy bounded in
-$[0, 1]$); $S$ is entropy (uncertainty proxy bounded in $[0, 1]$); $V$
-is the signed Anima Void Integral, accumulating the residual
-$\kappa(E - I)$ at rate $\delta$ per check-in (Wang 2026a Appendix A).
-The integrand $V_{\text{anima}} = \int \lVert \mathbf{a}(\tau) -
-\boldsymbol{\mu_a} \rVert\, d\tau$ used in the abstract is a derived
-quantity computed from the same state series; it is unsigned by
-construction. The signed $V$ coordinate (state-space dimension) and the
-unsigned $V_{\text{anima}}$ (cumulative deviation magnitude) are
-distinct quantities; we use $V_{\text{anima}}$ throughout for the
-unsigned form to avoid conflation.
+$[0, 1]$); $S$ is entropy (uncertainty proxy bounded in $[0, 1]$).
+
+**Two vectors, two $V$s, and what the analysis actually used.** Three
+notational hazards meet at this point, and we separate them explicitly
+because the paper's central quantity sits on top of them.
+
+First, *two distinct four-vectors*. §2.2 introduces the anima vector
+$\mathbf{a} = (\text{warmth}, \text{clarity}, \text{stability},
+\text{presence})$, computed from physical sensors on embodied agents, and
+defines $V_{\text{anima}}$ as a cumulative deviation over it. The
+governance state vector $\mathbf{x} = (E, I, S, V)$ above is a different
+object on a different manifold, related to $\mathbf{a}$ by the documented
+projection (§2.2) and available for every agent, embodied or not. The
+empirical work in this paper — the §3.4 counterfactual, the §3.7 ablation,
+and the §5.3 manifold deviation — runs on $\mathbf{x}$, not on
+$\mathbf{a}$. Where the abstract and §2.2 speak of $V_{\text{anima}}$ as
+the deployed cumulative-deviation quantity, the deployed *measurements*
+reported here are computed over the EISV projection.
+
+Second, *two quantities named after the void*. The signed $V$ coordinate
+of $\mathbf{x}$ and the unsigned cumulative magnitude $V_{\text{anima}}$
+are distinct; we reserve $V_{\text{anima}}$ for the unsigned form.
+
+Third, and least visible, *the signed $V$ coordinate does not have one
+definition across the corpus*. The v6 specification describes it as an ODE
+accumulator carrying the residual $\kappa(E - I)$ at rate $\delta$ per
+check-in (Wang 2026a Appendix A). Since April 2026 the production system
+surfaces a *behavioral* $V$ instead: an EMA-smoothed $E - I$ imbalance,
+with the ODE void coordinate demoted to a separate diagnostic that still
+feeds the legacy coherence (§5.3). On the released rows this is
+measurable. Regressing $V$ on the instantaneous $E - I$ gives
+$r = 0.953$, $R^2 = 0.908$: about 91% of $V$'s variance is the
+instantaneous imbalance, and the residual 9% is the smoothing lag —
+$\mathrm{sd}(V) = 0.081$ against $\mathrm{sd}(V - (E - I)) = 0.026$.
+
+Two consequences follow, and we would rather state them than have them
+found. (i) $V$ is not an informationally independent axis of $\mathbf{x}$.
+It is a lagged function of two other coordinates, so "four-dimensional",
+applied to the EISV state vector, counts a history term as a dimension.
+The anima manifold of §2.2 is four-dimensional in the ordinary sense; the
+EISV vector is better described as three state coordinates plus a smoothed
+imbalance term. (ii) `classify_basin` gates the low basin on $I < 0.5$
+*and* on $\lvert V \rvert > 0.30$, which are ~91% redundant by
+construction. In the released window the $\lvert V \rvert$ gate fires
+alone on 3.15% of rows, so the redundancy does not drive the §3.4 result,
+but it is a conflation in the classifier rather than an independent
+check. A cleaner formulation would gate on $(E, I, S)$ and treat $V$'s
+residual from $E - I$ as the temporal term it actually is.
 
 **Per-class healthy operating point.** The Phase 2 calibration procedure
 (Wang 2026a §11.5) computes a per-class healthy operating point
@@ -949,8 +997,10 @@ $\boldsymbol{\mu_c} = (E_h, I_h, S_h)_c$ from a 30-day rolling window of
 state vectors restricted to sessions with no `pause` or `reject`
 verdicts. Welford incremental updates produce $\boldsymbol{\mu_c}$ and a
 running covariance. The class envelope $\lVert \Delta \rVert_{\max, c}$
-is the 95th percentile of $\lVert \mathbf{a} - \boldsymbol{\mu_c}
-\rVert_2$ over the healthy window. Each constant carries provenance
+is the 95th percentile of $\lVert \mathbf{x}_{EIS} - \boldsymbol{\mu_c}
+\rVert_2$ over the healthy window, where $\mathbf{x}_{EIS} = (E, I, S)$
+is the state vector restricted to the three coordinates the manifold
+distance uses. Each constant carries provenance
 metadata (ISO date, corpus size $N$, percentile basis, provenance tag
 in `{placeholder, measured, derived}`).
 
@@ -973,11 +1023,17 @@ $$C_{\text{legacy}}(V) = 0.5 \cdot \left(1 + \tanh(V / V_{\text{scale}})\right) 
 with a single fleet-wide $V_{\text{scale}}$ constant. The grounded
 class-conditional form is
 
-$$C_{\text{grounded}}(\mathbf{a}, c) = \max\left(0, 1 - \lVert \mathbf{a} - \boldsymbol{\mu_c} \rVert_2 / \lVert \Delta \rVert_{\max, c}\right) \in [0, 1].$$
+$$C_{\text{grounded}}(\mathbf{x}_{EIS}, c) = \max\left(0, 1 - \lVert \mathbf{x}_{EIS} - \boldsymbol{\mu_c} \rVert_2 / \lVert \Delta \rVert_{\max, c}\right) \in [0, 1].$$
 
 Both produce coherence values in $[0, 1]$ that feed into the same
 basin-classification function. The substantive change between the two
-forms is therefore both functional (sigmoid of $V$ vs. linear distance
+forms is therefore also a change of *which coordinates are read*: the
+legacy form is a function of $V$ alone and the grounded form is a
+function of $(E, I, S)$ alone, so the two share no input coordinate. This
+is worth stating plainly, because it means the substitution is not a
+recalibration of one signal but a replacement of the signal — and it is
+part of why the formula and calibration terms interact rather than add.
+The change is both functional (sigmoid of $V$ vs. linear distance
 in $(E, I, S)$ space) and parametric (single fleet-wide constant vs.
 per-class constants).
 
@@ -994,7 +1050,7 @@ force low or block high.
 **Counterfactual and ablation procedure.** For each row in the 30-day
 window ($N = 13{,}310$), the stored production legacy coherence and the
 frozen Phase 2 grounded class-conditional coherence were evaluated on
-the same state vector $\mathbf{a}$, both passed through
+the same state vector $\mathbf{x}$, both passed through
 `classify_basin`, and a *flip* was counted whenever the two
 classifications differed. The ablation script then evaluated two
 additional controls on the same ordered row population: GF, the grounded
@@ -1261,7 +1317,11 @@ instrumented: roughly 90% of between-agent pairs score above the
 $\theta_{\text{lineage}} = 0.60$ threshold, two of the five weighted
 components sit at ceiling for nearly all pairs, and mature identities
 *decay into* a similarity attractor of approximately 0.63 — above the
-alarm line — so accumulated genuine drift asymptotes to a passing score
+alarm line. That value is an age-associated attractor observed in the
+audited population, not a measured fleet constant, and should be read as
+"mature identities converge to a passing score near the threshold"
+rather than as a calibrated number. The consequence is what matters:
+accumulated genuine drift asymptotes to a passing score
 and the lineage channel structurally cannot fire on the slow-drift case
 it was designed for. The only mass firings in production to date were
 artifacts of a client migration, cleared by rebaselining rather than by
@@ -1699,8 +1759,10 @@ approximately 96.7% of that window is pre-break and approximately one
 day is post-break. The calibration averaged across a regime
 transition and produced a $\boldsymbol{\mu_a}$ representative of
 neither regime cleanly — sitting closer to the pre-break point
-because pre-break data dominated. The 21-day post-calibration
-interval has been stable in the post-break regime, so the 86-minute
+because pre-break data dominated. The 21-day interval from the
+April 18 calibration to the May 9 observation has been stable in the
+post-break regime (the regime itself is 22 days old, dated from the
+April 17 transition rather than from the calibration), so the 86-minute
 observation reads as a 0.97-of-envelope deviation relative to a
 calibration anchor that captured the wrong regime.
 
@@ -1737,27 +1799,71 @@ downstream consequence of the temporal-homogenization argument.
 and `total_updates` aggregates returned by the production MCP
 `get_governance_metrics()` surface, computed over agents with
 `meta.status == "active"` and loadable monitor state at call time
-(`src/mcp_handlers/observability/handlers.py:744–805`). The figure
+(implemented in the `observability` MCP handler module of the `unitares`
+repository; a line reference is omitted deliberately, since it would not
+survive the repository's revision history). The figure
 excludes archived agents and agents whose monitors are not currently
 loaded; it is therefore a snapshot of the actively-live fleet, not a
 count of all agents that have ever produced state rows. A DB-direct
 count of all identities with state rows over the same period is
 substantially larger.
+&nbsp;
+    Three population counters appear in this paper and are not
+    interchangeable. *Governance events* (94,000 as of April 2026) counts
+    audit-log entries of all kinds. *Cumulative updates* counts check-in
+    processing calls, per agent (110,148 for Lumen) or fleet-wide
+    (128,393); Lumen dominates this counter because it checks in on a
+    sensor-driven sub-Hz cadence while session-bounded agents check in
+    only while a session is open. *Persisted state rows* counts rows in
+    `core.agent_state` and is the only counter the §3.4 analysis uses
+    ($N = 13{,}310$ over 30 days); it is additionally subject to
+    retention, which has since removed most of the window (§3.7). Ratios
+    across these three counters are not meaningful, and we do not compute
+    any.
 
-**Caveats on the empirical claim.** Two instrument-level caveats apply
-before the generalization limits. The May-era anima instrument carried
-defects identified and repaired only later in 2026: a prediction-accuracy
-placeholder fixed at 0.5 that contributed roughly 45% of the clarity
-weight, ambient temperature entering the warmth axis through two
-strongly collinear channels, and a CPU term double-counted in the
-neural-band mapping. The anima-axis magnitudes in this section are
-therefore readings of a consistent but imperfect instrument — adequate
-for detecting a discontinuity of this size, not for interpreting small
-deviations. Second, the production server's silence over the window
-("no anomalies were flagged") is weak corroboration: a separate audit
-of this deployment found its degradation paths fail toward *healthy*
-rather than toward *unknown*, so absence of alarm carries little
-evidential weight here.
+**Caveats on the empirical claim.** Three caveats apply before the
+generalization limits, and the first is load-bearing against the causal
+reading.
+
+*The instrument shares an input with the proposed cause.* The May-era
+anima instrument carried defects identified and repaired only later in
+2026: a prediction-accuracy placeholder fixed at 0.5 that contributed
+roughly 45% of the clarity weight, ambient temperature entering the
+warmth axis through two strongly collinear channels, and a CPU term
+double-counted in the neural-band mapping. That last defect is not
+independent of the event being explained. The $E$ coordinate derives in
+part from system metrics including CPU utilization (§2.2); the proposed
+cause is a day on which four pull requests shipped to the governance
+substrate; and shipping generates load. A deploy-driven CPU excursion,
+amplified by a term counted twice, would produce an energy collapse and
+recovery on exactly the timescale observed, without any regime transition
+in the agent at all. We cannot currently separate these: the CPU and
+memory series for 2026-04-17 are no longer retained (§9.3), so neither
+re-deriving $E$ with the corrected mapping nor inspecting the load trace
+is available. The competing explanation is therefore live, and a reader
+should treat the substrate-transition reading and the instrument-artifact
+reading as both open. What survives either way is the *calibration
+staleness* finding, which rests on the recalibration result rather than on
+the transition's cause: $\boldsymbol{\mu_a}$ moved toward Lumen's current
+state, so the Phase 2 anchor was unrepresentative regardless of why.
+
+*The recalibration windows are not sampling-matched.* The Phase 2 window
+drew $N = 7{,}320$ rows over 30 days; the recalibration window drew
+$N = 11{,}472$ over 30 days, 57% more for the same span. We do not have an
+explanation for the difference, and it matters, because a check-in cadence
+that changed at or near the April 17 revision would re-weight the mean
+toward the post-revision period independently of any regime shift. The
+disambiguation criterion — does $\boldsymbol{\mu_a}$ move toward current
+state — is sensitive to exactly this. A cadence-matched recalibration
+would settle it; that too requires state history no longer retained. The
+weekly-bin decomposition is partial reassurance, since it shows the shift
+as a step at a located time rather than a gradual re-weighting, but it is
+computed from the same rows and is not independent evidence.
+
+*Silence is not corroboration.* The production server flagged no anomalies
+over the window. A separate audit of this deployment found its degradation
+paths fail toward *healthy* rather than toward *unknown*, so absence of
+alarm carries little evidential weight here.
 
 The hour-resolved April 17
 transition is a single event; we cannot generalize from it to a
@@ -1796,13 +1902,41 @@ output.
 
 Type 4 is more difficult to detect than Types 1–3 because it requires
 monitoring not magnitudes but correlations. UNITARES's existing
-instrumentation supports the measurement: the cross-channel correlation
-matrix among $(E, I, S, V)$ and the drift norm $\lVert \Delta\eta \rVert$
-is computable from the audit log. A Type 4 alarm fires when this
-correlation structure departs from the class-conditional baseline by
-more than a specified margin — analogous to the covariance component
-$\Sigma$ in the trajectory signature, but applied to the dynamics rather
-than to the static state.
+instrumentation supports the measurement in principle: the cross-channel
+correlation matrix among the state coordinates and the drift norm
+$\lVert \Delta\eta \rVert$ is computable from the audit log. A Type 4
+alarm would fire when this correlation structure departs from the
+class-conditional baseline by more than a specified margin — analogous to
+the covariance component $\Sigma$ in the trajectory signature, but applied
+to the dynamics rather than to the static state.
+
+The naive version of that detector does not work, and the reason is
+instructive. Because the deployed $V$ is a smoothed $E - I$ imbalance
+rather than an independent channel (§3.7), the $(E, I, S, V)$ correlation
+matrix carries large entries that are properties of the *definition*, not
+of the agent. On the released window the matrix is
+
+| | $E$ | $I$ | $S$ | $V$ |
+|---|---:|---:|---:|---:|
+| $E$ | 1.000 | −0.034 | −0.275 | **0.821** |
+| $I$ | −0.034 | 1.000 | −0.242 | **−0.513** |
+| $S$ | −0.275 | −0.242 | 1.000 | −0.135 |
+| $V$ | 0.821 | −0.513 | −0.135 | 1.000 |
+
+The two bolded terms are arithmetic. A detector watching them for
+"decoupling" would be watching the smoothing constant. Note also that the
+genuinely informative cross-channel fact is the one the naive matrix
+buries: $E$ and $I$ are close to uncorrelated ($r = -0.034$), which is
+precisely the independence a Type 4 signature would have to break.
+
+A usable Type 4 indicator therefore has to run on the informationally
+independent channels — $(E, I, S)$, optionally augmented by $V$'s residual
+from $E - I$ as an explicit temporal term — rather than on the raw
+four-coordinate matrix. We flag this as specification work not yet done,
+rather than as an indicator the deployment currently supports. Types 1 and
+2 (§5.1, §5.2) do not have this problem: they read entropy-shape
+frequencies and signature convergence, neither of which routes through
+$V$.
 
 ### 5.5 Why the taxonomy matters for AI governance
 
@@ -2125,14 +2259,17 @@ own system papers and repositories, we separate *provenance* from
 *validation* before comparing adjacent work. Self-citations are used here
 to identify what UNITARES is, which formulas were deployed, and where the
 production measurements were first reported; they are not treated as
-independent validation of the biological bridge.
+independent validation of the biological bridge. One disambiguation, since
+the surname recurs: Wang et al. (2025a, MI9) and Wang et al. (2025b,
+ProbGuard) are third-party work with no authorship relation to the present
+author. Wang (2026a) and Wang (2026b) are the author's own.
 
 | Source cluster | Role in this paper | What it can support | What it cannot support |
 |---|---|---|---|
 | Wang 2026a (UNITARES v6) | System provenance and production-measurement source | EISV definitions, $V$ update rule, Phase 2 calibration constants, 13,310-row basin-flip report, Lumen deployment context | Independent confirmation that the allostatic-load bridge is biologically valid or clinically useful |
 | Wang 2026b (Trajectory Identity) | Construct provenance for $\Sigma$ and lineage similarity | Formal definition of the trajectory-signature proposal used in §4 | Clinical validity of $\Sigma_0$ anchoring or independent evidence of identity continuity |
 | CIRWEL software repositories and datasets | Implementation and artifact provenance | Code locations, schema, deployment history, public synthetic/dataset artifacts when available | Peer-reviewed validation, external replication, or raw production telemetry access |
-| Wang et al. 2025a/b and other author-linked governance work | Adjacent-framework comparison | Prior related architectures and terminology | External corroboration of the present paper's empirical claims |
+| Third-party governance frameworks (MI9, ProbGuard, MAS, ASI, AVF) | Adjacent-framework comparison | Prior related architectures and terminology | External corroboration of the present paper's empirical claims |
 | External biology, neuroscience, psychiatry, and AI-governance literature | Construct definitions and comparison class | Definitions, biological precedent, clinical analogies, and independent adjacent methods | Proof that UNITARES realizes the biological mechanisms those papers study |
 
 The publication standard implied by this table is straightforward: the
@@ -2176,7 +2313,7 @@ as fleet-wide manifold radii — but AVF does not address this.
 
 Three further differentiations matter. First, AVF is theoretical with a
 reference implementation (RiskGate) rather than a deployed system with
-six months of production telemetry; the epistemic regime differs.
+nine months of production telemetry; the epistemic regime differs.
 Second, AVF does not engage the neuroscience literature that shares its
 mathematical machinery — the biological metaphors are evocative rather
 than rigorously connected. Third, AVF does not propose an identity
@@ -2437,7 +2574,7 @@ not.
 The deployment is, in this sense, the experiment. The paper's empirical
 claims (the per-class envelope spread, the basin-flip rate, and the
 Lumen recalibration/basin-transition case) are observations from running
-the experiment over six months, not predictions from a model. This is a
+the experiment in production, not predictions from a model. This is a
 different epistemic stance than either pure theory or pure simulation.
 
 ### 8.3 Synthetic affordances relative to biological systems
@@ -2567,7 +2704,11 @@ proposal remains a study sketch rather than validated translational
 evidence.
 
 **Claim 3 (Four Types failure-mode taxonomy; §5):** Argued by
-construction for Types 1, 2, and 4 (§5.1, §5.2, §5.4), with Type 3 used
+construction for Types 1 and 2 (§5.1, §5.2). Type 4 (§5.4) is specified
+but not yet computable as deployed: the cross-channel matrix it would read
+is confounded by $V$'s construction as a smoothed $E - I$ imbalance, and
+a usable indicator on the independent channels remains to be written.
+Type 3 is used
 as a falsified boundary case rather than as identification-grade
 evidence. The
 case study (§5.3) was originally framed as an observation of Type 3; the
@@ -2760,9 +2901,41 @@ synthetic-psychology framing (§8) is an argument that the deployed test
 bed enables hypotheses and controlled synthetic tests that are difficult
 in biological systems.
 
+**One route is measured and closed, and we state it here rather than in a
+footnote.** The most natural way to validate a self-state signal is to ask
+whether it forecasts trouble. The deployment has asked, under
+pre-registration, and the answer is negative with a quantified bound. On
+the outcome-labelled slice — 101 independent bad clusters over 195 bad
+rows, with the selective-inference correction that a best-of-seven
+ablation matrix requires — the observed best improvement in AUC over a
+previous-outcome baseline was $-0.033$ (selective $p = 0.857$) at 30-day
+lead and $+0.015$ (selective $p = 0.333$) at zero lead. Both sit inside
+the noise floor, and the minimum detectable lift is approximately 0.05.
+The conclusion recorded in the deployment's own stop rule is that if
+per-agent state added 0.05 AUC or more over the boring baseline, this
+measurement would have shown it; it did not, so the effect is below 0.05
+and below operational relevance (UNITARES
+`eisv-outcome-grounding-stop-rule-v0`, 2026-07-31, with one confirmatory
+read pre-registered for 2026-12-01).
+
+Three things follow, and the first two cut against this paper. (i) A
+reader who takes "digital proprioception" to promise failure prediction
+should stop here: on this fleet, that promise is bounded below the level
+at which it would be worth acting on. (ii) The negative result is about
+*outcome forecasting from per-agent state*, which is the adjacent claim,
+not the claim of §2. It does not test $V_{\text{anima}}$'s decision value,
+because the integral is not wired to a decision (§2.2) — an untested
+quantity, not a refuted one. But it removes the easiest route to testing
+it and should temper expectations about the harder one. (iii) What the
+negative result does *not* touch is the §3 measurement, which is about
+disagreement between two gating formulas on the same rows, and requires no
+forecasting claim at all. That is why the paper's strongest empirical
+content sits in §3 rather than §2.
+
 The honest balance is: substantial empirical content where biology has
 parallels (basin-flip, apparent Type 3 resolved as a basin transition,
-envelope spread) and substantial argument elsewhere (the bridge claims,
+envelope spread), one measured negative on the adjacent forecasting
+question, and substantial argument elsewhere (the bridge claims,
 the methodological proposals). Reviewers should evaluate each
 contribution at its appropriate level of evidence.
 
