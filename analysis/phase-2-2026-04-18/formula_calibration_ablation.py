@@ -11,6 +11,18 @@ controls requested in paper §3.7:
 
 The raw production database is not publishable; this script is the local
 verification harness for the private production DB.
+
+NOT RE-RUNNABLE AS OF 2026-08. The production database no longer retains the
+measurement window: core.agent_state holds 490 rows in 2026-03-19 -> 2026-04-18
+against the 13,310 the original pull returned, and there is no archive table.
+The recorded output in formula_calibration_ablation_results.txt is the surviving
+record of the GF and LC conditions, which cannot be recomputed from the public
+export because they need the per-row `regime` column and the export does not
+carry it.
+
+For the full-substitution headline (LF -> GC), which is what the paper leads
+with, use reproduce_basinflip.py instead: it runs offline against the frozen
+public export and needs no database. See REPRO.md.
 """
 from __future__ import annotations
 

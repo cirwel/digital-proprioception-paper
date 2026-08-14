@@ -4,8 +4,8 @@
 
 **Author:** Kenny Wang, Independent Researcher (CIRWEL Systems)
 **ORCID:** 0009-0006-7544-2374
-**Status:** v1.0 — first stable release, August 14, 2026; claims reconciled with the deployed system
-**Version notes:** Consolidates §1 and §2 from v2 (May 9 morning), §3 and §4 (May 9 afternoon), §5 with §5.3 patched from extended Lumen observation window, §6, §8, and adds new §7 (consolidated differentiation) and §9 (conclusion) plus abstract.
+**Status:** v1.1 — August 14, 2026; reproducibility rebuilt on the public row-level export, retention limits disclosed
+**Version notes:** v1.1 is a claims-and-artifacts reconciliation, and every change in it weakens or bounds a claim rather than extending one. It repoints the reproducibility story (§3.7, Appendix) at the frozen de-identified export archived under Zenodo data DOI 10.5281/zenodo.19705151, which a reviewer can recompute offline; discloses that the production database no longer retains the measurement window, which forecloses the Lumen longitudinal pull (§9.3); reports the window-to-window spread in the basin-flip rate (§3.6) rather than a point estimate with a sampling-only interval; separates the anima and EISV four-vectors, which had shared a symbol, and reports that the deployed $V$ coordinate is a smoothed $E - I$ imbalance rather than an independent axis (§3.7); downgrades the Type 4 indicator from computable to specified, since the matrix it reads is confounded by that dependence (§5.4); surfaces the measured negative on outcome forecasting into the abstract and §9.2; and discloses that the §5.3 instrument shares a CPU input with the substrate event it is used to evidence, leaving that case study's causal reading open. v1.0 consolidated §1 and §2 from v2 (May 9 morning), §3 and §4 (May 9 afternoon), §5 with §5.3 patched from extended Lumen observation window, §6, §8, and added §7 (consolidated differentiation) and §9 (conclusion) plus abstract.
 
 ---
 
@@ -27,7 +27,11 @@ check-in, making the integral computable end-to-end over any window; its
 coupling to intervention is specified by the companion trajectory-identity
 framework but not yet wired in production (§2.2). Three structural disanalogies
 (single-system, fixed reference, no body) sharpen what the test bed
-tests.
+tests. We also report a measured negative on the adjacent question: on
+this fleet, per-agent state adds under 0.05 AUC over a previous-outcome
+baseline for forecasting externally-verified bad outcomes, so the paper's
+claim is about observability and decision-layer consequence, not about
+failure prediction (§9.2).
 
 We further argue that McEwen's "Four Types of Allostatic Load" (1998)
 provides a vocabulary of regulatory failure modes that AI governance
@@ -46,7 +50,10 @@ failure-shape McEwen's Four Types do not cover. The companion technical
 paper (Wang 2026a)
 reports a 28.9% basin-flip rate when a class-conditional grounded
 coherence replaces fleet-wide tanh-of-V on 13,310 production state
-vectors. A same-row 2×2 ablation separates part of the effect:
+vectors. The rate is window-sensitive — the same measurement four days
+later gives 44.3% — so the finding is the order of magnitude of the
+disagreement, not the point estimate (§3.6). A same-row 2×2 ablation
+separates part of the effect:
 production legacy → grounded fleet-wide flips 11.2% of basin labels,
 while grounded fleet-wide → grounded class-conditional flips 23.5%; the
 non-additivity is an interaction, not a clean causal decomposition
@@ -259,10 +266,10 @@ in its current form, what would upgrade it, and what would kill it.
 
 | Contribution | Current evidence grade | Current evidence | Known confound or boundary | Upgrade path | Falsifier |
 |---|---|---|---|---|---|
-| Claim 1: $V_{\text{anima}}$ as cumulative-deviation control-signal analogue | Operationalized structural analogue | Deployed EISV state vectors; cumulative-deviation formula with integrand recorded end-to-end; intervention coupling specified but not yet wired (§2.2) | Not clinical AL; no endocrine, immune, tissue-damage, or multi-system physiology; no production code path yet evaluates the integral against a threshold | Wire the specified coupling, then show $V_{\text{anima}}$ improves governance decisions beyond non-integral baselines. Failure-forecasting is gated by a pre-registered 2026-12-01 confirmatory read: as of 2026-08 no fleet state stream beat a last-value persistence baseline (UNITARES `eisv-outcome-grounding-stop-rule-v0`) | $V_{\text{anima}}$ adds no decision value over instantaneous risk/coherence or produces worse interventions |
-| Claim 2: anti-homogenization / cosmological-soup correction | Empirical full-substitution effect with same-row ablation | 28.9% aggregate full-substitution basin-flip rate on $N = 13{,}310$ production rows; 15.8%–33.1% named measured-class range; ablation: LF→GF 11.2%, GF→GC 23.5% (§3.4, §3.7) | Effects are non-additive; class-scaled $\tanh(V)$ control is artificial and unstable; raw production rows are not public | Privacy-preserving synthetic artifact or private audit; identity-clean remeasurement; deployment outcome comparison | Independent/audited rerun collapses the grounded fleet→class effect or shows flips are class-assignment/pipeline artifacts |
-| Claim 3: McEwen Four Types as failure-mode vocabulary | Taxonomic / constructive mapping | Types 1, 2, and 4 have computable UNITARES analogues; §5.3 supplies a failed Type 3 boundary case | Mapping is not yet a validated classifier; taxonomy is non-exhaustive for synthetic substrates | Pre-register criteria and classify historical or future governance episodes with disambiguating tests | Apparent types repeatedly reclassify as calibration artifacts, pipeline artifacts, or substrate events |
-| §5.3 Lumen basin transition | Provenance-backed single-agent case report for transition date/magnitude/shape; anomaly-grade for substrate causality | Recalibration localizes a 2026-04-17 basin transition, with 22-day post-transition stability (§5.3) | Single agent; substrate revision is temporally coincident but not causally isolated; public artifact bundle not yet released | Public or audited artifact bundle; multi-agent or multi-revision replication; rule out common operational confounds | Comparable transitions do not align with substrate revisions, or the event disappears under a clean longitudinal pull |
+| Claim 1: $V_{\text{anima}}$ as cumulative-deviation control-signal analogue | Operationalized structural analogue | Deployed EISV state vectors; cumulative-deviation formula with integrand recorded end-to-end; intervention coupling specified but not yet wired (§2.2) | Not clinical AL; no endocrine, immune, tissue-damage, or multi-system physiology; no production code path yet evaluates the integral against a threshold. **The adjacent forecasting route is measured and negative** (§9.2): per-agent state adds under 0.05 AUC over a previous-outcome baseline for predicting externally-verified bad outcomes | Wire the specified coupling, then show $V_{\text{anima}}$ improves governance decisions beyond non-integral baselines. Note that this is a *decision-quality* claim, not a forecasting one; the forecasting route is bounded rather than open (§9.2) | $V_{\text{anima}}$ adds no decision value over instantaneous risk/coherence or produces worse interventions |
+| Claim 2: anti-homogenization / cosmological-soup correction | Empirical full-substitution effect with same-row ablation | 28.9% aggregate full-substitution basin-flip rate on $N = 13{,}310$ production rows; 15.8%–33.1% named measured-class range; ablation: LF→GF 11.2%, GF→GC 23.5% (§3.4, §3.7) | Effects are non-additive; class-scaled $\tanh(V)$ control is artificial and unstable; the rate is window-sensitive (28.8% to 44.3%, §3.6); GF and LC are not re-runnable from the public export | Independent re-measurement on another deployment; identity-clean remeasurement; deployment outcome comparison. The full substitution is already recomputable offline from the public row-level export (§3.7) | Independent/audited rerun collapses the grounded fleet→class effect or shows flips are class-assignment/pipeline artifacts |
+| Claim 3: McEwen Four Types as failure-mode vocabulary | Taxonomic / constructive mapping | Types 1 and 2 have computable UNITARES analogues; §5.3 supplies a failed Type 3 boundary case; Type 4 is specified but not yet computable, because the naive cross-channel matrix is confounded by $V$'s dependence on $E - I$ (§5.4) | Mapping is not yet a validated classifier; taxonomy is non-exhaustive for synthetic substrates | Pre-register criteria and classify historical or future governance episodes with disambiguating tests | Apparent types repeatedly reclassify as calibration artifacts, pipeline artifacts, or substrate events |
+| §5.3 Lumen basin transition | Provenance-backed single-agent case report for transition date/magnitude/shape; anomaly-grade for substrate causality | Recalibration localizes a 2026-04-17 basin transition, with 22-day post-transition stability (§5.3) | Single agent; substrate revision is temporally coincident but not causally isolated; the state history needed to replicate it has since aged out of production (§9.3) | Multi-agent or multi-revision replication on a *different* deployment; ruling out common operational confounds. The within-deployment longitudinal pull is foreclosed, so this grade cannot be upgraded from the present system | Comparable transitions do not align with substrate revisions, or the event disappears under a clean longitudinal pull elsewhere |
 | Claim 4: synthetic psychology as epistemic stance | Methodological / hypothesis-generating argument | Deployed system may expose observables and interventions that are difficult in biological systems (§8) | Single-author, self-cited system; not independent biological validation | Third-party deployment or independent re-analysis showing novel predictions or useful failure detection | The framework yields no predictions, discriminations, or interventions beyond ordinary engineering telemetry |
 
 **Construct-transfer boundary.** The claims above are governed by a
@@ -807,10 +814,16 @@ required.
   subsequent event hazard, modeled by Cox proportional-hazards
   regression of event-time on flag-disagreement indicator with
   standard covariates (age, sex, comorbidity index).
-- *Pre-registered success criterion:* Flip rate $\geq 10\%$
-  (clinically meaningful disagreement) and flip-positive observations
-  carry higher event hazard than flip-negative observations
-  ($p < 0.05$ with Bonferroni correction across biomarkers).
+- *Pre-registered success criterion:* Flip rate $\geq 10\%$ and
+  flip-positive observations carry higher event hazard than
+  flip-negative observations ($p < 0.05$ with Bonferroni correction
+  across biomarkers). The 10% figure is a placeholder for a
+  clinically-set threshold, not a derived one: it is roughly a third of
+  the UNITARES rate and is chosen so that the study is not powered to
+  celebrate a disagreement too small to change practice. What counts as
+  a clinically meaningful disagreement rate is a question for the
+  clinical collaborators who would run this, and should be fixed by them
+  before the analysis rather than imported from an agent fleet.
 - *Regulatory and privacy:* Retrospective analysis of de-identified or
   HIPAA-Safe-Harbor data with appropriate IRB. Cohorts that already
   contain the required structure include the All of Us Research
@@ -858,13 +871,20 @@ difficult to run in biological systems.
 
 The 28.9% basin-flip finding has limits worth flagging explicitly.
 First, it is an anchored snapshot, not a stable constant: the figure is
-tied to the published v6 measurement and its reproducibility artifact,
-and re-running the same counterfactual on other windows moves it
-materially (the published reproduction CSV yields 28.8%; a later live
-window yields a substantially higher rate). We therefore quote it only
-as published, with the per-class range, and treat the *existence and
-order of magnitude* of the disagreement — not its third digit — as the
-finding. Second, the
+tied to the published v6 measurement, and re-running the same
+counterfactual on other windows moves it materially. Both windows are
+public. The 30-day window ending 2026-04-18 gives 28.8% ($N = 13{,}292$);
+the window ending 2026-04-23, four days later with roughly 87% row overlap
+and the Phase 2 constants held frozen, gives **44.3%** ($N = 16{,}879$).
+The per-class pattern moves too, and not uniformly: Sentinel $+25.4$,
+Vigil $+19.6$, Lumen $+15.8$, default $+15.3$, Watcher $-11.3$ percentage
+points. Two snapshots are one comparison, not a trend, and we do not read
+the shift as a drift signal — a single re-calibration pass could absorb a
+change of this size. But it bounds what the point estimate can carry. We
+therefore treat the *existence and order of magnitude* of the
+disagreement — a rate in the tens of percent, not its third digit — as
+the finding, and quote 28.9% as the anchored v6 measurement rather than as
+the fleet's flip rate. Second, the
 30-day measurement window overlaps with material identity-system
 revisions in mid-to-late April 2026 (Wang 2026a §11.7, item 5), including
 removal of name-claim lookup, adoption of UUID-direct dispatch, and
@@ -918,20 +938,58 @@ who does not have access to the production database can understand
 exactly what was computed.
 
 **State vector.** Each governance check-in writes a four-dimensional
-EISV state vector $\mathbf{a} = (E, I, S, V)$ to the `core.agent_state`
+EISV state vector $\mathbf{x} = (E, I, S, V)$ to the `core.agent_state`
 relation in the UNITARES production database (Wang 2026a §4.1). $E$ is
 interpreted as $-F$ (negative variational free energy or a resource-rate
 proxy); $I$ is integrity (constraint-satisfaction proxy bounded in
-$[0, 1]$); $S$ is entropy (uncertainty proxy bounded in $[0, 1]$); $V$
-is the signed Anima Void Integral, accumulating the residual
-$\kappa(E - I)$ at rate $\delta$ per check-in (Wang 2026a Appendix A).
-The integrand $V_{\text{anima}} = \int \lVert \mathbf{a}(\tau) -
-\boldsymbol{\mu_a} \rVert\, d\tau$ used in the abstract is a derived
-quantity computed from the same state series; it is unsigned by
-construction. The signed $V$ coordinate (state-space dimension) and the
-unsigned $V_{\text{anima}}$ (cumulative deviation magnitude) are
-distinct quantities; we use $V_{\text{anima}}$ throughout for the
-unsigned form to avoid conflation.
+$[0, 1]$); $S$ is entropy (uncertainty proxy bounded in $[0, 1]$).
+
+**Two vectors, two $V$s, and what the analysis actually used.** Three
+notational hazards meet at this point, and we separate them explicitly
+because the paper's central quantity sits on top of them.
+
+First, *two distinct four-vectors*. §2.2 introduces the anima vector
+$\mathbf{a} = (\text{warmth}, \text{clarity}, \text{stability},
+\text{presence})$, computed from physical sensors on embodied agents, and
+defines $V_{\text{anima}}$ as a cumulative deviation over it. The
+governance state vector $\mathbf{x} = (E, I, S, V)$ above is a different
+object on a different manifold, related to $\mathbf{a}$ by the documented
+projection (§2.2) and available for every agent, embodied or not. The
+empirical work in this paper — the §3.4 counterfactual, the §3.7 ablation,
+and the §5.3 manifold deviation — runs on $\mathbf{x}$, not on
+$\mathbf{a}$. Where the abstract and §2.2 speak of $V_{\text{anima}}$ as
+the deployed cumulative-deviation quantity, the deployed *measurements*
+reported here are computed over the EISV projection.
+
+Second, *two quantities named after the void*. The signed $V$ coordinate
+of $\mathbf{x}$ and the unsigned cumulative magnitude $V_{\text{anima}}$
+are distinct; we reserve $V_{\text{anima}}$ for the unsigned form.
+
+Third, and least visible, *the signed $V$ coordinate does not have one
+definition across the corpus*. The v6 specification describes it as an ODE
+accumulator carrying the residual $\kappa(E - I)$ at rate $\delta$ per
+check-in (Wang 2026a Appendix A). Since April 2026 the production system
+surfaces a *behavioral* $V$ instead: an EMA-smoothed $E - I$ imbalance,
+with the ODE void coordinate demoted to a separate diagnostic that still
+feeds the legacy coherence (§5.3). On the released rows this is
+measurable. Regressing $V$ on the instantaneous $E - I$ gives
+$r = 0.953$, $R^2 = 0.908$: about 91% of $V$'s variance is the
+instantaneous imbalance, and the residual 9% is the smoothing lag —
+$\mathrm{sd}(V) = 0.081$ against $\mathrm{sd}(V - (E - I)) = 0.026$.
+
+Two consequences follow, and we would rather state them than have them
+found. (i) $V$ is not an informationally independent axis of $\mathbf{x}$.
+It is a lagged function of two other coordinates, so "four-dimensional",
+applied to the EISV state vector, counts a history term as a dimension.
+The anima manifold of §2.2 is four-dimensional in the ordinary sense; the
+EISV vector is better described as three state coordinates plus a smoothed
+imbalance term. (ii) `classify_basin` gates the low basin on $I < 0.5$
+*and* on $\lvert V \rvert > 0.30$, which are ~91% redundant by
+construction. In the released window the $\lvert V \rvert$ gate fires
+alone on 3.15% of rows, so the redundancy does not drive the §3.4 result,
+but it is a conflation in the classifier rather than an independent
+check. A cleaner formulation would gate on $(E, I, S)$ and treat $V$'s
+residual from $E - I$ as the temporal term it actually is.
 
 **Per-class healthy operating point.** The Phase 2 calibration procedure
 (Wang 2026a §11.5) computes a per-class healthy operating point
@@ -939,8 +997,10 @@ $\boldsymbol{\mu_c} = (E_h, I_h, S_h)_c$ from a 30-day rolling window of
 state vectors restricted to sessions with no `pause` or `reject`
 verdicts. Welford incremental updates produce $\boldsymbol{\mu_c}$ and a
 running covariance. The class envelope $\lVert \Delta \rVert_{\max, c}$
-is the 95th percentile of $\lVert \mathbf{a} - \boldsymbol{\mu_c}
-\rVert_2$ over the healthy window. Each constant carries provenance
+is the 95th percentile of $\lVert \mathbf{x}_{EIS} - \boldsymbol{\mu_c}
+\rVert_2$ over the healthy window, where $\mathbf{x}_{EIS} = (E, I, S)$
+is the state vector restricted to the three coordinates the manifold
+distance uses. Each constant carries provenance
 metadata (ISO date, corpus size $N$, percentile basis, provenance tag
 in `{placeholder, measured, derived}`).
 
@@ -963,11 +1023,17 @@ $$C_{\text{legacy}}(V) = 0.5 \cdot \left(1 + \tanh(V / V_{\text{scale}})\right) 
 with a single fleet-wide $V_{\text{scale}}$ constant. The grounded
 class-conditional form is
 
-$$C_{\text{grounded}}(\mathbf{a}, c) = \max\left(0, 1 - \lVert \mathbf{a} - \boldsymbol{\mu_c} \rVert_2 / \lVert \Delta \rVert_{\max, c}\right) \in [0, 1].$$
+$$C_{\text{grounded}}(\mathbf{x}_{EIS}, c) = \max\left(0, 1 - \lVert \mathbf{x}_{EIS} - \boldsymbol{\mu_c} \rVert_2 / \lVert \Delta \rVert_{\max, c}\right) \in [0, 1].$$
 
 Both produce coherence values in $[0, 1]$ that feed into the same
 basin-classification function. The substantive change between the two
-forms is therefore both functional (sigmoid of $V$ vs. linear distance
+forms is therefore also a change of *which coordinates are read*: the
+legacy form is a function of $V$ alone and the grounded form is a
+function of $(E, I, S)$ alone, so the two share no input coordinate. This
+is worth stating plainly, because it means the substitution is not a
+recalibration of one signal but a replacement of the signal — and it is
+part of why the formula and calibration terms interact rather than add.
+The change is both functional (sigmoid of $V$ vs. linear distance
 in $(E, I, S)$ space) and parametric (single fleet-wide constant vs.
 per-class constants).
 
@@ -984,7 +1050,7 @@ force low or block high.
 **Counterfactual and ablation procedure.** For each row in the 30-day
 window ($N = 13{,}310$), the stored production legacy coherence and the
 frozen Phase 2 grounded class-conditional coherence were evaluated on
-the same state vector $\mathbf{a}$, both passed through
+the same state vector $\mathbf{x}$, both passed through
 `classify_basin`, and a *flip* was counted whenever the two
 classifications differed. The ablation script then evaluated two
 additional controls on the same ordered row population: GF, the grounded
@@ -1035,8 +1101,15 @@ reference $V_h = E_h - I_h \approx -0.055$ (§5.3), so the apparent
 Type 3 displacement is not within-window measurement noise. The 28.9% full-substitution basin-flip
 rate at $N = 13{,}310$ has a binomial 95% confidence interval of
 approximately 28.1%–29.7%; the ablation rates are likewise narrow
-(11.2%, 95% CI 10.7%–11.8%; 23.5%, 95% CI 22.8%–24.3%). The named
-measured-class differences (15.8% to 33.1%) are statistically separable,
+(11.2%, 95% CI 10.7%–11.8%; 23.5%, 95% CI 22.8%–24.3%). These intervals
+describe sampling error *within* a fixed window and are not the dominant
+uncertainty in the measurement. The window-to-window spread reported in
+§3.6 — 28.8% to 44.3% across a four-day shift — is roughly twenty times
+wider than the $\pm 0.8$-point sampling interval, so the confidence
+intervals should be read as bounding the precision of a single anchored
+snapshot, not the stability of the quantity. The named
+measured-class differences (15.8% to 33.1%) are statistically separable
+within the anchored window,
 while the 42-row `ephemeral` fallback is too small and structurally
 unmeasured to interpret as a class envelope. The post-Phase-2 average drift rate
 (approximately $-3.5 \times 10^{-6}$ per minute) cannot be tested
@@ -1053,24 +1126,45 @@ pipeline are in the same repository at `unitares/governance/`. The
 Phase 2 calibration script, the 28.9% basin-flip analysis, and the
 formula-vs-calibration ablation are included in this repository at
 `analysis/phase-2-2026-04-18/`; the ablation output is stored in
-`formula_calibration_ablation_results.txt`. Production telemetry cannot
-be released in raw form because state vectors are
-keyed to user-identifying agent UUIDs. A synthetic sample preserving
-the per-class state-vector distribution at the resolution required to
-reproduce the basin-flip computation is now included in this repository:
-`analysis/phase-2-2026-04-18/synthesize_basinflip.py` fits a per-class
-Gaussian copula over the six variables the classifier reads
-($E, I, S, V$, risk, stored coherence) and emits
-`synthetic_basinflip_states.csv` (releasable; no production rows). Run
-through the same `classify_basin` and coherence functions, the synthetic
-sample reproduces the full substitution at **29.3%** (production 28.9%),
-with LF→GF 11.0% and GF→GC 22.8% (production 11.2% and 23.5%) and
-per-class rates that track. The match is not tuned — the copula is fit to
-preserve the joint distribution, and the rate is emergent because the
-basin assignment is a deterministic function of the preserved variables.
-This validates the pipeline and the distributional structure on releasable
-data; it does not release the production rows, and independent
-re-measurement on production or independent data remains the stronger bar.
+`formula_calibration_ablation_results.txt`.
+
+The row-level data underlying the full substitution is public. A
+de-identified export — one row per agent-state observation, pseudonymized
+to a class label, carrying no agent UUIDs, session identifiers, prompts, or
+knowledge-graph content — is archived under Zenodo data DOI
+10.5281/zenodo.19705151 and mirrored in this repository at
+`analysis/phase-2-2026-04-18/verdict_counterfactual_v6_submission.csv`
+(13,292 rows, SHA-256 pinned in the reproduction script). What cannot be
+released is the underlying production relation, whose state vectors are
+keyed to user-identifying agent UUIDs; the class-pseudonymized projection
+of it that the counterfactual actually consumes carries no such keys.
+
+`reproduce_basinflip.py` in the same directory runs offline against that
+export using only the standard library. It recomputes the class-conditional
+grounded coherence and both basin labels from the published state
+coordinates and the published Phase 2 constants, compares them against the
+stored labels, and counts the flip rate from the recomputed ones. It returns
+**28.84%** (3,834 of 13,292) against the 28.9% reported here, with per-class
+rates within 0.5 percentage points, and 26,574 of 26,584 basin labels
+reproducing exactly — the ten exceptions sitting within $6.7 \times 10^{-4}$
+of a threshold, which is the rounding floor of a 4-decimal export divided by
+a class radius as small as 0.1187. The 18-row difference between the export
+(13,292) and the reported pull (13,310) is a few seconds of row arrivals
+between two runs of a wall-clock-anchored rolling window, and is the whole
+source of the 28.9% / 28.8% gap.
+
+Two limits on this. The production database no longer retains the
+measurement window: `core.agent_state` holds 490 rows in the 2026-03-19 to
+2026-04-18 interval against the 13,310 the original pull returned, with no
+archive table, so the frozen export is the surviving row-level record and a
+private audit of the production rows is no longer possible. And the GF and
+LC ablation conditions are not reproducible from the export, because they
+require a fleet-wide healthy slice keyed on the per-row `regime` column,
+which the de-identified export does not carry; those two rates remain
+provenance-backed from the recorded ablation output rather than
+independently re-runnable. The full-substitution headline, which is the
+result the paper leads with, is re-runnable. Independent re-measurement on
+another deployment remains the stronger bar.
 
 ---
 
@@ -1223,7 +1317,11 @@ instrumented: roughly 90% of between-agent pairs score above the
 $\theta_{\text{lineage}} = 0.60$ threshold, two of the five weighted
 components sit at ceiling for nearly all pairs, and mature identities
 *decay into* a similarity attractor of approximately 0.63 — above the
-alarm line — so accumulated genuine drift asymptotes to a passing score
+alarm line. That value is an age-associated attractor observed in the
+audited population, not a measured fleet constant, and should be read as
+"mature identities converge to a passing score near the threshold"
+rather than as a calibrated number. The consequence is what matters:
+accumulated genuine drift asymptotes to a passing score
 and the lineage channel structurally cannot fire on the slow-drift case
 it was designed for. The only mass firings in production to date were
 artifacts of a client migration, cleared by rebaselining rather than by
@@ -1661,8 +1759,10 @@ approximately 96.7% of that window is pre-break and approximately one
 day is post-break. The calibration averaged across a regime
 transition and produced a $\boldsymbol{\mu_a}$ representative of
 neither regime cleanly — sitting closer to the pre-break point
-because pre-break data dominated. The 21-day post-calibration
-interval has been stable in the post-break regime, so the 86-minute
+because pre-break data dominated. The 21-day interval from the
+April 18 calibration to the May 9 observation has been stable in the
+post-break regime (the regime itself is 22 days old, dated from the
+April 17 transition rather than from the calibration), so the 86-minute
 observation reads as a 0.97-of-envelope deviation relative to a
 calibration anchor that captured the wrong regime.
 
@@ -1699,27 +1799,71 @@ downstream consequence of the temporal-homogenization argument.
 and `total_updates` aggregates returned by the production MCP
 `get_governance_metrics()` surface, computed over agents with
 `meta.status == "active"` and loadable monitor state at call time
-(`src/mcp_handlers/observability/handlers.py:744–805`). The figure
+(implemented in the `observability` MCP handler module of the `unitares`
+repository; a line reference is omitted deliberately, since it would not
+survive the repository's revision history). The figure
 excludes archived agents and agents whose monitors are not currently
 loaded; it is therefore a snapshot of the actively-live fleet, not a
 count of all agents that have ever produced state rows. A DB-direct
 count of all identities with state rows over the same period is
 substantially larger.
+&nbsp;
+    Three population counters appear in this paper and are not
+    interchangeable. *Governance events* (94,000 as of April 2026) counts
+    audit-log entries of all kinds. *Cumulative updates* counts check-in
+    processing calls, per agent (110,148 for Lumen) or fleet-wide
+    (128,393); Lumen dominates this counter because it checks in on a
+    sensor-driven sub-Hz cadence while session-bounded agents check in
+    only while a session is open. *Persisted state rows* counts rows in
+    `core.agent_state` and is the only counter the §3.4 analysis uses
+    ($N = 13{,}310$ over 30 days); it is additionally subject to
+    retention, which has since removed most of the window (§3.7). Ratios
+    across these three counters are not meaningful, and we do not compute
+    any.
 
-**Caveats on the empirical claim.** Two instrument-level caveats apply
-before the generalization limits. The May-era anima instrument carried
-defects identified and repaired only later in 2026: a prediction-accuracy
-placeholder fixed at 0.5 that contributed roughly 45% of the clarity
-weight, ambient temperature entering the warmth axis through two
-strongly collinear channels, and a CPU term double-counted in the
-neural-band mapping. The anima-axis magnitudes in this section are
-therefore readings of a consistent but imperfect instrument — adequate
-for detecting a discontinuity of this size, not for interpreting small
-deviations. Second, the production server's silence over the window
-("no anomalies were flagged") is weak corroboration: a separate audit
-of this deployment found its degradation paths fail toward *healthy*
-rather than toward *unknown*, so absence of alarm carries little
-evidential weight here.
+**Caveats on the empirical claim.** Three caveats apply before the
+generalization limits, and the first is load-bearing against the causal
+reading.
+
+*The instrument shares an input with the proposed cause.* The May-era
+anima instrument carried defects identified and repaired only later in
+2026: a prediction-accuracy placeholder fixed at 0.5 that contributed
+roughly 45% of the clarity weight, ambient temperature entering the
+warmth axis through two strongly collinear channels, and a CPU term
+double-counted in the neural-band mapping. That last defect is not
+independent of the event being explained. The $E$ coordinate derives in
+part from system metrics including CPU utilization (§2.2); the proposed
+cause is a day on which four pull requests shipped to the governance
+substrate; and shipping generates load. A deploy-driven CPU excursion,
+amplified by a term counted twice, would produce an energy collapse and
+recovery on exactly the timescale observed, without any regime transition
+in the agent at all. We cannot currently separate these: the CPU and
+memory series for 2026-04-17 are no longer retained (§9.3), so neither
+re-deriving $E$ with the corrected mapping nor inspecting the load trace
+is available. The competing explanation is therefore live, and a reader
+should treat the substrate-transition reading and the instrument-artifact
+reading as both open. What survives either way is the *calibration
+staleness* finding, which rests on the recalibration result rather than on
+the transition's cause: $\boldsymbol{\mu_a}$ moved toward Lumen's current
+state, so the Phase 2 anchor was unrepresentative regardless of why.
+
+*The recalibration windows are not sampling-matched.* The Phase 2 window
+drew $N = 7{,}320$ rows over 30 days; the recalibration window drew
+$N = 11{,}472$ over 30 days, 57% more for the same span. We do not have an
+explanation for the difference, and it matters, because a check-in cadence
+that changed at or near the April 17 revision would re-weight the mean
+toward the post-revision period independently of any regime shift. The
+disambiguation criterion — does $\boldsymbol{\mu_a}$ move toward current
+state — is sensitive to exactly this. A cadence-matched recalibration
+would settle it; that too requires state history no longer retained. The
+weekly-bin decomposition is partial reassurance, since it shows the shift
+as a step at a located time rather than a gradual re-weighting, but it is
+computed from the same rows and is not independent evidence.
+
+*Silence is not corroboration.* The production server flagged no anomalies
+over the window. A separate audit of this deployment found its degradation
+paths fail toward *healthy* rather than toward *unknown*, so absence of
+alarm carries little evidential weight here.
 
 The hour-resolved April 17
 transition is a single event; we cannot generalize from it to a
@@ -1758,13 +1902,41 @@ output.
 
 Type 4 is more difficult to detect than Types 1–3 because it requires
 monitoring not magnitudes but correlations. UNITARES's existing
-instrumentation supports the measurement: the cross-channel correlation
-matrix among $(E, I, S, V)$ and the drift norm $\lVert \Delta\eta \rVert$
-is computable from the audit log. A Type 4 alarm fires when this
-correlation structure departs from the class-conditional baseline by
-more than a specified margin — analogous to the covariance component
-$\Sigma$ in the trajectory signature, but applied to the dynamics rather
-than to the static state.
+instrumentation supports the measurement in principle: the cross-channel
+correlation matrix among the state coordinates and the drift norm
+$\lVert \Delta\eta \rVert$ is computable from the audit log. A Type 4
+alarm would fire when this correlation structure departs from the
+class-conditional baseline by more than a specified margin — analogous to
+the covariance component $\Sigma$ in the trajectory signature, but applied
+to the dynamics rather than to the static state.
+
+The naive version of that detector does not work, and the reason is
+instructive. Because the deployed $V$ is a smoothed $E - I$ imbalance
+rather than an independent channel (§3.7), the $(E, I, S, V)$ correlation
+matrix carries large entries that are properties of the *definition*, not
+of the agent. On the released window the matrix is
+
+| | $E$ | $I$ | $S$ | $V$ |
+|---|---:|---:|---:|---:|
+| $E$ | 1.000 | −0.034 | −0.275 | **0.821** |
+| $I$ | −0.034 | 1.000 | −0.242 | **−0.513** |
+| $S$ | −0.275 | −0.242 | 1.000 | −0.135 |
+| $V$ | 0.821 | −0.513 | −0.135 | 1.000 |
+
+The two bolded terms are arithmetic. A detector watching them for
+"decoupling" would be watching the smoothing constant. Note also that the
+genuinely informative cross-channel fact is the one the naive matrix
+buries: $E$ and $I$ are close to uncorrelated ($r = -0.034$), which is
+precisely the independence a Type 4 signature would have to break.
+
+A usable Type 4 indicator therefore has to run on the informationally
+independent channels — $(E, I, S)$, optionally augmented by $V$'s residual
+from $E - I$ as an explicit temporal term — rather than on the raw
+four-coordinate matrix. We flag this as specification work not yet done,
+rather than as an indicator the deployment currently supports. Types 1 and
+2 (§5.1, §5.2) do not have this problem: they read entropy-shape
+frequencies and signature convergence, neither of which routes through
+$V$.
 
 ### 5.5 Why the taxonomy matters for AI governance
 
@@ -2087,14 +2259,17 @@ own system papers and repositories, we separate *provenance* from
 *validation* before comparing adjacent work. Self-citations are used here
 to identify what UNITARES is, which formulas were deployed, and where the
 production measurements were first reported; they are not treated as
-independent validation of the biological bridge.
+independent validation of the biological bridge. One disambiguation, since
+the surname recurs: Wang et al. (2025a, MI9) and Wang et al. (2025b,
+ProbGuard) are third-party work with no authorship relation to the present
+author. Wang (2026a) and Wang (2026b) are the author's own.
 
 | Source cluster | Role in this paper | What it can support | What it cannot support |
 |---|---|---|---|
 | Wang 2026a (UNITARES v6) | System provenance and production-measurement source | EISV definitions, $V$ update rule, Phase 2 calibration constants, 13,310-row basin-flip report, Lumen deployment context | Independent confirmation that the allostatic-load bridge is biologically valid or clinically useful |
 | Wang 2026b (Trajectory Identity) | Construct provenance for $\Sigma$ and lineage similarity | Formal definition of the trajectory-signature proposal used in §4 | Clinical validity of $\Sigma_0$ anchoring or independent evidence of identity continuity |
 | CIRWEL software repositories and datasets | Implementation and artifact provenance | Code locations, schema, deployment history, public synthetic/dataset artifacts when available | Peer-reviewed validation, external replication, or raw production telemetry access |
-| Wang et al. 2025a/b and other author-linked governance work | Adjacent-framework comparison | Prior related architectures and terminology | External corroboration of the present paper's empirical claims |
+| Third-party governance frameworks (MI9, ProbGuard, MAS, ASI, AVF) | Adjacent-framework comparison | Prior related architectures and terminology | External corroboration of the present paper's empirical claims |
 | External biology, neuroscience, psychiatry, and AI-governance literature | Construct definitions and comparison class | Definitions, biological precedent, clinical analogies, and independent adjacent methods | Proof that UNITARES realizes the biological mechanisms those papers study |
 
 The publication standard implied by this table is straightforward: the
@@ -2138,7 +2313,7 @@ as fleet-wide manifold radii — but AVF does not address this.
 
 Three further differentiations matter. First, AVF is theoretical with a
 reference implementation (RiskGate) rather than a deployed system with
-six months of production telemetry; the epistemic regime differs.
+nine months of production telemetry; the epistemic regime differs.
 Second, AVF does not engage the neuroscience literature that shares its
 mathematical machinery — the biological metaphors are evocative rather
 than rigorously connected. Third, AVF does not propose an identity
@@ -2399,7 +2574,7 @@ not.
 The deployment is, in this sense, the experiment. The paper's empirical
 claims (the per-class envelope spread, the basin-flip rate, and the
 Lumen recalibration/basin-transition case) are observations from running
-the experiment over six months, not predictions from a model. This is a
+the experiment in production, not predictions from a model. This is a
 different epistemic stance than either pure theory or pure simulation.
 
 ### 8.3 Synthetic affordances relative to biological systems
@@ -2529,7 +2704,11 @@ proposal remains a study sketch rather than validated translational
 evidence.
 
 **Claim 3 (Four Types failure-mode taxonomy; §5):** Argued by
-construction for Types 1, 2, and 4 (§5.1, §5.2, §5.4), with Type 3 used
+construction for Types 1 and 2 (§5.1, §5.2). Type 4 (§5.4) is specified
+but not yet computable as deployed: the cross-channel matrix it would read
+is confounded by $V$'s construction as a smoothed $E - I$ imbalance, and
+a usable indicator on the independent channels remains to be written.
+Type 3 is used
 as a falsified boundary case rather than as identification-grade
 evidence. The
 case study (§5.3) was originally framed as an observation of Type 3; the
@@ -2722,9 +2901,41 @@ synthetic-psychology framing (§8) is an argument that the deployed test
 bed enables hypotheses and controlled synthetic tests that are difficult
 in biological systems.
 
+**One route is measured and closed, and we state it here rather than in a
+footnote.** The most natural way to validate a self-state signal is to ask
+whether it forecasts trouble. The deployment has asked, under
+pre-registration, and the answer is negative with a quantified bound. On
+the outcome-labelled slice — 101 independent bad clusters over 195 bad
+rows, with the selective-inference correction that a best-of-seven
+ablation matrix requires — the observed best improvement in AUC over a
+previous-outcome baseline was $-0.033$ (selective $p = 0.857$) at 30-day
+lead and $+0.015$ (selective $p = 0.333$) at zero lead. Both sit inside
+the noise floor, and the minimum detectable lift is approximately 0.05.
+The conclusion recorded in the deployment's own stop rule is that if
+per-agent state added 0.05 AUC or more over the boring baseline, this
+measurement would have shown it; it did not, so the effect is below 0.05
+and below operational relevance (UNITARES
+`eisv-outcome-grounding-stop-rule-v0`, 2026-07-31, with one confirmatory
+read pre-registered for 2026-12-01).
+
+Three things follow, and the first two cut against this paper. (i) A
+reader who takes "digital proprioception" to promise failure prediction
+should stop here: on this fleet, that promise is bounded below the level
+at which it would be worth acting on. (ii) The negative result is about
+*outcome forecasting from per-agent state*, which is the adjacent claim,
+not the claim of §2. It does not test $V_{\text{anima}}$'s decision value,
+because the integral is not wired to a decision (§2.2) — an untested
+quantity, not a refuted one. But it removes the easiest route to testing
+it and should temper expectations about the harder one. (iii) What the
+negative result does *not* touch is the §3 measurement, which is about
+disagreement between two gating formulas on the same rows, and requires no
+forecasting claim at all. That is why the paper's strongest empirical
+content sits in §3 rather than §2.
+
 The honest balance is: substantial empirical content where biology has
 parallels (basin-flip, apparent Type 3 resolved as a basin transition,
-envelope spread) and substantial argument elsewhere (the bridge claims,
+envelope spread), one measured negative on the adjacent forecasting
+question, and substantial argument elsewhere (the bridge claims,
 the methodological proposals). Reviewers should evaluate each
 contribution at its appropriate level of evidence.
 
@@ -2732,16 +2943,33 @@ contribution at its appropriate level of evidence.
 
 Several specific next steps are flagged through the paper.
 
-**Longitudinal Lumen series.** The 86-minute window in §5.3 establishes
-that Lumen's post-break regime is stable over at least that duration, and
-the recalibration plus weekly-bin analysis establishes stability over 22
-days. A proper longitudinal pull spanning the post-Phase-2 interval
-(April 18 to May 9, 21 days) and ideally the full 118-day lifetime would
-test whether the April 17 transition is unique, whether comparable
-transitions occurred around other substrate revisions, and whether other
-Lumen-class agents show similar regime shifts. This is the single
-highest-value follow-up for moving substrate causality from anomaly-grade
-to identification-grade evidence.
+**Longitudinal Lumen series — foreclosed on this deployment.** The
+86-minute window in §5.3 establishes that Lumen's post-break regime is
+stable over at least that duration, and the recalibration plus weekly-bin
+analysis establishes stability over 22 days. The natural follow-up is a
+longitudinal pull spanning the post-Phase-2 interval (April 18 to May 9,
+21 days) and ideally the full 118-day lifetime, testing whether the April
+17 transition is unique, whether comparable transitions occurred around
+other substrate revisions, and whether other Lumen-class agents show
+similar regime shifts. That pull would be the single highest-value route
+from anomaly-grade to identification-grade evidence on substrate causality.
+
+It is no longer available. The production database has not retained the
+state history it requires: `core.agent_state` holds 1,312 rows across
+February, March, and April 2026 combined, against the 13,310 the Phase 2
+window alone once returned, and there is no archive table (§3.7). The
+2026-05-09 recalibration ($N = 11{,}472$) cannot be re-run either. The
+weekly-bin analysis, the hour-resolved localization of the April 17 event,
+and the recalibration result stand as recorded measurements from telemetry
+that no longer exists in queryable form.
+
+The consequence for the §5.3 claim is that its evidence grade is now
+fixed rather than provisional. Substrate causality cannot be upgraded from
+this deployment's own history; it requires a second deployment, or an
+agent population whose retention window still spans a comparable substrate
+revision. We flag retention policy itself as a methodological lesson: a
+deployed system used as a test bed needs its evidentiary windows pinned as
+exports at measurement time, because the live database is not an archive.
 
 **Genesis signature persistence.** Lumen's $\Sigma_0$ was not persisted
 at first onboarding under the legacy identity system (Wang 2026a §11.7
@@ -2810,20 +3038,24 @@ case is silent. The careful work is distinguishing the two.
 This appendix separates three different standards that are easy to
 conflate: reproducing the analytic pipeline, reproducing the reported
 production numbers, and independently validating the biological bridge.
-The first is available from public artifacts; the second is now partly
-served by a privacy-preserving synthetic release that reproduces the
-reported numbers on releasable data (a private audit of the production
-rows remains the stronger check); the third requires another deployment
+The first two are now served by a public, de-identified, row-level export
+that a reviewer can re-run offline; the third requires another deployment
 or an external re-analysis.
+
+One boundary has hardened since the measurement and we state it plainly:
+the production database no longer retains the measurement window
+(§3.7), so a private audit of the production rows is no longer available
+as a fallback check. The frozen export is the record. Claims in this
+appendix are scoped to what that export can and cannot support.
 
 | Object | Current status | What can be checked now | What remains missing |
 |---|---|---|---|
-| Coherence and basin-classification code | Public repository provenance (§3.7) | Formula implementation, thresholding behavior, synthetic input tests | Exact tagged release / commit hash pinned to this paper |
-| 13,310-row basin-flip computation | Reported from production and Wang 2026a | Method, formulas, thresholds, sample size, confidence interval | Public row-level artifact or third-party audit of the production export |
-| Formula-vs-calibration ablation | Run locally on production DB | LF→GF 11.2%, GF→GC 23.5%, LF→GC 28.9%, LF→LC 77.8%; script and output in `analysis/phase-2-2026-04-18/` | Public row-level artifact or third-party audit of the production export |
-| Lumen §5.3 recalibration case | Reported from production telemetry | 86-minute protocol, recalibration criterion, weekly-bin interpretation | Full longitudinal pull across Lumen's post-Phase-2 interval and comparable agents/revisions |
-| Raw production state vectors | Withheld | Schema and provenance can be inspected | Direct public release is blocked by agent UUID/user-identification risk |
-| Synthetic reproduction artifact | **Available** (`analysis/phase-2-2026-04-18/`) | Reproduces LF→GC 29.3% vs production 28.9% (and the LF→GF / GF→GC components) by running the same classifier on a per-class Gaussian-copula sample | Independent re-measurement on production or independent data |
+| Coherence and basin-classification code | Public repository provenance (§3.7); thresholds and constants replicated in `reproduce_basinflip.py` | Formula implementation, thresholding behavior, recomputation against published rows | Exact tagged release / commit hash pinned to this paper |
+| 13,310-row basin-flip computation | **Reproducible offline** from the frozen export | Full substitution recomputed from published state and constants: 28.84% on $N = 13{,}292$ vs 28.9% reported, per-class within 0.5 pp, 26,574/26,584 labels exact | Third-party re-measurement on an independent deployment |
+| Formula-vs-calibration ablation | Provenance-backed only | LF→GF 11.2%, GF→GC 23.5%, LF→GC 28.9%, LF→LC 77.8%; script and recorded output in `analysis/phase-2-2026-04-18/` | GF and LC need the per-row `regime` column, absent from the de-identified export; the production window is no longer retained, so these two conditions cannot be recomputed |
+| Lumen §5.3 recalibration case | Provenance-backed only | 86-minute protocol, recalibration criterion, weekly-bin interpretation | The longitudinal pull that would test it is foreclosed: Lumen's Feb–Apr 2026 state history is no longer retained (§9.3) |
+| Row-level counterfactual export | **Public** (Zenodo data DOI 10.5281/zenodo.19705151; mirrored in this repository, SHA-256 pinned) | 13,292 class-pseudonymized rows: $E, I, S, V$, risk, both coherences, both basin labels | Nothing for the headline; the export is the record |
+| Raw production state relation | Withheld, and no longer retained | Schema and provenance can be inspected | Release was blocked by agent UUID/user-identification risk; the window has since aged out, so it is unavailable in principle, not merely withheld |
 | Clinical translation sketches | Hypothesis-generating only | Proposed variables, baselines, and comparison targets | Dataset-specific field mapping, endpoint adjudication, covariates, missingness rules, preregistration |
 
 A serious submission should not ask reviewers to take the production
@@ -2833,29 +3065,32 @@ numbers entirely on trust. The minimal artifact bundle is:
    and Phase 2 analysis scripts;
 2. a schema snapshot for `core.agent_state` and the class-assignment
    metadata used in the 30-day window;
-3. a signed or hashed manifest of the private production export used for
-   the 13,310-row computation;
-4. a synthetic, privacy-preserving state-vector sample that preserves the
-   per-class distributions needed to exercise the basin-flip calculation;
-5. a notebook or script that recomputes the legacy coherence, grounded
-   coherence, basin labels, flip counts, per-class flip rates,
-   confidence intervals, and formula-vs-calibration ablation from that
-   sample;
-6. a Lumen longitudinal-pull script that tests whether the April 17
-   transition is unique, repeated around other substrate revisions, or
-   absent in comparable agents.
+3. a hashed, de-identified row-level export of the state vectors the
+   13,310-row computation consumed;
+4. a script that recomputes the grounded coherence, both basin labels, the
+   flip counts, and the per-class rates from that export, and verifies the
+   recomputed labels against the stored ones;
+5. a second window of the same export, so that between-window variance is
+   visible rather than inferred;
+6. a Lumen longitudinal-pull across the post-Phase-2 interval, testing
+   whether the April 17 transition is unique, repeated around other
+   substrate revisions, or absent in comparable agents.
 
-Of these, items 4 and 5 are now delivered (`synthesize_basinflip.py` →
-`synthetic_basinflip_states.csv`, which both generates the sample and
-recomputes the flip counts, per-class rates, and ablation through the same
-classifier); items 1–3 and 6 remain.
+Items 3, 4, and 5 are delivered: the export is archived under Zenodo data
+DOI 10.5281/zenodo.19705151 and mirrored here with its SHA-256 pinned, and
+`reproduce_basinflip.py` runs the recomputation offline on the standard
+library alone, over both windows. Items 1 and 2 remain and are
+straightforward. **Item 6 is foreclosed**, not pending: the state history it
+would need has aged out of the production database (§3.7, §9.3).
 
-The evidentiary consequence is explicit: until that bundle is complete, the
-basin-flip and ablation rates remain provenance-backed production
-measurements rather than results a reviewer can independently reproduce on
-the production rows themselves (the synthetic artifact reproduces them on
-releasable data, which is a weaker but real check), and the
-Lumen substrate link remains anomaly-grade rather than causal evidence.
+The evidentiary consequence is explicit. The full-substitution basin-flip
+result is now a result a reviewer can independently recompute from published
+rows and published constants, and it survives that recomputation. The GF and
+LC ablation conditions remain provenance-backed rather than re-runnable,
+because the export does not carry the `regime` column they need. And the
+Lumen substrate link remains anomaly-grade rather than causal evidence, with
+the replication that would upgrade it no longer available from this
+deployment's own history — an external deployment is now the only route.
 
 ---
 
