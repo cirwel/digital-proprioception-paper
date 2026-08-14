@@ -4,7 +4,7 @@
 
 **Author:** Kenny Wang, Independent Researcher (CIRWEL Systems)
 **ORCID:** 0009-0006-7544-2374
-**Status:** First complete draft, May 9, 2026 (v3)
+**Status:** v1.0 — first stable release, August 14, 2026; claims reconciled with the deployed system
 **Version notes:** Consolidates §1 and §2 from v2 (May 9 morning), §3 and §4 (May 9 afternoon), §5 with §5.3 patched from extended Lumen observation window, §6, §8, and adds new §7 (consolidated differentiation) and §9 (conclusion) plus abstract.
 
 ---
