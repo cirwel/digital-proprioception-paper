@@ -75,16 +75,23 @@ jobs:
             exit 0
           fi
           tag="${{ github.event.release.tag_name }}"
+          # The deposited version string is NOT the tag. This concept's records are
+          # versioned v1.0 / v1.0.2 / v1.1 with no "paper-" prefix, and the publish
+          # workflow takes the string from .zenodo.json. Accept either form so this
+          # guard works for both conventions rather than spinning out a real deposit.
+          bare="${tag#paper-}"
           encoded=$(printf '%s' "$CONCEPT_DOI" | sed 's|/|%2F|g')
           for i in $(seq 1 16); do
+            # -sf swallows Zenodo's intermittent 504 HTML; that is fine here because
+            # a failed poll just retries, but do not treat an empty result as absence.
             v=$(curl -sf "https://zenodo.org/api/records?q=conceptdoi:%22${encoded}%22&size=1&sort=mostrecent" \
               | python3 -c "import json,sys; h=json.load(sys.stdin)['hits']['hits']; print(h[0]['metadata'].get('version','') if h else '')" \
-              || true)
-            if [ "$v" = "$tag" ]; then
-              echo "Zenodo deposit landed: version ${v}"
+              2>/dev/null || true)
+            if [ "$v" = "$tag" ] || [ "$v" = "$bare" ]; then
+              echo "Zenodo deposit landed: version ${v} (tag ${tag})"
               exit 0
             fi
-            echo "Zenodo latest version: '${v:-none}' (waiting for ${tag})"
+            echo "Zenodo latest version: '${v:-none}' (waiting for ${tag} or ${bare})"
             sleep 30
           done
           echo "::error::No Zenodo deposit for ${tag} under ${CONCEPT_DOI} after 8 minutes — the integration webhook or publish workflow may have failed. Check it before assuming the paper is public."
