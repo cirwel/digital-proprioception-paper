@@ -23,7 +23,33 @@ jobs:
         uses: actions/checkout@v5
         with:
           ref: ${{ github.event.release.tag_name }}
-          fetch-depth: 1
+          fetch-depth: 0
+
+      # The deposited CONTENT must come from the tag — that is the published record.
+      # The publish TOOLING should not. When the v1.1 deposit failed on a Zenodo-side
+      # error, the fix could not reach the runner, because a re-run checks out the tag
+      # and the tag predates the fix. Overlaying the script from the default branch
+      # keeps operational fixes applicable to an already-cut tag without moving it.
+      - name: Use current publish tooling (content still from the tag)
+        run: |
+          git fetch --depth=1 origin "${{ github.event.repository.default_branch }}"
+          git checkout FETCH_HEAD -- scripts/publish-to-zenodo.sh
+          echo "publish script overlaid from ${{ github.event.repository.default_branch }}"
+
+      - name: Probe the Zenodo API from this runner
+        run: |
+          # The runner has been getting non-JSON where a workstation gets valid JSON,
+          # which points at Zenodo treating Actions egress differently. Capture the
+          # evidence instead of inferring it from jq's parse error.
+          code="$(curl -sSL --max-time 90 -o /tmp/probe.json -w '%{http_code}' \
+            -H 'Accept: application/json' \
+            "https://zenodo.org/api/records/21930092/versions/latest" || echo 000)"
+          echo "HTTP ${code}, $(wc -c </tmp/probe.json) bytes"
+          echo "--- first 300 bytes ---"
+          head -c 300 /tmp/probe.json || true
+          echo
+          echo "--- valid JSON? ---"
+          jq -e . /tmp/probe.json >/dev/null 2>&1 && echo "yes" || echo "no"
 
       - name: Verify required files
         run: |
