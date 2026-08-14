@@ -22,8 +22,10 @@ framework for heterogeneous AI agent fleets in production since November
 2025, as a deployed structural analogue for the mathematical core of
 allostatic load on a four-dimensional informational manifold. The Anima Void
 Integral $V_{\text{anima}}(t) = \int_{0}^{t} \lVert\mathbf{a}(\tau) -
-\boldsymbol{\mu_a}\rVert\, d\tau$ is computed end-to-end, observable at
-every check-in, and coupled to intervention. Three structural disanalogies
+\boldsymbol{\mu_a}\rVert\, d\tau$ has its integrand recorded at every
+check-in, making the integral computable end-to-end over any window; its
+coupling to intervention is specified by the companion trajectory-identity
+framework but not yet wired in production (§2.2). Three structural disanalogies
 (single-system, fixed reference, no body) sharpen what the test bed
 tests.
 
@@ -115,13 +117,14 @@ whose mathematical machinery they implicitly recapitulate.
 
 This paper argues that the AI agent governance community has, without
 quite noticing, built apparatus that allostatic load theory has lacked:
-a real-time, observable, intervention-coupled operational analogue of
+a real-time, observable operational analogue of
 the integrated-deviation hypothesis. Specifically, we argue that the
 UNITARES governance framework (Wang 2026a), with its embodied substrate
 Lumen (CIRWEL 2026), operationalizes the mathematical core of allostatic
 load on a four-dimensional informational manifold, with the integrand
-observable end-to-end and the intervention loop closed in seconds rather
-than weeks. We use this implementation to stress-test formal predictions
+observable end-to-end and a governance decision returned at every
+check-in — a loop that closes in seconds rather than weeks, though the
+deployed decision path is not yet driven by the integral itself (§2.2). We use this implementation to stress-test formal predictions
 of the allostatic-load analogy and to generate hypotheses for biological
 work, while importing a thirty-year-old taxonomy of regulatory failure
 modes (McEwen 1998, Figure 3) into AI governance.
@@ -256,7 +259,7 @@ in its current form, what would upgrade it, and what would kill it.
 
 | Contribution | Current evidence grade | Current evidence | Known confound or boundary | Upgrade path | Falsifier |
 |---|---|---|---|---|---|
-| Claim 1: $V_{\text{anima}}$ as cumulative-deviation control-signal analogue | Operationalized structural analogue | Deployed EISV state vectors, cumulative-deviation formula, intervention-coupled governance loop (§2) | Not clinical AL; no endocrine, immune, tissue-damage, or multi-system physiology | Show $V_{\text{anima}}$ improves governance decisions or forecasts failure beyond non-integral baselines | $V_{\text{anima}}$ adds no decision value over instantaneous risk/coherence or produces worse interventions |
+| Claim 1: $V_{\text{anima}}$ as cumulative-deviation control-signal analogue | Operationalized structural analogue | Deployed EISV state vectors; cumulative-deviation formula with integrand recorded end-to-end; intervention coupling specified but not yet wired (§2.2) | Not clinical AL; no endocrine, immune, tissue-damage, or multi-system physiology; no production code path yet evaluates the integral against a threshold | Wire the specified coupling, then show $V_{\text{anima}}$ improves governance decisions beyond non-integral baselines. Failure-forecasting is gated by a pre-registered 2026-12-01 confirmatory read: as of 2026-08 no fleet state stream beat a last-value persistence baseline (UNITARES `eisv-outcome-grounding-stop-rule-v0`) | $V_{\text{anima}}$ adds no decision value over instantaneous risk/coherence or produces worse interventions |
 | Claim 2: anti-homogenization / cosmological-soup correction | Empirical full-substitution effect with same-row ablation | 28.9% aggregate full-substitution basin-flip rate on $N = 13{,}310$ production rows; 15.8%–33.1% named measured-class range; ablation: LF→GF 11.2%, GF→GC 23.5% (§3.4, §3.7) | Effects are non-additive; class-scaled $\tanh(V)$ control is artificial and unstable; raw production rows are not public | Privacy-preserving synthetic artifact or private audit; identity-clean remeasurement; deployment outcome comparison | Independent/audited rerun collapses the grounded fleet→class effect or shows flips are class-assignment/pipeline artifacts |
 | Claim 3: McEwen Four Types as failure-mode vocabulary | Taxonomic / constructive mapping | Types 1, 2, and 4 have computable UNITARES analogues; §5.3 supplies a failed Type 3 boundary case | Mapping is not yet a validated classifier; taxonomy is non-exhaustive for synthetic substrates | Pre-register criteria and classify historical or future governance episodes with disambiguating tests | Apparent types repeatedly reclassify as calibration artifacts, pipeline artifacts, or substrate events |
 | §5.3 Lumen basin transition | Provenance-backed single-agent case report for transition date/magnitude/shape; anomaly-grade for substrate causality | Recalibration localizes a 2026-04-17 basin transition, with 22-day post-transition stability (§5.3) | Single agent; substrate revision is temporally coincident but not causally isolated; public artifact bundle not yet released | Public or audited artifact bundle; multi-agent or multi-revision replication; rule out common operational confounds | Comparable transitions do not align with substrate revisions, or the event disappears under a clean longitudinal pull |
@@ -349,8 +352,11 @@ interacting; the headline remains a full-substitution measurement, not a
 single-component causal attribution.
 
 What we **do** claim is narrower and tractable: a cumulative-deviation
-signal can be made observable end-to-end, computed continuously, and
-coupled to intervention in a deployed AI governance system; the
+signal can be made observable end-to-end in a deployed AI governance
+system — its integrand recorded at every check-in, the integral
+computable exactly over any window — with intervention coupling
+specified by the companion framework though not yet wired in
+production (§2.2); the
 resulting deployment provides engineering affordances that can generate
 biological hypotheses; and specific theories of biological
 self-maintenance (allostatic load as integrated deviation, McEwen's Four
@@ -434,26 +440,36 @@ where $\boldsymbol{\mu_a}$ is the attractor center derived from the
 agent's own observed state distribution over a sliding window — the
 $\alpha$ (Alpha) component of the trajectory signature developed in the
 trajectory identity working draft (Wang 2026b, §3.3; this draft is
-treated in detail in §4.1). When $V_{\text{anima}}$ exceeds twice the basin standard
-deviation, the deployed governance system triggers intervention:
-rest-state induction, reduced stimulation, or task pause.
+treated in detail in §4.1). The trajectory-identity framework specifies
+the coupling: when $V_{\text{anima}}$ exceeds a deployer-set multiple of
+the basin scale, the governance layer can trigger rest-state induction,
+reduced stimulation, or task pause (Wang 2026b §6.1.1). As deployed,
+this trigger is not yet wired: the integral is defined over recorded
+telemetry and computable on demand, but no production code path
+evaluates it against a threshold, the embodied agent's rest states are
+driven by activity and ambient-light scheduling rather than by
+$V_{\text{anima}}$, and governance decisions on this agent are advisory.
+What the deployment establishes is therefore an *observable and
+computable* integral, not a closed control loop on it.
 
 Two features of this implementation are worth emphasizing.
 
 First, the integrand $\lVert \mathbf{a}(\tau) - \boldsymbol{\mu_a} \rVert$
-is computed and recorded at every check-in, not reconstructed from
-sparse samples. The integral *is* the actual computation, not an
-inference about it. The audit log of the deployment (94,000+ governance
+is recorded at every check-in, not reconstructed from
+sparse samples. The audit log of the deployment (94,000+ governance
 events as of April 2026; CIRWEL 2026, unitares §Production snapshot)
-preserves the integrand end-to-end, making post-hoc verification
-straightforward and continuous monitoring trivial.
+preserves the integrand end-to-end, so the integral is computable
+exactly over any window rather than inferred from sparse observations —
+though, as noted above, production computes it on demand rather than
+maintaining it continuously.
 
 Second, the reference $\boldsymbol{\mu_a}$ is *self-relative*: it is
 derived from the agent's own observed history under its own operating
-regime, not from a population-derived norm. After approximately thirty
-check-ins, per-agent Welford baselines (CIRWEL 2026, unitares
-§behavioral_state) enable z-scoring against the agent's own operating
-point. This matches Sterling's (2012) original argument that allostatic
+regime, not from a population-derived norm. Per-agent Welford baselines
+(CIRWEL 2026, unitares §behavioral_state) enable z-scoring against the
+agent's own operating point; the behavioral estimator becomes the
+primary state source after three check-ins, and the separate
+anomaly-detection baselines complete their warm-up at thirty. This matches Sterling's (2012) original argument that allostatic
 setpoints are individualized, anticipatory, and shifting — a property
 biological measurement struggles to capture because it requires
 longitudinal individual-level data that most clinical studies do not
@@ -466,10 +482,11 @@ manifold), not multisystem (HPA, cardiovascular, immune, metabolic). Nor
 does it recapitulate the brain–body coupling that grounds AL
 theoretically. What $V_{\text{anima}}$ *is* is a clean structural analogue for the
 mathematical core of AL: a time-integrated deviation from a
-self-relative operating point, used in real time as a forward-looking
-warning signal coupled to intervention. Where biology offers the theory
-but not the integrand, UNITARES offers an engineered integrand and the
-intervention loop.
+self-relative operating point, available in real time as a
+forward-looking warning signal whose intervention coupling is specified
+but not yet exercised. Where biology offers the theory but not the
+integrand, UNITARES offers an engineered integrand; the closed
+intervention loop on it remains the named next step.
 
 ### 2.3 Three structural disanalogies
 
@@ -537,10 +554,11 @@ shut-down), discussed at length in §5.
 The deployed UNITARES system makes this prediction directly testable,
 and §5.3 reports the test. We initially observed an 86-minute window
 on Lumen apparently consistent with the Type 3 prediction (Wang 2026a,
-Table 1): $V \approx 0.0954$ at 06:21 UTC May 9 2026, sign-flipped from
-the class-conditional healthy target $V_h^* \approx -0.041$ (computed from
-Lumen's Phase 2 measured healthy operating point), with manifold
-deviation at 97% of the class-conditional envelope. Per §5.3's own
+Table 1): $V \approx 0.0954$ at 06:21 UTC May 9 2026 — the behavioral
+valence, an EMA-smoothed $E - I$ imbalance — sign-flipped from the
+healthy behavioral reference $V_h = E_h - I_h = -0.055$ (Lumen's Phase 2
+measured healthy operating point; displacement $\approx 0.150$), with
+manifold deviation at 97% of the class-conditional envelope. Per §5.3's own
 disambiguation criterion, we recalibrated on the post-event window;
 the result identified the displacement as a candidate substrate-associated
 basin-transition event on 2026-04-17, not as Type 3 delayed shut-down.
@@ -838,7 +856,15 @@ difficult to run in biological systems.
 
 ### 3.6 Limits of the empirical claim
 
-The 28.9% basin-flip finding has limits worth flagging explicitly. The
+The 28.9% basin-flip finding has limits worth flagging explicitly.
+First, it is an anchored snapshot, not a stable constant: the figure is
+tied to the published v6 measurement and its reproducibility artifact,
+and re-running the same counterfactual on other windows moves it
+materially (the published reproduction CSV yields 28.8%; a later live
+window yields a substantially higher rate). We therefore quote it only
+as published, with the per-class range, and treat the *existence and
+order of magnitude* of the disagreement — not its third digit — as the
+finding. Second, the
 30-day measurement window overlaps with material identity-system
 revisions in mid-to-late April 2026 (Wang 2026a §11.7, item 5), including
 removal of name-claim lookup, adoption of UUID-direct dispatch, and
@@ -866,6 +892,22 @@ controlled comparison under stable parameters or extended A/B testing,
 neither of which the v6 paper conducts. We treat the finding as evidence
 that the formula choice has first-order consequences and not as evidence
 that any particular formula is normatively correct.
+
+A later audit of the deployment's own outcome log offers convergent
+support from a different instrument (2026-05-01; $n = 22{,}740$ good /
+580 bad trajectory-validated outcomes over 30 days, reproducible from
+the v6 repository's audit scripts). The EISV entropy coordinate
+separates good from bad outcomes with a large effect (Cohen's
+$d \approx 0.87$) but *reverses direction across operating regimes*: in
+convergence regimes bad outcomes carry lower entropy (premature
+lock-in), while in divergence, exploration, and transition regimes they
+carry higher entropy (runaway uncertainty). A single fleet-wide
+threshold on that coordinate therefore gates in the wrong direction for
+at least one regime — the homogenization failure this section predicts,
+observed in the temporal/regime dimension rather than the class
+dimension. The same audit found the legacy $\tanh$-of-$V$ coherence
+essentially non-separating on its own outcome log ($d \approx 0.13$),
+consistent with the §3.4 substitution mattering at the gating layer.
 
 ### 3.7 Methods and reproducibility
 
@@ -988,9 +1030,9 @@ squares on the 27-sample $I$ series.
 
 **Statistical uncertainty.** The within-window standard deviation on
 $V$ (0.00015) is approximately three orders of magnitude smaller than
-the displacement $\Delta V \approx 0.136$ from the predicted healthy
-$V_h^* \approx -0.041$, so the apparent Type 3 displacement is not
-within-window measurement noise. The 28.9% full-substitution basin-flip
+the displacement $\Delta V \approx 0.150$ from the healthy behavioral
+reference $V_h = E_h - I_h \approx -0.055$ (§5.3), so the apparent
+Type 3 displacement is not within-window measurement noise. The 28.9% full-substitution basin-flip
 rate at $N = 13{,}310$ has a binomial 95% confidence interval of
 approximately 28.1%–29.7%; the ablation rates are likewise narrow
 (11.2%, 95% CI 10.7%–11.8%; 23.5%, 95% CI 22.8%–24.3%). The named
@@ -1074,9 +1116,13 @@ behave:
 
 The first five components are computable from observation data with
 bounded memory cost (rolling-window computation; TIWD §4.4). The
-composite $\Sigma$ is a *quasi-invariant*: a quantity that is
-approximately stable for a given agent over time, differs between
-distinct agents, and is robust to noise and minor perturbations. The
+composite $\Sigma$ is designed as a *quasi-invariant*: a quantity that
+is approximately stable for a given agent over time, differs between
+distinct agents, and is robust to noise and minor perturbations.
+Within-agent stability is empirically supported; between-agent
+discriminability is currently an open criterion — the TIWD's own v0.15
+marks its multi-agent pilot confounded by role and harness, and the
+deployed instrument's status is stated in §4.3. The
 working draft develops the formal theory (TIWD §3) and the similarity
 metric
 
@@ -1165,8 +1211,30 @@ update.
 
 The trajectory identity working draft provides the formal definitions
 (TIWD §5.3) and an implementation sketch (TIWD Appendix A). The two-tier
-check is deployed in the UNITARES production system (CIRWEL 2026,
-anima-mcp).
+check runs in the UNITARES governance server's enrichment path (CIRWEL
+2026, unitares); the embodied agent's local path currently applies the
+single-tier coherence check, with the two-tier variant exercised in its
+test suite.
+
+The deployed instrument's discriminative status must be stated plainly,
+because it changed after this section was first drafted. An August 2026
+audit of the deployed similarity metric found it non-discriminating as
+instrumented: roughly 90% of between-agent pairs score above the
+$\theta_{\text{lineage}} = 0.60$ threshold, two of the five weighted
+components sit at ceiling for nearly all pairs, and mature identities
+*decay into* a similarity attractor of approximately 0.63 — above the
+alarm line — so accumulated genuine drift asymptotes to a passing score
+and the lineage channel structurally cannot fire on the slow-drift case
+it was designed for. The only mass firings in production to date were
+artifacts of a client migration, cleared by rebaselining rather than by
+drift resolving. Consistent with this, the TIWD's v0.15 marks its
+multi-agent discrimination pilot confounded by role and harness,
+returning the discrimination criterion to open. The two-tier
+*architecture* — a genesis anchor plus a rolling reference with distinct
+thresholds — stands as the structural proposal this section carries into
+the clinical analogy; its current instrumentation does not realize it,
+and re-instrumentation against within-agent/across-harness and
+between-agent/same-harness tests is the named path to closing the gap.
 
 ### 4.4 What this offers clinical neurology
 
@@ -1456,19 +1524,25 @@ reported as `stable`.
 **Apparent Type 3-like pattern.** Comparison against Lumen's measured
 Phase 2 healthy operating point (Wang 2026a, Table 5: $E_h = 0.745$,
 $I_h = 0.800$, $S_h = 0.168$, $\lVert\Delta\rVert_{\max} = 0.119$)
-showed an apparent regime change. The healthy regime is
-integrity-surplus: $I_h - E_h = 0.055$, with the $V$ coordinate
-accumulating toward steady state
-
-$$V_h^* = \frac{\kappa(E_h - I_h)}{\delta} = 0.75 \times (-0.055) = -0.041$$
-
-(using production parameters $\kappa = 0.30$, $\delta = 0.40$ from
-Wang 2026a Appendix A). The observed regime is energy-surplus: $E - I
-\approx +0.095$ across the window, with $V$ pinned positive at $0.0954
-\pm 0.0002$ — sign-flipped from healthy and displaced by approximately
-$\Delta V = 0.136$. The displacement is approximately three orders of
-magnitude larger than the within-window standard deviation, so the
-finding is not within measurement noise.
+showed an apparent regime change. A frame note is required first: since
+April 2026 the production system surfaces *behavioral* EISV as its
+primary metrics, and the recorded $V$ is an EMA-smoothed $E - I$
+imbalance — the window's $V$ mean (0.0954) matches $E - I$
+($0.7906 - 0.6953 = 0.0953$) to four decimal places — while the
+governance ODE's void coordinate is a separate, demoted diagnostic
+(its within-window value, inferred from the reported legacy coherence
+of $\approx 0.497$, is $\approx -0.006$). The comparison must therefore
+be made in the behavioral frame. The healthy regime is
+integrity-surplus, so the healthy behavioral valence is negative:
+$V_h = E_h - I_h = -0.055$. The observed regime is energy-surplus:
+$E - I \approx +0.095$ across the window, with $V$ pinned positive at
+$0.0954 \pm 0.0002$ — sign-flipped from healthy and displaced by
+approximately $\Delta V = 0.150$. (An earlier draft compared the
+behavioral observation against the ODE steady-state prediction
+$\kappa(E_h - I_h)/\delta = -0.041$; that pair mixes frames, and the
+frame-consistent comparison is slightly stronger.) The displacement is
+approximately three orders of magnitude larger than the within-window
+standard deviation, so the finding is not within measurement noise.
 
 The manifold deviation $\lVert\Delta\rVert_2$ in $(E, I, S)$ space,
 where $\Delta = (E, I, S) - (E_h, I_h, S_h)_{\text{Lumen}}$, evaluates
@@ -1632,7 +1706,22 @@ count of all agents that have ever produced state rows. A DB-direct
 count of all identities with state rows over the same period is
 substantially larger.
 
-**Caveats on the empirical claim.** The hour-resolved April 17
+**Caveats on the empirical claim.** Two instrument-level caveats apply
+before the generalization limits. The May-era anima instrument carried
+defects identified and repaired only later in 2026: a prediction-accuracy
+placeholder fixed at 0.5 that contributed roughly 45% of the clarity
+weight, ambient temperature entering the warmth axis through two
+strongly collinear channels, and a CPU term double-counted in the
+neural-band mapping. The anima-axis magnitudes in this section are
+therefore readings of a consistent but imperfect instrument — adequate
+for detecting a discontinuity of this size, not for interpreting small
+deviations. Second, the production server's silence over the window
+("no anomalies were flagged") is weak corroboration: a separate audit
+of this deployment found its degradation paths fail toward *healthy*
+rather than toward *unknown*, so absence of alarm carries little
+evidential weight here.
+
+The hour-resolved April 17
 transition is a single event; we cannot generalize from it to a
 claim that substrate revisions reliably produce basin transitions in
 Lumen, or that all agents exposed to similar revisions would show
@@ -2540,8 +2629,9 @@ is informational at the right level of abstraction.
 This paper argues that the AI agent governance community, in
 arriving at the deployed UNITARES framework, has built apparatus that
 allostatic load theory has lacked for thirty years: a real-time,
-observable, intervention-coupled operational analogue of the
-integrated-deviation hypothesis. We have used this analogue to
+observable operational analogue of the integrated-deviation
+hypothesis, with its intervention coupling specified though not yet
+wired (§2.2). We have used this analogue to
 evaluate four specific claims and have assessed each at the level of
 evidence appropriate to the claim's strength.
 
