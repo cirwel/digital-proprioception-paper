@@ -79,8 +79,30 @@ run_or_dry() {
 }
 
 echo "==> Resolving latest record under concept ${ZENODO_CONCEPT_RECID}"
-latest_resp="$(curl -sSL "${API_AUTH[@]}" \
-  "${ZENODO_API_BASE}/api/records/${ZENODO_CONCEPT_RECID}/versions/latest")"
+# Zenodo returns an HTML error page under load, and this endpoint has been observed
+# taking 13-30s. Piping that straight into jq produced "Invalid numeric literal" —
+# a parse error where the real fault is a transient 5xx. Retry, and report the HTTP
+# status rather than jq's confusion. Read-only call, so retrying is safe.
+latest_resp=""
+for attempt in 1 2 3 4 5; do
+  http_code="$(curl -sSL --max-time 90 -w '%{http_code}' -o /tmp/zenodo-latest.$$ \
+    "${API_AUTH[@]}" -H 'Accept: application/json' \
+    "${ZENODO_API_BASE}/api/records/${ZENODO_CONCEPT_RECID}/versions/latest" || echo 000)"
+  latest_resp="$(cat /tmp/zenodo-latest.$$ 2>/dev/null || true)"
+  if [[ "$http_code" == "200" ]] && printf '%s' "$latest_resp" | jq -e . >/dev/null 2>&1; then
+    break
+  fi
+  echo "    attempt ${attempt}: HTTP ${http_code}, response not valid JSON — retrying in $((attempt * 5))s" >&2
+  latest_resp=""
+  sleep $((attempt * 5))
+done
+rm -f /tmp/zenodo-latest.$$
+[[ -n "$latest_resp" ]] || {
+  echo "error: Zenodo did not return valid JSON for the latest record after 5 attempts" >&2
+  echo "       last HTTP status: ${http_code}. This is usually transient — re-run the" >&2
+  echo "       workflow rather than re-tagging; no draft was created." >&2
+  exit 75
+}
 latest_recid="$(printf '%s' "$latest_resp" | jq -r '.id')"
 latest_version="$(printf '%s' "$latest_resp" | jq -r '.metadata.version // "(none)"')"
 [[ "$latest_recid" != "null" && -n "$latest_recid" ]] || {
