@@ -19,8 +19,7 @@ The paper makes four bounded contributions: $V_{\text{anima}}$ as a deployed cum
 - **[paper.md](paper.md)** — the paper (v1.0)
 - **[references.bib](references.bib)** — bibliography stub (canonical list lives in `paper.md` § References for now)
 - **[CITATION.cff](CITATION.cff)** — citation metadata
-- **[.zenodo.json](.zenodo.json)** — Zenodo deposit metadata (DOI minted on first stable tag)
-- **[docs/submission/cover-letter-framing.md](docs/submission/cover-letter-framing.md)** — venue-agnostic cover-letter framing that keeps the manuscript in synthetic-systems / hypothesis-generation territory
+- **[.zenodo.json](.zenodo.json)** — Zenodo deposit metadata
 
 ## Companion artefacts
 

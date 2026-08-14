@@ -29,3 +29,5 @@ __pycache__/
 NOTES.md
 TODO.md
 .scratch/
+_internal/
+.unitares/
