@@ -4,8 +4,8 @@
 
 **Author:** Kenny Wang, Independent Researcher (CIRWEL Systems)
 **ORCID:** 0009-0006-7544-2374
-**Status:** v1.0 — first stable release, August 14, 2026; claims reconciled with the deployed system
-**Version notes:** Consolidates §1 and §2 from v2 (May 9 morning), §3 and §4 (May 9 afternoon), §5 with §5.3 patched from extended Lumen observation window, §6, §8, and adds new §7 (consolidated differentiation) and §9 (conclusion) plus abstract.
+**Status:** v1.1 — August 14, 2026; reproducibility rebuilt on the public row-level export, retention limits disclosed
+**Version notes:** v1.1 repoints the reproducibility story (§3.7, Appendix) at the frozen de-identified export archived under Zenodo data DOI 10.5281/zenodo.19705151, which a reviewer can recompute offline; discloses that the production database no longer retains the measurement window, which forecloses the Lumen longitudinal pull (§9.3); and reports the window-to-window spread in the basin-flip rate (§3.6) rather than a point estimate with a sampling-only interval. v1.0 consolidated §1 and §2 from v2 (May 9 morning), §3 and §4 (May 9 afternoon), §5 with §5.3 patched from extended Lumen observation window, §6, §8, and added §7 (consolidated differentiation) and §9 (conclusion) plus abstract.
 
 ---
 
@@ -46,7 +46,10 @@ failure-shape McEwen's Four Types do not cover. The companion technical
 paper (Wang 2026a)
 reports a 28.9% basin-flip rate when a class-conditional grounded
 coherence replaces fleet-wide tanh-of-V on 13,310 production state
-vectors. A same-row 2×2 ablation separates part of the effect:
+vectors. The rate is window-sensitive — the same measurement four days
+later gives 44.3% — so the finding is the order of magnitude of the
+disagreement, not the point estimate (§3.6). A same-row 2×2 ablation
+separates part of the effect:
 production legacy → grounded fleet-wide flips 11.2% of basin labels,
 while grounded fleet-wide → grounded class-conditional flips 23.5%; the
 non-additivity is an interaction, not a clean causal decomposition
@@ -260,9 +263,9 @@ in its current form, what would upgrade it, and what would kill it.
 | Contribution | Current evidence grade | Current evidence | Known confound or boundary | Upgrade path | Falsifier |
 |---|---|---|---|---|---|
 | Claim 1: $V_{\text{anima}}$ as cumulative-deviation control-signal analogue | Operationalized structural analogue | Deployed EISV state vectors; cumulative-deviation formula with integrand recorded end-to-end; intervention coupling specified but not yet wired (§2.2) | Not clinical AL; no endocrine, immune, tissue-damage, or multi-system physiology; no production code path yet evaluates the integral against a threshold | Wire the specified coupling, then show $V_{\text{anima}}$ improves governance decisions beyond non-integral baselines. Failure-forecasting is gated by a pre-registered 2026-12-01 confirmatory read: as of 2026-08 no fleet state stream beat a last-value persistence baseline (UNITARES `eisv-outcome-grounding-stop-rule-v0`) | $V_{\text{anima}}$ adds no decision value over instantaneous risk/coherence or produces worse interventions |
-| Claim 2: anti-homogenization / cosmological-soup correction | Empirical full-substitution effect with same-row ablation | 28.9% aggregate full-substitution basin-flip rate on $N = 13{,}310$ production rows; 15.8%–33.1% named measured-class range; ablation: LF→GF 11.2%, GF→GC 23.5% (§3.4, §3.7) | Effects are non-additive; class-scaled $\tanh(V)$ control is artificial and unstable; raw production rows are not public | Privacy-preserving synthetic artifact or private audit; identity-clean remeasurement; deployment outcome comparison | Independent/audited rerun collapses the grounded fleet→class effect or shows flips are class-assignment/pipeline artifacts |
+| Claim 2: anti-homogenization / cosmological-soup correction | Empirical full-substitution effect with same-row ablation | 28.9% aggregate full-substitution basin-flip rate on $N = 13{,}310$ production rows; 15.8%–33.1% named measured-class range; ablation: LF→GF 11.2%, GF→GC 23.5% (§3.4, §3.7) | Effects are non-additive; class-scaled $\tanh(V)$ control is artificial and unstable; the rate is window-sensitive (28.8% to 44.3%, §3.6); GF and LC are not re-runnable from the public export | Independent re-measurement on another deployment; identity-clean remeasurement; deployment outcome comparison. The full substitution is already recomputable offline from the public row-level export (§3.7) | Independent/audited rerun collapses the grounded fleet→class effect or shows flips are class-assignment/pipeline artifacts |
 | Claim 3: McEwen Four Types as failure-mode vocabulary | Taxonomic / constructive mapping | Types 1, 2, and 4 have computable UNITARES analogues; §5.3 supplies a failed Type 3 boundary case | Mapping is not yet a validated classifier; taxonomy is non-exhaustive for synthetic substrates | Pre-register criteria and classify historical or future governance episodes with disambiguating tests | Apparent types repeatedly reclassify as calibration artifacts, pipeline artifacts, or substrate events |
-| §5.3 Lumen basin transition | Provenance-backed single-agent case report for transition date/magnitude/shape; anomaly-grade for substrate causality | Recalibration localizes a 2026-04-17 basin transition, with 22-day post-transition stability (§5.3) | Single agent; substrate revision is temporally coincident but not causally isolated; public artifact bundle not yet released | Public or audited artifact bundle; multi-agent or multi-revision replication; rule out common operational confounds | Comparable transitions do not align with substrate revisions, or the event disappears under a clean longitudinal pull |
+| §5.3 Lumen basin transition | Provenance-backed single-agent case report for transition date/magnitude/shape; anomaly-grade for substrate causality | Recalibration localizes a 2026-04-17 basin transition, with 22-day post-transition stability (§5.3) | Single agent; substrate revision is temporally coincident but not causally isolated; the state history needed to replicate it has since aged out of production (§9.3) | Multi-agent or multi-revision replication on a *different* deployment; ruling out common operational confounds. The within-deployment longitudinal pull is foreclosed, so this grade cannot be upgraded from the present system | Comparable transitions do not align with substrate revisions, or the event disappears under a clean longitudinal pull elsewhere |
 | Claim 4: synthetic psychology as epistemic stance | Methodological / hypothesis-generating argument | Deployed system may expose observables and interventions that are difficult in biological systems (§8) | Single-author, self-cited system; not independent biological validation | Third-party deployment or independent re-analysis showing novel predictions or useful failure detection | The framework yields no predictions, discriminations, or interventions beyond ordinary engineering telemetry |
 
 **Construct-transfer boundary.** The claims above are governed by a
@@ -858,13 +861,20 @@ difficult to run in biological systems.
 
 The 28.9% basin-flip finding has limits worth flagging explicitly.
 First, it is an anchored snapshot, not a stable constant: the figure is
-tied to the published v6 measurement and its reproducibility artifact,
-and re-running the same counterfactual on other windows moves it
-materially (the published reproduction CSV yields 28.8%; a later live
-window yields a substantially higher rate). We therefore quote it only
-as published, with the per-class range, and treat the *existence and
-order of magnitude* of the disagreement — not its third digit — as the
-finding. Second, the
+tied to the published v6 measurement, and re-running the same
+counterfactual on other windows moves it materially. Both windows are
+public. The 30-day window ending 2026-04-18 gives 28.8% ($N = 13{,}292$);
+the window ending 2026-04-23, four days later with roughly 87% row overlap
+and the Phase 2 constants held frozen, gives **44.3%** ($N = 16{,}879$).
+The per-class pattern moves too, and not uniformly: Sentinel $+25.4$,
+Vigil $+19.6$, Lumen $+15.8$, default $+15.3$, Watcher $-11.3$ percentage
+points. Two snapshots are one comparison, not a trend, and we do not read
+the shift as a drift signal — a single re-calibration pass could absorb a
+change of this size. But it bounds what the point estimate can carry. We
+therefore treat the *existence and order of magnitude* of the
+disagreement — a rate in the tens of percent, not its third digit — as
+the finding, and quote 28.9% as the anchored v6 measurement rather than as
+the fleet's flip rate. Second, the
 30-day measurement window overlaps with material identity-system
 revisions in mid-to-late April 2026 (Wang 2026a §11.7, item 5), including
 removal of name-claim lookup, adoption of UUID-direct dispatch, and
@@ -1035,8 +1045,15 @@ reference $V_h = E_h - I_h \approx -0.055$ (§5.3), so the apparent
 Type 3 displacement is not within-window measurement noise. The 28.9% full-substitution basin-flip
 rate at $N = 13{,}310$ has a binomial 95% confidence interval of
 approximately 28.1%–29.7%; the ablation rates are likewise narrow
-(11.2%, 95% CI 10.7%–11.8%; 23.5%, 95% CI 22.8%–24.3%). The named
-measured-class differences (15.8% to 33.1%) are statistically separable,
+(11.2%, 95% CI 10.7%–11.8%; 23.5%, 95% CI 22.8%–24.3%). These intervals
+describe sampling error *within* a fixed window and are not the dominant
+uncertainty in the measurement. The window-to-window spread reported in
+§3.6 — 28.8% to 44.3% across a four-day shift — is roughly twenty times
+wider than the $\pm 0.8$-point sampling interval, so the confidence
+intervals should be read as bounding the precision of a single anchored
+snapshot, not the stability of the quantity. The named
+measured-class differences (15.8% to 33.1%) are statistically separable
+within the anchored window,
 while the 42-row `ephemeral` fallback is too small and structurally
 unmeasured to interpret as a class envelope. The post-Phase-2 average drift rate
 (approximately $-3.5 \times 10^{-6}$ per minute) cannot be tested
@@ -1053,24 +1070,45 @@ pipeline are in the same repository at `unitares/governance/`. The
 Phase 2 calibration script, the 28.9% basin-flip analysis, and the
 formula-vs-calibration ablation are included in this repository at
 `analysis/phase-2-2026-04-18/`; the ablation output is stored in
-`formula_calibration_ablation_results.txt`. Production telemetry cannot
-be released in raw form because state vectors are
-keyed to user-identifying agent UUIDs. A synthetic sample preserving
-the per-class state-vector distribution at the resolution required to
-reproduce the basin-flip computation is now included in this repository:
-`analysis/phase-2-2026-04-18/synthesize_basinflip.py` fits a per-class
-Gaussian copula over the six variables the classifier reads
-($E, I, S, V$, risk, stored coherence) and emits
-`synthetic_basinflip_states.csv` (releasable; no production rows). Run
-through the same `classify_basin` and coherence functions, the synthetic
-sample reproduces the full substitution at **29.3%** (production 28.9%),
-with LF→GF 11.0% and GF→GC 22.8% (production 11.2% and 23.5%) and
-per-class rates that track. The match is not tuned — the copula is fit to
-preserve the joint distribution, and the rate is emergent because the
-basin assignment is a deterministic function of the preserved variables.
-This validates the pipeline and the distributional structure on releasable
-data; it does not release the production rows, and independent
-re-measurement on production or independent data remains the stronger bar.
+`formula_calibration_ablation_results.txt`.
+
+The row-level data underlying the full substitution is public. A
+de-identified export — one row per agent-state observation, pseudonymized
+to a class label, carrying no agent UUIDs, session identifiers, prompts, or
+knowledge-graph content — is archived under Zenodo data DOI
+10.5281/zenodo.19705151 and mirrored in this repository at
+`analysis/phase-2-2026-04-18/verdict_counterfactual_v6_submission.csv`
+(13,292 rows, SHA-256 pinned in the reproduction script). What cannot be
+released is the underlying production relation, whose state vectors are
+keyed to user-identifying agent UUIDs; the class-pseudonymized projection
+of it that the counterfactual actually consumes carries no such keys.
+
+`reproduce_basinflip.py` in the same directory runs offline against that
+export using only the standard library. It recomputes the class-conditional
+grounded coherence and both basin labels from the published state
+coordinates and the published Phase 2 constants, compares them against the
+stored labels, and counts the flip rate from the recomputed ones. It returns
+**28.84%** (3,834 of 13,292) against the 28.9% reported here, with per-class
+rates within 0.5 percentage points, and 26,574 of 26,584 basin labels
+reproducing exactly — the ten exceptions sitting within $6.7 \times 10^{-4}$
+of a threshold, which is the rounding floor of a 4-decimal export divided by
+a class radius as small as 0.1187. The 18-row difference between the export
+(13,292) and the reported pull (13,310) is a few seconds of row arrivals
+between two runs of a wall-clock-anchored rolling window, and is the whole
+source of the 28.9% / 28.8% gap.
+
+Two limits on this. The production database no longer retains the
+measurement window: `core.agent_state` holds 490 rows in the 2026-03-19 to
+2026-04-18 interval against the 13,310 the original pull returned, with no
+archive table, so the frozen export is the surviving row-level record and a
+private audit of the production rows is no longer possible. And the GF and
+LC ablation conditions are not reproducible from the export, because they
+require a fleet-wide healthy slice keyed on the per-row `regime` column,
+which the de-identified export does not carry; those two rates remain
+provenance-backed from the recorded ablation output rather than
+independently re-runnable. The full-substitution headline, which is the
+result the paper leads with, is re-runnable. Independent re-measurement on
+another deployment remains the stronger bar.
 
 ---
 
@@ -2732,16 +2770,33 @@ contribution at its appropriate level of evidence.
 
 Several specific next steps are flagged through the paper.
 
-**Longitudinal Lumen series.** The 86-minute window in §5.3 establishes
-that Lumen's post-break regime is stable over at least that duration, and
-the recalibration plus weekly-bin analysis establishes stability over 22
-days. A proper longitudinal pull spanning the post-Phase-2 interval
-(April 18 to May 9, 21 days) and ideally the full 118-day lifetime would
-test whether the April 17 transition is unique, whether comparable
-transitions occurred around other substrate revisions, and whether other
-Lumen-class agents show similar regime shifts. This is the single
-highest-value follow-up for moving substrate causality from anomaly-grade
-to identification-grade evidence.
+**Longitudinal Lumen series — foreclosed on this deployment.** The
+86-minute window in §5.3 establishes that Lumen's post-break regime is
+stable over at least that duration, and the recalibration plus weekly-bin
+analysis establishes stability over 22 days. The natural follow-up is a
+longitudinal pull spanning the post-Phase-2 interval (April 18 to May 9,
+21 days) and ideally the full 118-day lifetime, testing whether the April
+17 transition is unique, whether comparable transitions occurred around
+other substrate revisions, and whether other Lumen-class agents show
+similar regime shifts. That pull would be the single highest-value route
+from anomaly-grade to identification-grade evidence on substrate causality.
+
+It is no longer available. The production database has not retained the
+state history it requires: `core.agent_state` holds 1,312 rows across
+February, March, and April 2026 combined, against the 13,310 the Phase 2
+window alone once returned, and there is no archive table (§3.7). The
+2026-05-09 recalibration ($N = 11{,}472$) cannot be re-run either. The
+weekly-bin analysis, the hour-resolved localization of the April 17 event,
+and the recalibration result stand as recorded measurements from telemetry
+that no longer exists in queryable form.
+
+The consequence for the §5.3 claim is that its evidence grade is now
+fixed rather than provisional. Substrate causality cannot be upgraded from
+this deployment's own history; it requires a second deployment, or an
+agent population whose retention window still spans a comparable substrate
+revision. We flag retention policy itself as a methodological lesson: a
+deployed system used as a test bed needs its evidentiary windows pinned as
+exports at measurement time, because the live database is not an archive.
 
 **Genesis signature persistence.** Lumen's $\Sigma_0$ was not persisted
 at first onboarding under the legacy identity system (Wang 2026a §11.7
@@ -2810,20 +2865,24 @@ case is silent. The careful work is distinguishing the two.
 This appendix separates three different standards that are easy to
 conflate: reproducing the analytic pipeline, reproducing the reported
 production numbers, and independently validating the biological bridge.
-The first is available from public artifacts; the second is now partly
-served by a privacy-preserving synthetic release that reproduces the
-reported numbers on releasable data (a private audit of the production
-rows remains the stronger check); the third requires another deployment
+The first two are now served by a public, de-identified, row-level export
+that a reviewer can re-run offline; the third requires another deployment
 or an external re-analysis.
+
+One boundary has hardened since the measurement and we state it plainly:
+the production database no longer retains the measurement window
+(§3.7), so a private audit of the production rows is no longer available
+as a fallback check. The frozen export is the record. Claims in this
+appendix are scoped to what that export can and cannot support.
 
 | Object | Current status | What can be checked now | What remains missing |
 |---|---|---|---|
-| Coherence and basin-classification code | Public repository provenance (§3.7) | Formula implementation, thresholding behavior, synthetic input tests | Exact tagged release / commit hash pinned to this paper |
-| 13,310-row basin-flip computation | Reported from production and Wang 2026a | Method, formulas, thresholds, sample size, confidence interval | Public row-level artifact or third-party audit of the production export |
-| Formula-vs-calibration ablation | Run locally on production DB | LF→GF 11.2%, GF→GC 23.5%, LF→GC 28.9%, LF→LC 77.8%; script and output in `analysis/phase-2-2026-04-18/` | Public row-level artifact or third-party audit of the production export |
-| Lumen §5.3 recalibration case | Reported from production telemetry | 86-minute protocol, recalibration criterion, weekly-bin interpretation | Full longitudinal pull across Lumen's post-Phase-2 interval and comparable agents/revisions |
-| Raw production state vectors | Withheld | Schema and provenance can be inspected | Direct public release is blocked by agent UUID/user-identification risk |
-| Synthetic reproduction artifact | **Available** (`analysis/phase-2-2026-04-18/`) | Reproduces LF→GC 29.3% vs production 28.9% (and the LF→GF / GF→GC components) by running the same classifier on a per-class Gaussian-copula sample | Independent re-measurement on production or independent data |
+| Coherence and basin-classification code | Public repository provenance (§3.7); thresholds and constants replicated in `reproduce_basinflip.py` | Formula implementation, thresholding behavior, recomputation against published rows | Exact tagged release / commit hash pinned to this paper |
+| 13,310-row basin-flip computation | **Reproducible offline** from the frozen export | Full substitution recomputed from published state and constants: 28.84% on $N = 13{,}292$ vs 28.9% reported, per-class within 0.5 pp, 26,574/26,584 labels exact | Third-party re-measurement on an independent deployment |
+| Formula-vs-calibration ablation | Provenance-backed only | LF→GF 11.2%, GF→GC 23.5%, LF→GC 28.9%, LF→LC 77.8%; script and recorded output in `analysis/phase-2-2026-04-18/` | GF and LC need the per-row `regime` column, absent from the de-identified export; the production window is no longer retained, so these two conditions cannot be recomputed |
+| Lumen §5.3 recalibration case | Provenance-backed only | 86-minute protocol, recalibration criterion, weekly-bin interpretation | The longitudinal pull that would test it is foreclosed: Lumen's Feb–Apr 2026 state history is no longer retained (§9.3) |
+| Row-level counterfactual export | **Public** (Zenodo data DOI 10.5281/zenodo.19705151; mirrored in this repository, SHA-256 pinned) | 13,292 class-pseudonymized rows: $E, I, S, V$, risk, both coherences, both basin labels | Nothing for the headline; the export is the record |
+| Raw production state relation | Withheld, and no longer retained | Schema and provenance can be inspected | Release was blocked by agent UUID/user-identification risk; the window has since aged out, so it is unavailable in principle, not merely withheld |
 | Clinical translation sketches | Hypothesis-generating only | Proposed variables, baselines, and comparison targets | Dataset-specific field mapping, endpoint adjudication, covariates, missingness rules, preregistration |
 
 A serious submission should not ask reviewers to take the production
@@ -2833,29 +2892,32 @@ numbers entirely on trust. The minimal artifact bundle is:
    and Phase 2 analysis scripts;
 2. a schema snapshot for `core.agent_state` and the class-assignment
    metadata used in the 30-day window;
-3. a signed or hashed manifest of the private production export used for
-   the 13,310-row computation;
-4. a synthetic, privacy-preserving state-vector sample that preserves the
-   per-class distributions needed to exercise the basin-flip calculation;
-5. a notebook or script that recomputes the legacy coherence, grounded
-   coherence, basin labels, flip counts, per-class flip rates,
-   confidence intervals, and formula-vs-calibration ablation from that
-   sample;
-6. a Lumen longitudinal-pull script that tests whether the April 17
-   transition is unique, repeated around other substrate revisions, or
-   absent in comparable agents.
+3. a hashed, de-identified row-level export of the state vectors the
+   13,310-row computation consumed;
+4. a script that recomputes the grounded coherence, both basin labels, the
+   flip counts, and the per-class rates from that export, and verifies the
+   recomputed labels against the stored ones;
+5. a second window of the same export, so that between-window variance is
+   visible rather than inferred;
+6. a Lumen longitudinal-pull across the post-Phase-2 interval, testing
+   whether the April 17 transition is unique, repeated around other
+   substrate revisions, or absent in comparable agents.
 
-Of these, items 4 and 5 are now delivered (`synthesize_basinflip.py` →
-`synthetic_basinflip_states.csv`, which both generates the sample and
-recomputes the flip counts, per-class rates, and ablation through the same
-classifier); items 1–3 and 6 remain.
+Items 3, 4, and 5 are delivered: the export is archived under Zenodo data
+DOI 10.5281/zenodo.19705151 and mirrored here with its SHA-256 pinned, and
+`reproduce_basinflip.py` runs the recomputation offline on the standard
+library alone, over both windows. Items 1 and 2 remain and are
+straightforward. **Item 6 is foreclosed**, not pending: the state history it
+would need has aged out of the production database (§3.7, §9.3).
 
-The evidentiary consequence is explicit: until that bundle is complete, the
-basin-flip and ablation rates remain provenance-backed production
-measurements rather than results a reviewer can independently reproduce on
-the production rows themselves (the synthetic artifact reproduces them on
-releasable data, which is a weaker but real check), and the
-Lumen substrate link remains anomaly-grade rather than causal evidence.
+The evidentiary consequence is explicit. The full-substitution basin-flip
+result is now a result a reviewer can independently recompute from published
+rows and published constants, and it survives that recomputation. The GF and
+LC ablation conditions remain provenance-backed rather than re-runnable,
+because the export does not carry the `regime` column they need. And the
+Lumen substrate link remains anomaly-grade rather than causal evidence, with
+the replication that would upgrade it no longer available from this
+deployment's own history — an external deployment is now the only route.
 
 ---
 
