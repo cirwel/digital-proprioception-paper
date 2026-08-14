@@ -35,9 +35,13 @@ fi
 TAG="$1"
 PDF_PATH="$2"
 ZIP_PATH="${3:-}"
-# Keep the full tag as the Zenodo version string for consistency with prior
-# releases (e.g. "paper-v6.8.1"). Existing concept history uses this form.
-VERSION="$TAG"
+# Zenodo version string. Defaults to the full tag, because the v6 concept's
+# existing history uses that form (e.g. "paper-v6.8.1"). But concepts differ:
+# this paper's concept (21930092) was deposited as "v1.0" / "v1.0.2", with no
+# "paper-" prefix, so depositing "paper-v1.1" there would leave a permanently
+# inconsistent version list. Set ZENODO_VERSION to override — the workflow
+# passes the value from .zenodo.json, which is the metadata source of truth.
+VERSION="${ZENODO_VERSION:-$TAG}"
 : "${ZENODO_CONCEPT_RECID:=19647159}"
 : "${ZENODO_API_BASE:=https://zenodo.org}"
 : "${DRY_RUN:=0}"

@@ -38,6 +38,14 @@ jobs:
         run: |
           set -eo pipefail
           chmod +x scripts/publish-to-zenodo.sh
+          # This concept's version strings carry no "paper-" prefix (v1.0, v1.0.2).
+          # Take the version from .zenodo.json rather than the tag, so the deposited
+          # version list stays internally consistent.
+          ZENODO_VERSION="$(jq -r '.version' .zenodo.json)"
+          [ -n "$ZENODO_VERSION" ] && [ "$ZENODO_VERSION" != "null" ] || {
+            echo "::error::.zenodo.json has no version field"; exit 1; }
+          echo "depositing Zenodo version string: ${ZENODO_VERSION}"
+          export ZENODO_VERSION
           ./scripts/publish-to-zenodo.sh \
             "${{ github.event.release.tag_name }}" \
             "digital-proprioception.pdf" \
