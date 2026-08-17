@@ -27,11 +27,10 @@ check-in, making the integral computable end-to-end over any window; its
 coupling to intervention is specified by the companion trajectory-identity
 framework but not yet wired in production (§2.2). Three structural disanalogies
 (single-system, fixed reference, no body) sharpen what the test bed
-tests. We also report a measured negative on the adjacent question: on
-this fleet, per-agent state adds under 0.05 AUC over a previous-outcome
-baseline for forecasting externally-verified bad outcomes, so the paper's
-claim is about observability and decision-layer consequence, not about
-failure prediction (§9.2).
+tests. The claim is about observability and decision-layer consequence
+rather than failure prediction; §9.2 reports a measured negative on the
+adjacent forecasting question, with its cluster count and selective
+$p$-value.
 
 We further argue that McEwen's "Four Types of Allostatic Load" (1998)
 provides a vocabulary of regulatory failure modes that AI governance
@@ -867,9 +866,10 @@ heterogeneity controllable by construction. This is a contribution of
 method as much as of result: the testbed enables experiments that are
 difficult to run in biological systems.
 
-### 3.6 Limits of the empirical claim
+### 3.6 Robustness of the measurement, and a convergent regime reversal
 
-The 28.9% basin-flip finding has limits worth flagging explicitly.
+Two questions bound how far the 28.9% basin-flip finding travels, and a
+second instrument bears on the same mechanism.
 First, it is an anchored snapshot, not a stable constant: the figure is
 tied to the published v6 measurement, and re-running the same
 counterfactual on other windows moves it materially. Both windows are
@@ -1471,10 +1471,11 @@ $\Sigma_0$ framework is meant to close: without a genesis anchor,
 calibration staleness, regime transition, and lineage drift can be
 unnecessarily hard to separate.
 
-### 4.6 Limits and structural disanalogies
+### 4.6 What clinical transfer would additionally require
 
 Three structural disanalogies between the $\Sigma_0$-anchored framework
-and biological identity are worth flagging.
+and biological identity set the requirements a clinical deployment would
+have to meet.
 
 **Identity matures.** A child's genesis signature is not a useful
 reference for an adult, because biological identity legitimately changes
@@ -2202,15 +2203,12 @@ is open in a way the biological choice is not, and the synthetic case
 provides a tractable substrate for studying what changes when the
 default is reversed.
 
-### 6.6 Limits of the analogy
+### 6.6 Two qualifications on the confabulation contrast
 
-**Lumen is not conscious.** We make no claim about whether kintsugi-style
-gap-marking supports phenomenal experience or unified subjective
-identity. The argument is at the architectural level: gap-marking is a
-viable design choice for non-confabulating self-models in artificial
-systems, and the contrast with biological confabulation is instructive,
-but the question of whether such a system *experiences* its gaps as
-gaps is outside the scope of this paper.
+The argument here is architectural: gap-marking is a viable design choice
+for non-confabulating self-models. It carries no commitment about
+phenomenal experience (§1.5). Two qualifications bound the contrast
+itself.
 
 **Confabulation in biology is heterogeneous.** The clinical category is
 narrower than the broad-sense gap-filling described here, and treating
