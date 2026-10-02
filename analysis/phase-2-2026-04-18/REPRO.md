@@ -105,6 +105,21 @@ distribution has moved from the frozen anchors (paper §4.2 and Appendix B). Run
 `flatness_and_windows.py` for the full decomposition. The 2026-04-18 window is reported
 because it is the one the v6 measurement was taken on.
 
+## Retention of the first window
+
+The production relation no longer holds the first window. With database access, the
+count is
+
+```sql
+SELECT count(*) FROM core.agent_state
+WHERE recorded_at >= '2026-03-19' AND recorded_at < '2026-04-19';
+```
+
+It returned 490 on 2026-08-14 and 493 on 2026-10-02. The bounds are calendar days in
+the database's local time, so they do not match the rolling window's exact edges, and
+the two counts may have used slightly different bounds. Either way, about 3.7% of the
+13,310 rows originally returned remain, and there is no archive table.
+
 ## What is *not* reproducible from these files
 
 `formula_calibration_ablation.py` computes the four-condition ablation (LF / GF / GC /
