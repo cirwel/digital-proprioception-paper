@@ -10,9 +10,10 @@ does not already print.
 The window decomposition matches the two exports on the full stored tuple
 (class, E, I, S, V, risk, c_legacy), counted with multiplicity: a multiset
 intersection of stored values, not a row-by-row join. The exports carry no row
-identifiers or timestamps, and some rows share every stored value with another
-row. Rows with identical stored values carry identical labels, so the counts
-are unaffected. Basin labels are a deterministic function of the stored values
+identifiers or timestamps, and some rows share all seven key values with
+another row. c_grounded is not in the key: it is computed from unrounded
+coordinates, so it can differ between rows whose rounded values match. Rows
+sharing a key carry identical stored labels, so the counts are unaffected. Basin labels are a deterministic function of the stored values
 and the frozen Phase 2 constants, so a value tuple present in both windows
 carries the same flip label in both. Flip rates in the decomposition use the
 labels stored in the export.

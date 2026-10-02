@@ -89,10 +89,12 @@ The two windows end on 2026-04-18 and 2026-04-23, four to five days apart, and g
 **28.8%** and **44.3%**. The export carries no timestamps or row identifiers, so rows
 are matched on their stored values, counted with multiplicity: 12,177 value tuples
 occur in both windows, 91.6% of the first and 72.1% of the second. That is a multiset
-intersection, not a row-by-row join: the first window has 377 groups of rows that share
-every stored value, holding 1,228 rows. Rows with identical stored values carry
-identical labels, so the counts are unaffected, but the match does not establish that
-two windows contain the same observation.
+intersection, not a row-by-row join. The key is seven columns: class, E, I, S, V,
+risk and c_legacy (c_grounded is left out; it is computed from unrounded coordinates).
+On that key the first window has 377 groups of rows that share all seven values,
+holding 1,228 rows. Rows in a group carry identical stored labels, so the counts are
+unaffected, but the match does not establish that two windows contain the same
+observation.
 
 Basin labels are a deterministic function of the stored values and the frozen
 constants, so the difference is composition, not sampling variance. Flip rates below
