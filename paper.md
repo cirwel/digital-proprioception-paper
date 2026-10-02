@@ -14,7 +14,7 @@ A running multi-agent system I operate computes a scalar "coherence" for every a
 
 I replaced the score with a class-conditional "grounded" form on the same rows and recomputed every basin under both forms. The grounded form spans 0 to 0.995, and on the full substitution every row whose recomputed basin changes moves downward (§4). The replay is an offline counterfactual on frozen data. It shows that the old score was inert at its decision thresholds. It does not show that the new labels are right, and no outcome, harm or operator judgment was used to grade either form. The rate of label change rose from 28.8% to 44.3% between two public windows whose end dates are four to five days apart. That rise is not noise. Rows whose stored values occur in both windows flip at 30.3%, and rows that appear only in the later window, inferred to be recorded after 2026-04-18, flip at 80.6%. The flip rate therefore depends on how far the state distribution has moved from the frozen class anchors; it is not a fixed property of the formula swap.
 
-Three adjacent results bound the claim. Whether per-agent state forecasts bad outcomes is unresolved, pending one pre-registered read (§6). A genesis-anchored lineage check meant to catch slow drift does not discriminate as instrumented (§7). The cumulative-deviation integral that motivated earlier versions of this paper is specified but not computed by any production code path (§8). A single-agent case study tests an apparent "delayed shut-down" reading: the April anchor's calibration window ended a day after a shift in Lumen's recorded state, and recalibration moves toward the current state on two of three coordinates, as staleness predicts. That result does not by itself exclude a persistent shift, and the cause is open (§5).
+Three adjacent results bound the claim (§6). Whether per-agent state forecasts bad outcomes is unresolved, pending one pre-registered read. A genesis-anchored lineage check meant to catch slow drift does not discriminate as instrumented. The cumulative-deviation integral that motivated earlier versions of this paper is specified but not computed by any production code path. A single-agent case study tests an apparent "delayed shut-down" reading: the April anchor's calibration window ended a day after a shift in Lumen's recorded state, and recalibration moves toward the current state on two of three coordinates, as staleness predicts. That result does not by itself exclude a persistent shift, and the cause is open (§5).
 
 **Keywords:** agent state monitoring, coherence score, class-conditional calibration, counterfactual replay, calibration staleness, digital proprioception
 
@@ -33,11 +33,11 @@ The question here is narrow. Did the deployed coherence score do the job it was 
 1. **A measured negative about the deployed score (§3).** The legacy coherence score had an observed range of 0.068 on 13,292 rows. It could not reach the low-basin threshold, it almost always cleared the high-basin threshold, and within each class it did not consistently track distance from the class healthy point, although its distributions do differ between classes.
 2. **A reproducible replay with an exact window decomposition (§4).** Replacing the score changes recomputed basin labels for 28.8% of rows, always downward on the full substitution. The higher rate in a later window decomposes, by counting matched stored values, into rows that appear only in the later window (inferred to be recorded after 2026-04-18), which flip at 74% to 100% in four of five classes. The export and scripts are public.
 3. **A calibration case (§5).** A single-agent case that looked like a failure mode from the allostatic-load literature is consistent with a calibration anchor whose window closed a day after a shift in recorded state. Recalibration is consistent with that reading but cannot exclude a persistent shift, and the cause remains open.
-4. **A status ledger (§§6 to 8).** Outcome forecasting is unresolved, not negative. The lineage check does not discriminate. The cumulative-deviation integral is specified and uncomputed.
+4. **A status ledger (§6).** Outcome forecasting is unresolved, not negative. The lineage check does not discriminate. The cumulative-deviation integral is specified and uncomputed.
 
 ### 1.3 What I do not claim
 
-I do not claim that the replacement score is better than the legacy score at anything an outcome would grade. I do not claim that agents are conscious, that the system implements the biology of allostatic load, or that the cumulative-deviation integral has been tested. I do not claim that these results transfer to another deployment: the data come from one operator's fleet, a good part of which is a single embodied agent on one device. I do not claim the replay's flip rate is a stable property of the fleet.
+I do not claim that the replacement score is better than the legacy score (§4.4), that agents are conscious, that the system implements the biology of allostatic load, or that the cumulative-deviation integral has been tested. I do not claim that these results transfer to another deployment: the data come from one operator's fleet, a good part of which is a single embodied agent on one device. I do not claim the replay's flip rate is a stable property of the fleet.
 
 ---
 
@@ -120,7 +120,7 @@ The association is weak and goes both ways: the wrong sign in two of five classe
 
 The result is a statement about the legacy instrument at its deployed thresholds: it could not reach one of them, it almost always cleared the other, and it did not consistently register distance from a class's healthy point.
 
-*It does not say the grounded score is informative.* A score that varies is not thereby correct. Part of the grounded score's spread is arithmetic: Lumen's envelope is 0.119, so a state displaced by 0.06 from the healthy point already scores 0.5. Dividing by a small radius widens the spread by construction. Whether the spread tracks anything an agent or operator would call strain is untested here.
+*It does not say the grounded score's spread is signal.* Part of it is arithmetic: Lumen's envelope is 0.119, so a state displaced by 0.06 from the healthy point already scores 0.5. Dividing by a small radius widens the spread by construction.
 
 *It does not say why the legacy score is narrow.* The median legacy score in this window corresponds to a tanh argument of -0.037, close enough to zero that tanh is near its midpoint. I have not isolated why the demoted coordinate sat there.
 
@@ -208,57 +208,19 @@ What survives every one of these explanations is narrower: the April anchor's wi
 
 ---
 
-## 6. Outcome forecasting: unresolved
+## 6. Three adjacent questions: status
 
-The most natural validation of a self-state signal is to ask whether it predicts bad outcomes. The status of that question is *unresolved*. A historical weekly ablation that appeared to show a negative result used a cohort that mixed anchor populations the confirmatory read excludes, and its permutation blocks were not independent adjudicated failures. It was withdrawn for target inference on 2026-08-26, and its numbers are historical provenance, not evidence in either direction (CIRWEL 2026, unitares, `docs/ontology/eisv-proprioception-contract.md`, item 4). I report no forecasting effect size, direction or sensitivity bound.
+None of these has reproducible evidence in this repository, so each is stated as a status with a pointer to its source. The longer treatment is §§6 to 8 of this repository at commit 284dd21, which is v2.0 with later corrections.
 
-A confirmatory read is pre-registered for 2026-12-01 (CIRWEL 2026, unitares, PR #1425; the registered text is `docs/proposals/registered/eisv-outcome-grounding-stop-rule-v0.md`). It passes only if a selective p of at most 0.05 holds on a lead slice, the effect exceeds the permutation null's 95th percentile, at least 150 bad clusters exist on the read's trusted slice (prior-state permutation blocks, which the registration says do not establish that outcomes are independent), and the best-model identity is stable across leads. The evidence ledger records interim access to discrimination results by automation after registration, so the read cannot be described as a single clean blinded look.
+**Outcome forecasting: unresolved.** Whether per-agent state predicts bad outcomes is unresolved, not negative. A historical weekly ablation that appeared to show a negative result was withdrawn for target inference on 2026-08-26: its cohort mixed anchor populations the confirmatory read excludes, and its permutation blocks were not independent adjudicated failures (CIRWEL 2026, unitares, `docs/ontology/eisv-proprioception-contract.md`, item 4). I report no forecasting effect size, direction or sensitivity bound. One confirmatory read is pre-registered for 2026-12-01 (CIRWEL 2026, unitares, PR #1425; the registered text is `docs/proposals/registered/eisv-outcome-grounding-stop-rule-v0.md`). It passes only if all four of its conditions hold, one of which is at least 150 bad clusters on the read's trusted slice (prior-state permutation blocks, which the registration says do not establish that outcomes are independent). The evidence ledger records interim access to discrimination results by automation after registration, so the read is not a single clean blinded look. Whatever it shows, every bad outcome available so far is task-negative, which bounds even a positive result to rework prediction, and a discrimination statistic is not decision value at the deployed operating point. §3 does not depend on any of this.
 
-Two limits apply whatever the read shows. Every bad outcome available so far is task-negative (failed tasks, failed tests and similar), which bounds even a positive result to rework prediction. And a discrimination statistic is not decision value at the deployed operating point, which would require interventional data or a larger fleet. §3 does not depend on any of this, because it compares two formulas on the same rows.
+**Trajectory identity: does not discriminate as instrumented.** The companion framework (Wang 2026b) adds a fixed genesis signature to the rolling reference, to catch slow drift that step-to-step comparison passes, with a similarity threshold of 0.60. As deployed, a genesis signature can be reseeded until the agent reaches the second trust tier, so it is an early-data estimate that hardens with tenure, not a captured pre-illness baseline. No genesis was persisted for Lumen at first onboarding (Wang 2026a §11.7, item 5), so the §5 case could not use one. The similarity metric does move with drift, but it does not separate agents at its threshold. For agents whose stored signatures carry a covariance, the composite saturates near 0.633, above the 0.60 cut, so the check cannot fire for them (CIRWEL 2026, unitares, `docs/ontology/eisv-proprioception-contract.md`, trajectory-identity item 9). Across all identities with both signatures, the median similarity to genesis is 0.996 below 20 observations and 0.631 at 1,000 or more (CIRWEL 2026, unitares, `src/trajectory_identity.py`, commit e4239e8a0): identities decay into that floor as drift accumulates, rather than crossing the line. The companion paper's v0.15 correction (Wang 2026b, §6.5, tag `paper-v0.15`) reports between-agent similarity of 0.63 against 0.12 for one agent compared with itself across a client migration, and returns its discrimination criterion to open. The two-tier architecture stands as a proposal that its instrumentation does not realize.
 
----
-
-## 7. Trajectory identity and the genesis anchor
-
-### 7.1 The idea
-
-A coherence check against recent state fails on slow drift by construction: if each step is small, every comparison passes. The companion trajectory-identity framework (Wang 2026b) proposes two references per agent: a rolling signature $\Sigma_{t-1}$ for acute change, and a fixed genesis signature $\Sigma_0$ for slow drift, with a lower threshold on similarity to $\Sigma_0$ (0.60) than on similarity to the rolling reference (0.70).
-
-### 7.2 What the genesis signature is
-
-A genesis signature is a stored object, written into the agent's metadata at onboarding or first trajectory submission for agents that go through that path. It is not a clean fixed anchor. An early genesis, built from few data points, can be reseeded while the agent sits in the lowest trust tiers, if a later signature has substantially higher confidence or if similarity to the stored one is below 0.7. It becomes immutable only once the agent reaches the second trust tier. $\Sigma_0$ is therefore an early-data estimate that hardens with tenure, not a captured pre-illness baseline. Lumen's first awakening predates that path, and no genesis was persisted for it at first onboarding (Wang 2026a §11.7, item 5), so the §5 case could not use one.
-
-### 7.3 It does not discriminate as instrumented
-
-Whether a genesis anchor exists is secondary, because the similarity check that would use it does not separate agents as deployed. An audit of the production similarity metric (CIRWEL 2026, unitares, `docs/ontology/eisv-proprioception-contract.md`, trajectory-identity items, added 2026-07-30 and refined 2026-08-20) found the following:
-
-- Two of the weighted components give near-free credit, and one input is never populated.
-- The composite saturates near 0.633 for long-running agents.
-- Binned by observation count, the median similarity to genesis is 0.996 for identities with fewer than 20 observations and 0.631 for those with at least 1,000.
-
-Identities decay into that floor as drift accumulates. Young identities score high because they have not drifted, not because the metric discriminates. Accumulated genuine drift therefore asymptotes to a passing score above the 0.60 line, and the lineage channel cannot fire on the slow-drift case it was designed for.
-
-A cross-agent audit reported in the companion paper's v0.15 correction (Wang 2026b, §6.5, tag `paper-v0.15`) found the ordering inverted: between-agent similarity of 0.63, against 0.12 for one agent compared with itself across a client migration, with roughly 90% of between-agent pairs clearing the 0.60 threshold. The companion paper accordingly marks its multi-agent discrimination pilot confounded by role and harness, and returns the discrimination criterion to open. The two-tier architecture stands as a proposal. Its current instrumentation does not realize it.
+**The cumulative-deviation integral: specified, not computed.** Earlier versions of this paper were titled around an integral in the spirit of allostatic load (McEwen and Stellar 1993): for the embodied agent, the accumulated distance of a four-component anima vector (warmth, clarity, stability, presence, computed from sensors and system metrics) from the attractor center of its own recent states. The anima vector is a different object from the EISV vector of §2, and the integral is a different accumulator from either V. A function that computes it exists in the embodied agent's repository as a research diagnostic, with unit tests and no caller outside them (checked against the main branch on 2026-10-02). No production path computes it, thresholds it or acts on it, and the coupling the companion framework specifies (when the integral exceeds a deployer-set multiple of the basin scale, induce rest, reduce stimulation or pause a task) is not wired. Earning it would take wiring the coupling and showing that it improves decisions over a non-integral baseline such as instantaneous deviation. §§4.2 and 5 add a prior problem: an integral against an anchor that no longer describes the agent would accumulate that gap.
 
 ---
 
-## 8. The cumulative-deviation integral: specified, not computed
-
-**Status.** Earlier versions of this paper were titled around a cumulative-deviation integral in the spirit of allostatic load (McEwen and Stellar 1993). That integral is specified. It is not computed by any production code path, no production code evaluates it against a threshold, and no decision in the system is driven by it. A function that computes it exists in the embodied agent's code base, documented there as a research diagnostic, with unit tests and no caller outside them (checked against the repository's main branch on 2026-10-02). It is computable on demand over recorded telemetry. It is not deployed as a control signal.
-
-**Specification.** For the embodied agent, a four-component anima vector a = (warmth, clarity, stability, presence) is computed from sensors and system metrics, and the specified quantity is
-
-$$V_{\text{anima}}(t) = \int_0^t \lVert \mathbf{a}(\tau) - \boldsymbol{\mu_a} \rVert\, d\tau$$
-
-with $\mu_a$ the attractor center from the agent's own recent state distribution. The companion framework specifies a coupling (when V_anima exceeds a deployer-set multiple of the basin scale, induce rest, reduce stimulation or pause a task) that is not wired. The anima vector is a different object from the EISV vector of §2, and the signed V coordinate of EISV is a third thing.
-
-**The analogy and its limits.** Allostatic load is the cumulative cost of regulating a system away from its operating point (McEwen and Stellar 1993; Sterling 2012). In clinical practice it is reconstructed from sparse biomarker panels (Seeman et al. 1997). In the deployed system the integrand could be recorded at every check-in, so the integral could in principle be approximated by numerical integration over those check-ins rather than reconstructed from sparse panels, and that observability is the only point of the analogy I think holds. The deployed quantity is single-system, its reference is measured in a calibration window rather than set anticipatorily, and there is no body. At best it corresponds to a single-biomarker integral, not to clinical allostatic load.
-
-**What would earn it.** Wire the coupling, then show that acting on the integral improves decisions over non-integral baselines such as instantaneous deviation. That is untested, not refuted. A measurement problem applies before any wiring. §§4.2 and 5 show the fleet moving away from frozen anchors, and an integral accumulated against an anchor that no longer describes the agent would accumulate that gap. Transition-aware calibration is not implemented.
-
----
-
-## 9. Limitations and what would change the picture
+## 7. Limitations and what would change the picture
 
 **One fleet, one operator.** The data come from a single deployment, and over half the rows in the replay are one embodied agent. Class-level differences rest on a small number of distinct sources. An independent re-measurement on another deployment would be the stronger bar.
 
@@ -270,18 +232,15 @@ with $\mu_a$ the attractor center from the agent's own recent state distribution
 
 **Anchor staleness.** The replay's rate depends on how far the state distribution has moved from frozen anchors (§4.2). Any deployment of class-conditional calibration would need a recalibration policy, which this paper does not test.
 
-**What would change my mind.**
-- If the 2026-12-01 read passes on its own pre-registered terms, outcome forecasting moves from unresolved to a positive finding about rework prediction, with the label-class bound intact. If it fails, outcome grounding closes for this label channel, and reopening needs a new label channel or measurement process, not more labels.
-- If an independent deployment shows a legacy-style score that does reach its thresholds and does track within-class distance, the §3 result is specific to this system's demoted coordinate.
-- If the integral is wired and a non-integral baseline matches it on decisions, the cumulative-deviation framing earns nothing beyond the analogy.
+**What would change the picture.** If the 2026-12-01 read passes on its own pre-registered terms, outcome forecasting moves from unresolved to a positive finding about rework prediction, with the label-class bound intact. If it fails, outcome grounding closes for this label channel, and reopening needs a new label channel or measurement process, not more labels. If an independent deployment shows a legacy-style score that reaches its thresholds and tracks within-class distance, the §3 result is specific to this system's demoted coordinate.
 
 ---
 
-## 10. Conclusion
+## 8. Conclusion
 
-The deployed coherence score was flat within a band from 0.447 to 0.499 (1st to 99th percentile). It never reached the 0.40 low-basin threshold and almost always cleared the 0.45 high-basin threshold, so it almost never decided a basin. It carried some class information, but within each class it did not consistently track distance from that class's healthy point. Replacing it moves many recomputed basin labels downward in an offline replay, and the rate of that movement depends heavily on how far the fleet has moved from the frozen class anchors. That shows the old score was inert where it mattered. It does not show the new labels are right.
+The deployed coherence score was flat within a band from 0.447 to 0.499 (1st to 99th percentile). It never reached the 0.40 low-basin threshold and almost always cleared the 0.45 high-basin threshold, so it almost never decided a basin. It carried some class information, but within each class it did not consistently track distance from that class's healthy point. Replacing it moves many recomputed basin labels downward in an offline replay, and the rate of that movement depends heavily on how far the fleet has moved from the frozen class anchors. That shows the old score was inert where it mattered.
 
-The neighbouring claims stand as follows. A single-agent case that looked like a failure mode from the allostatic-load literature is consistent with a calibration anchor whose window closed a day after a shift in recorded state, though a persistent shift in the agent is not excluded, an instrument change is not excluded either, and the cause is open. Outcome forecasting is unresolved, pending one pre-registered read. The genesis-anchored lineage check does not discriminate as instrumented. The cumulative-deviation integral is specified and not computed in production.
+The single-agent case is consistent with a calibration anchor whose window closed a day after a shift in recorded state, but neither a persistent shift in the agent nor an instrument change is excluded. Of the adjacent questions in §6, outcome forecasting is unresolved, the lineage check does not discriminate, and the integral is not computed in production.
 
 The practical lesson is about instruments. A scalar that looks like a health score on a dashboard can sit where its thresholds never touch it, and the way to find out is to measure its spread against the thresholds and against the thing it is supposed to distinguish. The next step is an outcome-graded test of any replacement, with a recalibration policy and a label source wider than task failures, before calling it a measurement of anything.
 
@@ -296,7 +255,7 @@ The practical lesson is about instruments. A scalar that looks like a health sco
 | Window decomposition (§4.2) | **Recomputable offline** | `flatness_and_windows.py`, matching stored values with multiplicity: a multiset count, not a row-level join (no row identifiers exist) | Row identifiers; timestamps |
 | Formula-versus-calibration ablation (§4.3) | Provenance-backed only | Recorded output in `formula_calibration_ablation_results.txt` | Needs a per-row `regime` column absent from the export; the production window is no longer retained |
 | Lumen recalibration case (§5) | Provenance-backed only | 86-minute protocol, recalibration criterion, reported recalibration values and reported summaries of the weekly bins, as recorded in this repository on the day of measurement (commits ebbe7d3 and f03cfc6, 2026-05-09); merge times of the 2026-04-17 pull requests (GitHub) | The raw samples and the recalibration query output were not kept; state history for 2026-02 to 2026-04 aged out; CPU and memory series, deploy times and restart times for 2026-04-17 not retained |
-| Cumulative-deviation integral (§8) | Specified; function exists as an uncalled research diagnostic | `compute_void_integral` and its tests in the embodied agent's repository | Any production use |
+| Cumulative-deviation integral (§6) | Specified; function exists as an uncalled research diagnostic | `compute_void_integral` and its tests in the embodied agent's repository | Any production use |
 | Outcome forecasting (§6) | Unresolved | Ontology contract item 4 and the pre-registered stop rule | The 2026-12-01 read |
 | Row-level export | **Public**, Zenodo data DOI 10.5281/zenodo.19705151, mirrored here, SHA-256 pinned in `reproduce_basinflip.py` | 13,292 and 16,879 class-pseudonymized rows with state, risk, both coherences, both recomputed basin labels | Nothing for §3 and §4.2 |
 | Raw production relation | Withheld and no longer retained | Schema and provenance | Unavailable in principle |
@@ -306,8 +265,8 @@ Both scripts are in `analysis/phase-2-2026-04-18/` and use the standard library 
 ## Appendix B: Corrections to v1.2
 
 - v1.2 called outcome forecasting "measured and negative". That claim was withdrawn on 2026-08-26 (§6). The question is unresolved.
-- v1.2 said in one place that the genesis signature is "captured trivially" and in another that Lumen's was not persisted. §7.2 states what is stored, when it can be reseeded, and that Lumen has none.
-- v1.2's title named a cumulative-deviation integral that is not computed in production (§8).
+- v1.2 said in one place that the genesis signature is "captured trivially" and in another that Lumen's was not persisted. §6 states what is stored, when it can be reseeded, and that Lumen has none.
+- v1.2's title named a cumulative-deviation integral that is not computed in production (§6).
 - v1.2 described the two public windows as roughly 87% overlapping in rows and read the change in flip rate between them as window sensitivity. The row overlap is 91.6% of the first window and 72.1% of the second, and the change is a deterministic composition effect (§4.2).
 - v1.2 described the Phase 2 procedure as means over sessions with no pause or reject verdict. The calibration script selects rows by regime label and uses medians (§2.1). The May recalibration was recorded under the v1.2 description, so its comparability is uncertain (§5.2).
 - v1.2 read the Lumen anchor as averaging across a regime change. About 96.7% of its window's duration predates the change, so the shift came in the window's last day; the share of the anchor's rows from each regime is not recoverable (§5.2).
@@ -332,10 +291,6 @@ McEwen, B. S. (2007). Physiology and neurobiology of stress and adaptation: cent
 McEwen, B. S., and Stellar, E. (1993). Stress and the individual: mechanisms leading to disease. *Archives of Internal Medicine* 153(18): 2093–2101.
 
 Proske, U., and Gandevia, S. C. (2012). The proprioceptive senses: their roles in signaling body shape, body position and movement, and muscle force. *Physiological Reviews* 92(4): 1651–1697.
-
-Seeman, T. E., Singer, B. H., Rowe, J. W., Horwitz, R. I., and McEwen, B. S. (1997). Price of adaptation — allostatic load and its health consequences: MacArthur studies of successful aging. *Archives of Internal Medicine* 157(19): 2259–2268.
-
-Sterling, P. (2012). Allostasis: a model of predictive regulation. *Physiology & Behavior* 106(1): 5–15.
 
 Wang, K. (2026a). UNITARES: Information-theoretic governance of heterogeneous agent fleets. Published April 20, 2026. *Zenodo*. https://doi.org/10.5281/zenodo.19647159 (concept DOI; v6.9.1 https://doi.org/10.5281/zenodo.19722512, April 24, 2026).
 
