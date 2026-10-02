@@ -220,9 +220,9 @@ def main():
     print(f"  window ending 2026-04-23   {flips2 / n2:.1%}   (N={n2:,})")
     print(f"  difference {abs(flips2 / n2 - flips / n) * 100:.1f} percentage points.")
     print("  Labels are a deterministic function of each stored row and the frozen")
-    print("  constants, so this is composition, not sampling variance: a row present in")
-    print("  both windows flips the same way in both. flatness_and_windows.py decomposes")
-    print("  the difference by exact count (paper §4.2, Appendix B).")
+    print("  constants, so this is composition, not sampling variance: stored values")
+    print("  present in both windows flip the same way in both. flatness_and_windows.py decomposes")
+    print("  the difference by matching stored values (paper §4.2, Appendix B).")
     print("\n" + "=" * 74)
     return 0
 

@@ -72,27 +72,33 @@ and Appendix A rather than offering a check that cannot be performed.
 
 The export carries 13,292 rows against the paper's 13,310. The export was taken by a
 separate run of the counterfactual against a rolling window anchored in wall-clock
-time, so the two pulls differ by a few seconds of row arrivals. This is the source of
-the 28.9% / 28.8% difference, and it is the whole difference: per-class rates agree
-within 0.6 percentage points.
+time. The two pulls differ by more than arrivals. By class, against the original pull
+(`formula_calibration_ablation_results.txt`), the export has Lumen −1, Sentinel −6,
+Vigil −1, Watcher −9, default +41, and none of the 42 `ephemeral` rows: 59 rows fewer
+and 41 more. The ephemeral −42 and default +41 suggest those agents were reclassified
+between the two runs; that is not verified. This is the source of the 28.9% / 28.8%
+difference, and per-class rates agree within 0.6 percentage points.
 
-The export also carries five classes, not six. The 42 `ephemeral` rows in the original
-pull (`formula_calibration_ablation_results.txt`) have no counterpart here; they had no frozen Phase 2 envelope, fell through
-the fleet fallback, flipped zero times, and are not interpreted in the paper either.
+The export therefore carries five classes, not six. The 42 `ephemeral` rows had no
+frozen Phase 2 envelope, fell through to the fleet fallback, flipped zero times, and
+are not interpreted in the paper either.
 
 ## The second window
 
 The two windows end on 2026-04-18 and 2026-04-23, four to five days apart, and give
 **28.8%** and **44.3%**. The export carries no timestamps or row identifiers, so rows
-are matched on their stored values: 12,177 rows appear in both windows, 91.6% of the
-first and 72.1% of the second. That is an exact count, not a row-by-row join, because
-851 first-window rows share every stored value with another row; rows with identical
-stored values carry identical labels, so the counts are unaffected.
+are matched on their stored values, counted with multiplicity: 12,177 value tuples
+occur in both windows, 91.6% of the first and 72.1% of the second. That is a multiset
+intersection, not a row-by-row join: the first window has 377 groups of rows that share
+every stored value, holding 1,228 rows. Rows with identical stored values carry
+identical labels, so the counts are unaffected, but the match does not establish that
+two windows contain the same observation.
 
-Basin labels are a deterministic function of a stored row and the frozen constants,
-so the difference is composition, not sampling variance. Rows in both windows flip at
+Basin labels are a deterministic function of the stored values and the frozen
+constants, so the difference is composition, not sampling variance. Flip rates below
+use the labels stored in the export. Rows in both windows flip at
 30.3%, first-window-only rows at 13.1%, and second-window-only rows (inferred to be
-recorded after 2026-04-18) at 80.6%. The flip rate therefore measures how far the state
+recorded after 2026-04-18) at 80.6%. The flip rate therefore tracks how far the state
 distribution has moved from the frozen anchors (paper §4.2 and Appendix B). Run
 `flatness_and_windows.py` for the full decomposition. The 2026-04-18 window is reported
 because it is the one the v6 measurement was taken on.

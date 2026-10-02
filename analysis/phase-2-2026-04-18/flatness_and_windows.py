@@ -7,14 +7,15 @@ does not already print.
 
     python3 flatness_and_windows.py
 
-The window decomposition matches rows across the two exports on the full
-stored tuple (class, E, I, S, V, risk, c_legacy). The exports carry no row
+The window decomposition matches the two exports on the full stored tuple
+(class, E, I, S, V, risk, c_legacy), counted with multiplicity: a multiset
+intersection of stored values, not a row-by-row join. The exports carry no row
 identifiers or timestamps, and some rows share every stored value with another
-row, so the decomposition is an exact count, not a row-by-row join. Rows with
-identical stored values carry identical labels, so the counts are unaffected.
-Basin labels are a deterministic function of a stored row and the frozen
-Phase 2 constants, so a row present in both windows carries the same flip
-label in both.
+row. Rows with identical stored values carry identical labels, so the counts
+are unaffected. Basin labels are a deterministic function of the stored values
+and the frozen Phase 2 constants, so a value tuple present in both windows
+carries the same flip label in both. Flip rates in the decomposition use the
+labels stored in the export.
 """
 import csv
 import math
@@ -34,6 +35,11 @@ HEALTHY_POINT = {
     "Watcher": (0.7482, 0.7686, 0.2477),
 }
 NUMERIC = ("E", "I", "S", "V", "risk", "c_legacy", "c_grounded")
+
+# Basin thresholds (paper §2.1); identical to reproduce_basinflip.py.
+LOW_I_CEIL, LOW_COHERENCE_CEIL, LOW_V_ABS_FLOOR, LOW_RISK_FLOOR = 0.5, 0.40, 0.30, 0.70
+HIGH_E_MIN, HIGH_I_MIN, HIGH_S_MAX = 0.6, 0.7, 0.25
+HIGH_V_ABS_MAX, HIGH_COHERENCE_MIN, HIGH_RISK_MAX = 0.15, 0.45, 0.45
 
 
 def load(name):
@@ -95,6 +101,18 @@ def auc(a, b):
     return (ra - len(a) * (len(a) + 1) / 2) / (len(a) * len(b))
 
 
+def classify_basin(e, i, s, v, coherence, risk):
+    """LOW is disjunctive, HIGH is conjunctive, BOUNDARY is the complement."""
+    if i < LOW_I_CEIL or coherence < LOW_COHERENCE_CEIL \
+            or abs(v) > LOW_V_ABS_FLOOR or risk >= LOW_RISK_FLOOR:
+        return "low"
+    if e >= HIGH_E_MIN and i >= HIGH_I_MIN and s <= HIGH_S_MAX \
+            and abs(v) <= HIGH_V_ABS_MAX and coherence >= HIGH_COHERENCE_MIN \
+            and risk <= HIGH_RISK_MAX:
+        return "high"
+    return "boundary"
+
+
 def by_class(rows):
     out = defaultdict(list)
     for r in rows:
@@ -121,9 +139,13 @@ def flatness(name, rows):
     rv = pearson(v, ei)
     print(f"  V ~ (E - I): r {rv:.3f}  R^2 {rv * rv:.3f}  sd(V) {sd(v):.4f}  sd(V - (E - I)) {sd([a - b for a, b in zip(v, ei)]):.4f}")
     print(f"  r(legacy, V) {pearson(cl, v):.3f}")
+    gate = sum(classify_basin(r["E"], r["I"], r["S"], r["V"], r["c_legacy"], r["risk"])
+               != classify_basin(r["E"], r["I"], r["S"], r["V"], 1.0, r["risk"]) for r in rows)
+    print(f"  basins changed by setting coherence to 1 (its clauses always pass): {gate} of {n:,} ({gate / n:.3%})")
 
     print("  per class: n, legacy p50 / sd, grounded p50 / sd, flip rate, "
           "Spearman(legacy, distance to own healthy point), legacy p50 far (C_g < 0.1) / near (C_g > 0.8)")
+    print("  (flip rates here use the labels stored in the export; reproduce_basinflip.py recomputes them)")
     classes = by_class(rows)
     for c, rs in classes.items():
         a = [r["c_legacy"] for r in rs]
@@ -150,7 +172,7 @@ def flatness(name, rows):
 def decompose(w1, w2):
     key = lambda r: (r["class"], r["E"], r["I"], r["S"], r["V"], r["risk"], r["c_legacy"])
     remaining = Counter(map(key, w1))
-    dup_w1 = sum(v - 1 for v in remaining.values() if v > 1)
+    dup_groups = [v for v in remaining.values() if v > 1]
     shared = defaultdict(lambda: [0, 0])
     new = defaultdict(lambda: [0, 0])
     new_below = Counter()
@@ -180,8 +202,9 @@ def decompose(w1, w2):
 
     sn, sf = tot(shared)
     nn, nf = tot(new)
-    print("\n== Window decomposition (exact count on stored values)")
-    print(f"  first-window rows sharing every stored value with another row: {dup_w1:,}")
+    print("\n== Window decomposition (multiset match on stored values; stored labels)")
+    print(f"  first-window duplicate value groups: {len(dup_groups):,}, holding {sum(dup_groups):,} rows "
+          f"({sum(v - 1 for v in dup_groups):,} beyond the first in each group)")
     print(f"  rows in both windows: {sn:,} = {sn / len(w1):.1%} of the first window, {sn / len(w2):.1%} of the second")
     print(f"  first-window rows absent from the second: {dropped[0]:,}, flip {dropped[1] / dropped[0]:.1%}")
     print(f"  rows in both windows:                     {sn:,}, flip {sf / sn:.1%}")
