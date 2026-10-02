@@ -53,7 +53,7 @@ Each check-in writes a state vector (E, I, S, V) to a database relation. E is an
 
 $$C_{\text{legacy}} = 0.5\,\bigl(1 + \tanh(V_{\text{void}} / V_{\text{scale}})\bigr)$$
 
-with one fleet-wide $V_{\text{scale}}$, where $V_{\text{void}}$ is the demoted accumulator-style coordinate. It reads that one coordinate only.
+with one fleet-wide $V_{\text{scale}} = 1$, where $V_{\text{void}}$ is the demoted accumulator-style coordinate. (The code writes the scale as a gain, $C_1 = 1.0$, and multiplies by a ceiling $C_{\max} = 1$; both values are the same in the source on 2026-03-11 and on 2026-04-24, either side of the first window.) It reads that one coordinate only. The replay uses the stored legacy score and does not recompute it.
 
 **The grounded coherence score.** The replacement reads (E, I, S) and measures distance to a class-specific healthy point $\mu_c$, scaled by a class-specific envelope $\Delta_{\max,c}$:
 
@@ -65,7 +65,7 @@ The class constants come from a 30-day healthy slice (sessions with no pause or 
 
 ### 2.2 Classes
 
-Agents carry a class from identity tags and an optional label. Five classes received frozen constants: Lumen (an embodied agent on a Raspberry Pi with environmental sensors), Sentinel, Vigil, Watcher (autonomous services), and a default class. Other agents fall through to a fleet fallback. The class constants, from the Phase 2 calibration (Wang 2026a §11.5):
+Class assignment checks the agent's label first: a named resident is its own class. Otherwise a tag decides (embodied, ephemeral, or persistent and autonomous), and an agent with none of these is in the default class, which the code describes as session-bounded agents and anything unrecognized. Five classes received frozen constants: Lumen (an embodied agent on a Raspberry Pi with environmental sensors), Sentinel, Vigil, Watcher (autonomous services), and default. A class without frozen constants falls through to a fleet fallback (the corner of the high basin, E = 0.6, I = 0.7, S = 0, with an envelope of 1.8); in the original pull only 42 `ephemeral` rows did (§4.2). The class constants, from the Phase 2 calibration (Wang 2026a §11.5):
 
 | Class | Healthy N | $E_h$ | $I_h$ | $S_h$ | $\Delta_{\max}$ |
 |---|---|---|---|---|---|
