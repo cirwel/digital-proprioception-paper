@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 # Build the distribution PDF from paper.md.
 #
-# U+2194 (<->) has no glyph in Latin Modern; map it to math-mode
-# \leftrightarrow before typesetting. The build then asserts ZERO
-# "could not represent" warnings: a dropped glyph is silent, still
-# produces a PDF, and ends up as a misspelled word in the published
-# record — assert the count, never eyeball it.
+# U+2194 (<->) and U+03C1 (rho, prose only) have no glyph in Latin
+# Modern; map them to math mode before typesetting. The build then
+# asserts ZERO "could not represent" warnings: a dropped glyph is
+# silent, still produces a PDF, and ends up as a misspelled word in
+# the published record — assert the count, never eyeball it.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
 tmp="$(mktemp -t paper-build).md"
-sed 's/↔/$\\leftrightarrow$/g' paper.md > "$tmp"
+sed -e 's/↔/$\\leftrightarrow$/g' -e 's/ρ/$\\rho$/g' paper.md > "$tmp"
 
 log=$(pandoc "$tmp" -o digital-proprioception.pdf \
   --pdf-engine=tectonic --from=markdown+tex_math_dollars+raw_html \

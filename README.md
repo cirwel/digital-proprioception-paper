@@ -1,38 +1,35 @@
-# Digital Proprioception and Allostatic Load
+# A Flat Coherence Score: What a Production-Data Replay Does and Does Not Show About Agent Self-State Gating
 
-A deployed synthetic-system report on the cumulative-deviation hypothesis and its limits as an allostatic-load analogue.
+Notes toward digital proprioception.
 
-**Author:** Kenny Wang (Independent Researcher, CIRWEL Systems) — ORCID [0009-0006-7544-2374](https://orcid.org/0009-0006-7544-2374)
-**Status:** v1.1 — reproducibility rebuilt on the public row-level export; retention limits disclosed
+**Author:** Kenny Wang (Independent Researcher, CIRWEL Systems) — ORCID [0009-0006-7544-2374](https://orcid.org/0009-0006-7544-2374)  
+**Status:** v2.0 (2026-10-02). A short-form rewrite that replaces the 27,800-word v1.2; corrections are listed in the paper's Appendix B.  
 **License:** [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)
 
-> **Plain-language summary.** Biologists have a long-standing concept called *allostatic load* — the accumulated cost an adaptive system pays for staying regulated away from its operating point. It's been theoretically useful for thirty years but hard to measure as a real-time control signal in living systems. This paper reports that a deployed AI-agent observability framework (UNITARES, in production since November 2025) records a structural analogue of allostatic load end-to-end — every ingredient of the integral is captured at each check-in — with the automatic intervention loop on it specified but not yet wired. The contribution is *structural and informational*, not biological: it tests whether the mathematical core of allostatic load survives outside its original substrate. A Lumen case study (an embodied AI agent on a Raspberry Pi) shows the framework catching a substrate-induced behavioral shift that a stale calibration anchor initially misclassified.
+> **Plain-language summary.** A multi-agent system I run gives every agent check-in a "coherence" score and uses it to sort agent states into high, boundary and low basins. On 13,292 production rows that score sat in a band too narrow to reach its own thresholds, so it almost never decided a basin. Replacing it with a score measured against each agent class's own healthy point changes about 29% of the recomputed labels, largely because the reference points had gone stale. The paper shows the old score was inert at its thresholds. It does not show that the new labels are right, and whether any of this forecasts bad outcomes is unresolved.
 
 ## Abstract
 
-Allostatic load (McEwen and Stellar 1993) — the time-integrated cost of regulating an adaptive system away from its operating point — has been an influential theoretical construct in physiology and psychiatry for thirty years. Its mathematical core has remained, in clinical practice, difficult to test as a real-time control signal. This paper presents UNITARES, a governance framework for heterogeneous AI agent fleets in production since November 2025, as a deployed structural analogue for the mathematical core of allostatic load on a four-dimensional informational manifold. The Anima Void Integral $V_{\text{anima}}$ has its integrand recorded at every check-in, making the integral computable end-to-end over any window; its coupling to intervention is specified by the companion trajectory-identity framework but not yet wired in production. It is a control-signal analogue, not a biological or clinical allostatic-load measure.
+A running multi-agent system I operate computes a scalar "coherence" for every agent check-in and uses it, among other inputs, to place each state in one of three basins (high, boundary, low). On a 30-day production slice of 13,292 rows, the deployed score was flat within a narrow band: its 1st to 99th percentile range was 0.447 to 0.499. It never reached the 0.40 threshold below which it could push a state into the low basin, and it cleared the 0.45 high-basin threshold for 98.7% of rows, so it almost never decided a basin. The score is not empty. It carries some class information (its distributions for two classes separate with an AUC of 0.88), and it correlates r = 0.73 with a smoothed energy-integrity imbalance. But within each class, its association with distance from that class's own healthy operating point was weak and went both ways: Spearman ρ from -0.37 to +0.18 across classes, with the wrong sign in two of five, and in three of five in a later window.
 
-The paper makes four bounded contributions: $V_{\text{anima}}$ as a deployed cumulative-deviation control-signal analogue; class-conditional calibration as a quantified anti-homogenization intervention, now bounded by a same-row formula-vs-calibration ablation; McEwen's Four Types as an imported but non-exhaustive failure-mode taxonomy; and a synthetic-psychology stance for generating and stress-testing informational hypotheses about adaptive systems. A Lumen case study that initially appeared Type-3-like under a stale calibration anchor is resolved by recalibration as a candidate substrate-associated basin transition. That case is provenance-backed single-agent case-report evidence for the transition's date, magnitude, and shape, and anomaly-grade for substrate causality pending artifact release, independent audit, or replication.
+I replaced the score with a class-conditional "grounded" form on the same rows and recomputed every basin under both forms. The grounded form spans 0 to 0.995, and on the full substitution every row whose recomputed basin changes moves downward (§4). The replay is an offline counterfactual on frozen data. It shows that the old score was inert at its decision thresholds. It does not show that the new labels are right, and no outcome, harm or operator judgment was used to grade either form. The rate of label change rose from 28.8% to 44.3% between two public windows whose end dates are four to five days apart. That rise is not noise. Rows whose stored values occur in both windows flip at 30.3%, and rows that appear only in the later window, inferred to be recorded after 2026-04-18, flip at 80.6%. The flip rate therefore depends on how far the state distribution has moved from the frozen class anchors; it is not a fixed property of the formula swap.
+
+Three adjacent results bound the claim. Whether per-agent state forecasts bad outcomes is unresolved, pending one pre-registered read (§6). A genesis-anchored lineage check meant to catch slow drift does not discriminate as instrumented (§7). The cumulative-deviation integral that motivated earlier versions of this paper is specified but not computed by any production code path (§8). A single-agent case study tests an apparent "delayed shut-down" reading: the April anchor's calibration window ended a day after a shift in the agent's operating point, and recalibration moves toward the current state, as staleness predicts. That result does not by itself exclude a persistent shift, and the cause is open (§5).
 
 ## Read
 
-- **[paper.md](paper.md)** — the paper (v1.1)
-- **[references.bib](references.bib)** — bibliography stub (canonical list lives in `paper.md` § References for now)
-- **[CITATION.cff](CITATION.cff)** — citation metadata
-- **[.zenodo.json](.zenodo.json)** — Zenodo deposit metadata
+- **[paper.md](paper.md)**: the paper (v2.0)
+- **[digital-proprioception.pdf](digital-proprioception.pdf)**: the distribution PDF
+- **[CITATION.cff](CITATION.cff)**: citation metadata
+- **[.zenodo.json](.zenodo.json)**: Zenodo deposit metadata
+- Earlier versions, including the long-form v1.2, stay available as tags and under the Zenodo concept DOI.
 
 ## Companion artefacts
 
 - **UNITARES governance MCP** — [CIRWEL/unitares](https://github.com/CIRWEL/unitares); paper at [CIRWEL/unitares-paper-v6](https://github.com/CIRWEL/unitares-paper-v6) (Zenodo concept [10.5281/zenodo.19647159](https://doi.org/10.5281/zenodo.19647159))
-- **Trajectory identity framework (TIWD)** — Wang 2026b, Zenodo concept [10.5281/zenodo.20098168](https://doi.org/10.5281/zenodo.20098168) (v0.15); source [cirwel/trajectory-identity-paper](https://github.com/cirwel/trajectory-identity-paper)
+- **Trajectory identity framework (TIWD)** — Wang 2026b, Zenodo concept [10.5281/zenodo.20098168](https://doi.org/10.5281/zenodo.20098168); source [cirwel/trajectory-identity-paper](https://github.com/cirwel/trajectory-identity-paper)
 - **EISV-Lumen benchmark** — [CIRWEL/eisv-lumen](https://github.com/CIRWEL/eisv-lumen); dataset [hikewa/unitares-eisv-trajectories](https://huggingface.co/datasets/hikewa/unitares-eisv-trajectories) (revision pinned: `aeb47055ee5f27cb93124e4e3df065301ada6909`, 2026-05-09)
 - **Anima/Lumen substrate** — [CIRWEL/anima-mcp](https://github.com/CIRWEL/anima-mcp)
-
-## Status of empirical claims
-
-The paper contains substantial empirical content where biological theory supplies an analogy or vocabulary (basin-flip rate, envelope spread, and an apparent Type-3-like case resolved by recalibration as a basin transition) and substantial argument elsewhere (the bridge claims and methodological proposals). §1.3 gives an evidence-grade / falsifier table; §9.2 lays out the show-vs-argue balance; the appendix separates pipeline reproducibility, production-number verification, and independent validation. Reviewers should evaluate each contribution at its appropriate level of evidence.
-
-The 28.9% basin-flip rate (§3.4) is inherited from Wang 2026a §11.6 and now has a same-row ablation in `analysis/phase-2-2026-04-18/`: production legacy → grounded fleet-wide flips 11.2%, grounded fleet-wide → grounded class-conditional flips 23.5%, and the full substitution remains 28.9%. The Lumen recalibration case study (§5.3) is original to this paper: an 86-minute window initially resembling Type 3 under the stale Phase 2 anchor, then reclassified by post-event recalibration as calibration staleness after a 2026-04-17 basin transition. The transition is case-report evidence for date, magnitude, and shape, and anomaly-grade for substrate causality pending multi-agent or multi-revision replication.
 
 ## Reproducing the headline
 
@@ -42,7 +39,7 @@ python3 analysis/phase-2-2026-04-18/reproduce_basinflip.py
 
 Standard library only — no database, no network, no third-party packages. It runs against the frozen, de-identified row-level export (13,292 rows, archived under Zenodo data DOI [10.5281/zenodo.19705151](https://doi.org/10.5281/zenodo.19705151), mirrored here with its SHA-256 pinned), recomputes the grounded coherence and both basin labels from the published state coordinates and the published Phase 2 constants, and counts the flip rate from the recomputed labels. It returns **28.84%** against the 28.9% reported, with 26,574 of 26,584 basin labels reproducing exactly.
 
-Two limits are disclosed rather than papered over. The production database no longer retains the measurement window — `core.agent_state` holds 490 rows where the original pull returned 13,310 — so the export is the surviving record and a private audit of the production rows is not available. And the flip rate is window-sensitive: the same measurement four days later gives 44.3%. See [`analysis/phase-2-2026-04-18/REPRO.md`](analysis/phase-2-2026-04-18/REPRO.md).
+Two limits are disclosed. The production database no longer retains the measurement window, so the export is the surviving record and a private audit of the production rows is not available. And a second public window gives 44.3% instead of 28.8%: that difference is a deterministic composition effect, which `flatness_and_windows.py` decomposes by exact count (paper §4.2). See [`analysis/phase-2-2026-04-18/REPRO.md`](analysis/phase-2-2026-04-18/REPRO.md).
 
 ## Citation
 

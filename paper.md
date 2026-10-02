@@ -4,7 +4,7 @@
 
 **Author:** Kenny Wang, Independent Researcher
 **ORCID:** 0009-0006-7544-2374
-**Status:** Short-form rewrite of v1.2 (DRAFT, unreleased). It replaces the 27,800-word v1.2 and has not been tagged or deposited. Corrections to v1.2 are listed in Appendix B.
+**Version:** v2.0, 2026-10-02. A short-form rewrite that replaces the 27,800-word v1.2; corrections to v1.2 are listed in Appendix B.
 
 ---
 
