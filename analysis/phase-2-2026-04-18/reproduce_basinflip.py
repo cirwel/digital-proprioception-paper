@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproduce the basin-flip result (paper §3.4, §3.7) from the frozen public export.
+"""Reproduce the basin-flip result (paper §4.2) from the frozen public export.
 
 Standard library only. No database, no network, no third-party packages.
 
@@ -7,7 +7,8 @@ Standard library only. No database, no network, no third-party packages.
 
 What this checks
 ----------------
-The paper reports a 28.9% basin-flip rate on a 30-day production window. The
+The paper reports a 28.8% basin-flip rate on this export of a 30-day production
+window (28.9% on the original 13,310-row pull). The
 production database no longer retains that window (see REPRO.md), so the record
 is the frozen, de-identified row-level export archived under Zenodo data DOI
 10.5281/zenodo.19705151. This script does not merely re-count the export's
@@ -51,7 +52,7 @@ EXPECTED_SHA256 = {
     COMPARISON.name: "98ad81c26a0aac572fff92d4126c3fbfa4a4a71d0b1366f08701018ec53ca424",
 }
 
-# Phase 2 measured constants, frozen at v6.8 submission (paper §3.3).
+# Phase 2 measured constants, frozen at v6.8 submission (paper §2.2).
 # Source of truth: unitares config/governance_config.py, replicated in
 # cirwel/unitares-repro-v6 scripts/verdict_counterfactual.py.
 HEALTHY_POINT = {
@@ -71,7 +72,7 @@ DELTA_NORM_MAX = {
 FLEET_HEALTHY_POINT = (0.6, 0.7, 0.0)
 FLEET_DELTA_NORM_MAX = 1.8
 
-# Basin thresholds (paper §3.7). Mirrors config.governance_config.classify_basin.
+# Basin thresholds (paper §2.1). Mirrors config.governance_config.classify_basin.
 LOW_I_CEIL, LOW_COHERENCE_CEIL, LOW_V_ABS_FLOOR, LOW_RISK_FLOOR = 0.5, 0.40, 0.30, 0.70
 HIGH_E_MIN, HIGH_I_MIN, HIGH_S_MAX = 0.6, 0.7, 0.25
 HIGH_V_ABS_MAX, HIGH_COHERENCE_MIN, HIGH_RISK_MAX = 0.15, 0.45, 0.45
@@ -157,14 +158,15 @@ def analyse(rows, recompute):
     return len(rows), flips, per_class, checks
 
 
-# Paper §3.4 Table, for side-by-side comparison.
-PAPER_TABLE = {"Lumen": (7890, 32.3), "default": (2316, 31.2), "Sentinel": (2227, 15.8),
+# Per-class rates from the original 13,310-row pull
+# (formula_calibration_ablation_results.txt), for side-by-side comparison.
+ORIGINAL_PULL = {"Lumen": (7890, 32.3), "default": (2316, 31.2), "Sentinel": (2227, 15.8),
                "Vigil": (472, 33.1), "Watcher": (363, 18.5)}
 
 
 def main():
     print("=" * 74)
-    print("BASIN-FLIP REPRODUCTION — paper §3.4 / §3.7")
+    print("BASIN-FLIP REPRODUCTION — paper §4.2")
     print("=" * 74)
     print("\nInput integrity (canonical archive: Zenodo 10.5281/zenodo.19705151):")
     if not all(verify_hash(p) for p in (SUBMISSION, COMPARISON)):
@@ -196,29 +198,31 @@ def main():
     print(f"  full substitution (legacy -> grounded class-conditional)")
     print(f"    {flips:,} / {n:,} = {flips / n:.2%}   "
           f"(Wilson 95% CI {lo:.1%}-{hi:.1%})")
-    print(f"    paper §3.4 reports 28.9% on N=13,310 production rows;")
+    print(f"    the original pull gave 28.9% on N=13,310 production rows (paper §4.2, §4.3);")
     print(f"    the export is 18 rows short of that pull (see REPRO.md).")
 
-    print("\n  per class (paper §3.4 in parentheses):")
+    print("\n  per class (original 13,310-row pull in parentheses):")
     for cls, (f, t) in sorted(per_class.items(), key=lambda kv: -kv[1][1]):
         clo, chi = wilson_ci(f, t)
-        ref = PAPER_TABLE.get(cls)
-        ref_s = f"   (paper N={ref[0]:,}, {ref[1]}%)" if ref else "   (not in paper table)"
+        ref = ORIGINAL_PULL.get(cls)
+        ref_s = f"   (pull N={ref[0]:,}, {ref[1]}%)" if ref else "   (not in the original pull)"
         print(f"    {cls:<10s} N={t:>6,}  flips={f:>5,}  {f / t:>6.1%} "
               f"[{clo:.1%}-{chi:.1%}]{ref_s}")
 
-    # Second window — the between-window variance the point estimate hides.
+    # Second window. Labels are deterministic in the stored row, so the difference
+    # between windows is composition (rows entering and leaving), not sampling variance.
     rows2 = load(COMPARISON)
     n2, flips2, _, _ = analyse(rows2, recompute=True)
     print("\n" + "-" * 74)
-    print("Between-window variance")
+    print("Second window")
     print("-" * 74)
     print(f"  window ending 2026-04-18   {flips / n:.1%}   (N={n:,})")
     print(f"  window ending 2026-04-23   {flips2 / n2:.1%}   (N={n2:,})")
-    print(f"  spread {abs(flips2 / n2 - flips / n) * 100:.1f} percentage points "
-          f"across a 4-day window shift with ~87% row overlap,")
-    print(f"  against a within-window sampling CI of ±{(hi - lo) / 2 * 100:.1f} pp.")
-    print("  The order of magnitude is the finding. The third digit is not.")
+    print(f"  difference {abs(flips2 / n2 - flips / n) * 100:.1f} percentage points.")
+    print("  Labels are a deterministic function of each stored row and the frozen")
+    print("  constants, so this is composition, not sampling variance: a row present in")
+    print("  both windows flips the same way in both. flatness_and_windows.py decomposes")
+    print("  the difference by exact count (paper §4.2, Appendix B).")
     print("\n" + "=" * 74)
     return 0
 

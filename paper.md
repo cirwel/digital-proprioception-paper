@@ -12,7 +12,7 @@
 
 A running multi-agent system I operate computes a scalar "coherence" for every agent check-in and uses it, among other inputs, to place each state in one of three basins (high, boundary, low). On a 30-day production slice of 13,292 rows, the deployed score was flat within a narrow band: its 1st to 99th percentile range was 0.447 to 0.499. It never reached the 0.40 threshold below which it could push a state into the low basin, and it cleared the 0.45 high-basin threshold for 98.7% of rows, so it almost never decided a basin. The score is not empty. It carries some class information (its distributions for two classes separate with an AUC of 0.88), and it correlates r = 0.73 with a smoothed energy-integrity imbalance. But within each class, its association with distance from that class's own healthy operating point was weak and went both ways: Spearman ρ from -0.37 to +0.18 across classes, with the wrong sign in two of five, and in three of five in a later window.
 
-I replaced the score with a class-conditional "grounded" form on the same rows and recomputed every basin under both forms. The grounded form spans 0 to 0.98, and on the full substitution every row whose recomputed basin changes moves downward (§4). The replay is an offline counterfactual on frozen data. It shows that the old score was inert at its decision thresholds. It does not show that the new labels are right, and no outcome, harm or operator judgment was used to grade either form. The rate of label change rose from 28.8% to 44.3% between two public windows four days apart. That rise is not noise. Rows present in both windows flip at 30.3%, and rows recorded after the first window closed flip at 80.6%. The flip rate therefore measures how stale the frozen class anchors had become, not a fixed property of the formula swap.
+I replaced the score with a class-conditional "grounded" form on the same rows and recomputed every basin under both forms. The grounded form spans 0 to 0.995, and on the full substitution every row whose recomputed basin changes moves downward (§4). The replay is an offline counterfactual on frozen data. It shows that the old score was inert at its decision thresholds. It does not show that the new labels are right, and no outcome, harm or operator judgment was used to grade either form. The rate of label change rose from 28.8% to 44.3% between two public windows whose end dates are four to five days apart. That rise is not noise. Rows present in both windows flip at 30.3%, and rows that appear only in the later window, inferred to be recorded after 2026-04-18, flip at 80.6%. The flip rate therefore measures how stale the frozen class anchors had become, not a fixed property of the formula swap.
 
 Three adjacent results bound the claim. Whether per-agent state forecasts bad outcomes is unresolved, pending one pre-registered read (§6). A genesis-anchored lineage check meant to catch slow drift does not discriminate as instrumented (§7). The cumulative-deviation integral that motivated earlier versions of this paper is specified but not computed by any production code path (§8). A single-agent case study resolves an apparent "delayed shut-down" reading as a stale calibration anchor: the April anchor was a pre-change anchor, and the agent's operating point moved after it was computed. The cause of that shift is left open (§5).
 
@@ -31,7 +31,7 @@ The question here is narrow. Did the deployed coherence score do the job it was 
 ### 1.2 Contributions
 
 1. **A measured negative about the deployed score (§3).** The legacy coherence score had an observed range of 0.068 on 13,292 rows. It could not reach the low-basin threshold, it almost always cleared the high-basin threshold, and within each class it did not consistently track distance from the class healthy point, although its distributions do differ between classes.
-2. **A reproducible replay with an exact window decomposition (§4).** Replacing the score changes recomputed basin labels for 28.8% of rows, always downward on the full substitution. The higher rate in a later window decomposes exactly into rows recorded after an operating-point shift, which flip at 74% to 100% in four of five classes. The export and scripts are public.
+2. **A reproducible replay with an exact window decomposition (§4).** Replacing the score changes recomputed basin labels for 28.8% of rows, always downward on the full substitution. The higher rate in a later window decomposes, by exact count, into rows recorded after 2026-04-18, which flip at 74% to 100% in four of five classes. The export and scripts are public.
 3. **A resolved calibration case (§5).** A single-agent case that looked like a failure mode from the allostatic-load literature was a pre-change calibration anchor made stale by a later shift. The cause of the shift remains open.
 4. **A status ledger (§§6 to 8).** Outcome forecasting is unresolved, not negative. The lineage check does not discriminate. The cumulative-deviation integral is specified and uncomputed.
 
@@ -102,7 +102,7 @@ The grounded score spans the unit interval. 6.8% of rows sit exactly at zero, 15
 
 ### 3.2 It did not track distance from the agent's own healthy point
 
-Narrow is not the same as empty. The legacy score correlates r = 0.73 with the surfaced V, and it carries some class information: the probability that a random row of one class scores above a random row of another (the AUC) ranges from 0.54 to 0.88 across class pairs, highest for Lumen against default. So the claim is not that the score carries no information. The claim is about the information it was supposed to carry.
+The legacy score correlates r = 0.73 with the surfaced V, and it carries some class information: the probability that a random row of one class scores above a random row of another (the AUC) ranges from 0.54 to 0.88 across class pairs, highest for Lumen against default.
 
 A working distance-from-healthy-point score should fall as a state moves away from its class's healthy point, within every class. The legacy score did not:
 
@@ -120,11 +120,9 @@ The association is weak and goes both ways: the wrong sign in two of five classe
 
 The result is a statement about the legacy instrument at its deployed thresholds: it could not reach one of them, it almost always cleared the other, and it did not consistently register distance from a class's healthy point.
 
-Three things it does not say.
-
 *It does not say the grounded score is informative.* A score that varies is not thereby correct. Part of the grounded score's spread is arithmetic: Lumen's envelope is 0.119, so a state displaced by 0.06 from the healthy point already scores 0.5. Dividing by a small radius widens the spread by construction. Whether the spread tracks anything an agent or operator would call strain is untested here.
 
-*It does not say why the legacy score is narrow.* The median legacy score in this window corresponds to a tanh argument of -0.037, close enough to zero that tanh is near its midpoint. I have not isolated why the demoted coordinate sat there, and did not need to for the claim above.
+*It does not say why the legacy score is narrow.* The median legacy score in this window corresponds to a tanh argument of -0.037, close enough to zero that tanh is near its midpoint. I have not isolated why the demoted coordinate sat there.
 
 *It does not generalize beyond this fleet.* The second public window gives a legacy median of 0.483 and a 1st to 99th percentile of 0.450 to 0.500, the same picture, but it shares 12,177 rows with the first and is not independent.
 
@@ -141,20 +139,20 @@ For every row, I compute the basin twice with the same `classify_basin` function
 On the public export of the first window, 28.8% of rows (3,834 of 13,292, counted from recomputed labels; the original 13,310-row pull gave 28.9%) would change recomputed basin when each class is measured against its own healthy point instead of the fleet-wide formula. Per-class rates range from 15.8% (Sentinel) to 33.5% (Vigil).
 
 - **The direction is downward.** In the full substitution, every flipping row moves toward the low basin: 1,702 boundary to low, 1,404 high to low and 725 high to boundary, counted from the labels stored in the export. No row moves up. This is mechanical. The legacy score cannot reach the C < 0.40 clause and the grounded score reaches it for more than a quarter of rows, so the replay mostly records how often a score that can cross a threshold does so, against one that cannot.
-- **The later window decomposes exactly.** The window ending 2026-04-23 gives 44.3%. Because recomputed labels are a deterministic function of a stored row and frozen constants, a row present in both windows flips the same way in both, and the difference is entirely composition:
+- **The later window decomposes by exact count.** The window ending 2026-04-23 gives 44.3%. Because recomputed labels are a deterministic function of a stored row and frozen constants, a row present in both windows flips the same way in both, and the difference is entirely composition. Rows are matched on their stored values. The export has no row identifiers, and 851 first-window rows share every stored value with another row, so the match is an exact count, not a row-by-row join. Rows with identical stored values carry identical labels, so the counts are unaffected. The export also has no timestamps, so the timing in the row labels below is inferred from window membership:
 
 | Rows | n | Flip rate |
 |---|---:|---:|
-| In the first window only (its first four days) | 1,115 | 13.1% |
+| In the first window only (inferred: its earliest rows) | 1,115 | 13.1% |
 | In both windows | 12,177 | 30.3% |
-| In the second window only (recorded after 2026-04-18) | 4,702 | 80.6% |
+| In the second window only (inferred: recorded after 2026-04-18) | 4,702 | 80.6% |
 | of which Lumen | 1,694 | 100.0% |
 | of which Sentinel | 1,023 | 96.1% |
 | of which Vigil | 173 | 96.0% |
 | of which default | 1,288 | 73.6% |
 | of which Watcher | 524 | 0.0% |
 
-  Rows recorded after the first window closed sit outside their frozen class envelopes almost without exception in three classes. The flip rate is therefore a measure of how far the current state distribution has moved from the anchors, which is to say of anchor staleness. A sampling interval (about $\pm$0.8 points within one window) does not describe this kind of movement. The first-window rate is a property of that window and those anchors, not of the formula swap in general. The second window also shows the row rate rising: 4,702 rows in the four days after 2026-04-18, against about 440 per day across the first window.
+  In three classes, rows recorded after 2026-04-18 flip almost without exception, and most of them fall below the 0.40 grounded threshold (Lumen 100%, Vigil 87%, Sentinel 70%). Far fewer lie outside the frozen envelope altogether, at C_grounded = 0 (16.6%, 12.1% and 3.1%). The flip rate is therefore a measure of how far the current state distribution has moved from the anchors, which is to say of anchor staleness. A sampling interval (about $\pm$0.8 points within one window) does not describe this kind of movement. The first-window rate is a property of that window and those anchors, not of the formula swap in general. The second window also shows the row rate rising: 4,702 rows between the two window ends, four to five days apart, against about 440 per day across the first window.
 - **Two measurement caveats from the original pull.** The 30-day window overlaps identity-system revisions in mid-to-late April 2026, so some rows may carry class assignments inherited from cached bindings or from archived predecessors. And 42 rows of an `ephemeral` class fell through to the fleet fallback and are not interpreted.
 
 ### 4.3 A same-row ablation, with a boundary
@@ -174,7 +172,7 @@ The calibration-change step is not uniformly downward: 373 rows in it move up (3
 
 ### 4.4 What the replay shows
 
-It shows that the formula and calibration choices matter at the basin level, and that the legacy score did not participate in that decision. It is recomputable by a third party from public rows and public scripts: `reproduce_basinflip.py` reproduces 26,574 of 26,584 basin labels exactly, with the ten exceptions within $6.7 \times 10^{-4}$ of a threshold, the rounding floor of a four-decimal export.
+It shows that the formula and calibration choices matter at the basin level, and that the legacy score almost never decided a basin. It is recomputable by a third party from public rows and public scripts: `reproduce_basinflip.py` reproduces 26,574 of 26,584 basin labels exactly, with the ten exceptions within $6.7 \times 10^{-4}$ of a threshold, the rounding floor of a four-decimal export.
 
 It does not show that any flip is correct. Under the current decision code, a recomputed flip into the low basin corresponds to a `pause`, and a flip from high to boundary to a `guide`. Whether that is desirable depends on the agent and the context, and no outcome grades it. The replay is evidence about the old score and is silent about the new one.
 
@@ -194,13 +192,13 @@ McEwen's four types of allostatic load (McEwen 1998; 2007) describe four ways th
 
 The reading predicts a test: if the healthy point moves toward Lumen's current state on recalibration, the elevation is calibration staleness, not a persistent failure. I recalibrated on the 30-day window ending 2026-05-09 (11,472 rows) with the Phase 2 procedure. The healthy point moved toward the current state on all three coordinates (I from 0.800 to 0.7335, E from 0.745 to 0.7706, S from 0.168 to 0.1893), and the envelope grew from 0.119 to 0.1279. By the criterion specified in advance, this is a stale anchor, not the failure mode.
 
-Weekly bins of Lumen's state over 90 days show three regimes, and sub-day resolution places the change at a single ten-hour event on 2026-04-17 UTC (E falling from 0.749 to 0.350 and recovering to 0.787), after which the new regime held for 22 days. About 96.7% of the Phase 2 window (2026-03-19 to 2026-04-18) predates the event. The April anchor is therefore a pre-change anchor, and it represents the pre-change regime well. It became stale because the operating point moved after calibration, not because it averaged across two regimes. The second-window rows in §4.2 show the same thing at fleet scale: every Lumen row recorded after 2026-04-18 falls outside the April envelope.
+Weekly bins of Lumen's state over 90 days show three regimes, and sub-day resolution places the change at a single ten-hour event on 2026-04-17 UTC (E falling from 0.749 to 0.350 and recovering to 0.787), after which the new regime held for 22 days. About 96.7% of the Phase 2 window (2026-03-19 to 2026-04-18) predates the event. The April anchor is therefore a pre-change anchor, and it represents the pre-change regime well. It became stale because the operating point moved after calibration, not because it averaged across two regimes. The second-window rows in §4.2 show the same thing: every Lumen row recorded after 2026-04-18 flips and falls below the 0.40 grounded threshold against the April anchor, and 16.6% of them lie outside its envelope altogether.
 
 ### 5.3 Cause: open
 
 The change coincides to within the hour with a day on which four pull requests altered the identity-binding behavior of the system. That is a candidate cause, not an identified one, and there is a competing explanation I cannot exclude. The E coordinate derives in part from CPU utilization, and a day of deployments generates load. At the time, a single CPU reading entered two anima dimensions, suppressing E and inflating I at once, a defect repaired in August 2026 (CIRWEL 2026, anima-mcp, PRs #173 and #176). A deploy-driven CPU excursion amplified by that defect would produce an energy collapse and recovery on this timescale with no change in the agent. The CPU and memory series for that day are no longer retained, so I cannot re-derive E with the corrected mapping.
 
-One observation from the public export bears on this without settling it. Rows recorded after 2026-04-18 fall outside their April envelopes at 96% for Sentinel and Vigil, as well as 100% for Lumen (§4.2). The CPU defect was in Lumen's sensor mapping. A shift shared by the autonomous services points toward a server-side change. The export has no timestamps, so this cannot place the other classes' shift on 2026-04-17.
+One observation from the public export bears on this without settling it. Rows recorded after 2026-04-18 flip at 96% for Sentinel and Vigil, as well as 100% for Lumen, and fall below the 0.40 grounded threshold at 70% (Sentinel) and 87% (Vigil), as well as 100% (Lumen) (§4.2). The CPU defect was in Lumen's sensor mapping. A shift shared by the autonomous services points toward a server-side change. The export has no timestamps, so this cannot place the other classes' shift on 2026-04-17.
 
 Two further limits. The recalibration windows are not sampling-matched: the Phase 2 Lumen healthy slice held 7,320 rows and the recalibration window 11,472, and I have not confirmed that both counts apply the same healthy filter. The rise in row rate visible in §4.2 would account for part of the difference. The production server flagged no anomaly throughout, but the deployment's degradation paths fail toward healthy rather than toward unknown, so the silence carries little weight.
 
@@ -293,7 +291,7 @@ The practical lesson is about instruments. A scalar that looks like a health sco
 |---|---|---|---|
 | Flatness and within-class statistics (§3) | **Recomputable offline** | `flatness_and_windows.py`: percentiles, threshold shares, within-class Spearman, far/near medians, class AUCs, both windows | Independent deployment |
 | Full-substitution replay (§4.2) | **Recomputable offline** | `reproduce_basinflip.py`: 28.84% (3,834 / 13,292 from recomputed labels; the labels stored in the export give 3,831), per-class rates within 0.6 points of the original pull, 26,574 of 26,584 labels exact | Independent deployment |
-| Window decomposition (§4.2) | **Recomputable offline** | `flatness_and_windows.py`, matching rows on stored values (no row identifiers exist) | Row identifiers; timestamps |
+| Window decomposition (§4.2) | **Recomputable offline** | `flatness_and_windows.py`, matching rows on stored values: exact counts, not a row-level join (no row identifiers exist) | Row identifiers; timestamps |
 | Formula-versus-calibration ablation (§4.3) | Provenance-backed only | Recorded output in `formula_calibration_ablation_results.txt` | Needs a per-row `regime` column absent from the export; the production window is no longer retained |
 | Lumen recalibration case (§5) | Provenance-backed only | 86-minute protocol, recalibration criterion, weekly bins | State history for 2026-02 to 2026-04 aged out; CPU and memory series for 2026-04-17 not retained |
 | Cumulative-deviation integral (§8) | Specified; function exists as an uncalled research diagnostic | `compute_void_integral` and its tests in the embodied agent's repository | Any production use |

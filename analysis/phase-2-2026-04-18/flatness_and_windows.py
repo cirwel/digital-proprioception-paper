@@ -9,7 +9,9 @@ does not already print.
 
 The window decomposition matches rows across the two exports on the full
 stored tuple (class, E, I, S, V, risk, c_legacy). The exports carry no row
-identifiers, so the match is exact on stored values but is not an ID join.
+identifiers or timestamps, and some rows share every stored value with another
+row, so the decomposition is an exact count, not a row-by-row join. Rows with
+identical stored values carry identical labels, so the counts are unaffected.
 Basin labels are a deterministic function of a stored row and the frozen
 Phase 2 constants, so a row present in both windows carries the same flip
 label in both.
@@ -148,13 +150,19 @@ def flatness(name, rows):
 def decompose(w1, w2):
     key = lambda r: (r["class"], r["E"], r["I"], r["S"], r["V"], r["risk"], r["c_legacy"])
     remaining = Counter(map(key, w1))
+    dup_w1 = sum(v - 1 for v in remaining.values() if v > 1)
     shared = defaultdict(lambda: [0, 0])
     new = defaultdict(lambda: [0, 0])
+    new_below = Counter()
+    new_zero = Counter()
     for r in w2:
         k = key(r)
         bucket = shared if remaining[k] > 0 else new
         if remaining[k] > 0:
             remaining[k] -= 1
+        else:
+            new_below[r["class"]] += r["c_grounded"] < 0.40
+            new_zero[r["class"]] += r["c_grounded"] == 0
         bucket[r["class"]][0] += 1
         bucket[r["class"]][1] += r["flipped"]
     remaining_w2 = Counter(map(key, w2))
@@ -172,7 +180,8 @@ def decompose(w1, w2):
 
     sn, sf = tot(shared)
     nn, nf = tot(new)
-    print("\n== Window decomposition (tuple-matched)")
+    print("\n== Window decomposition (exact count on stored values)")
+    print(f"  first-window rows sharing every stored value with another row: {dup_w1:,}")
     print(f"  rows in both windows: {sn:,} = {sn / len(w1):.1%} of the first window, {sn / len(w2):.1%} of the second")
     print(f"  first-window rows absent from the second: {dropped[0]:,}, flip {dropped[1] / dropped[0]:.1%}")
     print(f"  rows in both windows:                     {sn:,}, flip {sf / sn:.1%}")
@@ -180,7 +189,8 @@ def decompose(w1, w2):
     for c in sorted(new):
         n, f = new[c]
         s_n, s_f = shared[c]
-        print(f"    {c:9s} shared {s_n:5d} flip {s_f / s_n:6.1%}   new {n:5d} flip {f / n:6.1%}")
+        print(f"    {c:9s} shared {s_n:5d} flip {s_f / s_n:6.1%}   new {n:5d} flip {f / n:6.1%}  "
+              f"C_g < 0.40 {new_below[c] / n:6.1%}  C_g = 0 {new_zero[c] / n:6.1%}")
 
 
 def main():
