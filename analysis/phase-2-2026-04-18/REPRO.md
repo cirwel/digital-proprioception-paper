@@ -1,8 +1,8 @@
 # Reproducing the basin-flip result
 
-Paper §3.4 and §3.7 report a 28.9% basin-flip rate when class-conditional grounded
-coherence replaces fleet-wide `tanh`-of-$V$ on a 30-day production window
-(N = 13,310). This directory holds the record of that measurement and a
+Paper §4.2 reports a 28.8% basin-flip rate on the public export of a 30-day
+production window (N = 13,292) when class-conditional grounded coherence replaces
+the fleet-wide `tanh` form, and 28.9% on the original pull (N = 13,310). This directory holds the record of that measurement and a
 reviewer-runnable reproduction of it.
 
 ## Run it
@@ -18,7 +18,7 @@ grounded coherence and *both* basin labels from the published state coordinates
 and the published Phase 2 constants, compares them against the labels stored in
 the export, and counts the flip rate from the recomputed labels. Expected output:
 
-| | Recomputed here | Paper §3.4 |
+| | Recomputed here | Original pull |
 |---|---:|---:|
 | Full substitution | **28.84%** (3,834 / 13,292) | 28.9% (3,844 / 13,310) |
 | Lumen | 32.2% | 32.3% |
@@ -65,33 +65,50 @@ pull returned, and there is no archive table. Monthly row counts show the cliff:
 
 The frozen export is therefore the only surviving row-level record of the
 measurement. Re-running the original DB query cannot reproduce it, and a private
-audit of the production rows is no longer possible. The paper states this in §3.7
-and the Appendix rather than offering a check that cannot be performed.
+audit of the production rows is no longer possible. The paper states this in §2.3
+and Appendix A rather than offering a check that cannot be performed.
 
 ## The 18-row difference
 
 The export carries 13,292 rows against the paper's 13,310. The export was taken by a
 separate run of the counterfactual against a rolling window anchored in wall-clock
-time, so the two pulls differ by a few seconds of row arrivals. This is the source of
-the 28.9% / 28.8% difference, and it is the whole difference: per-class rates agree
-within 0.5 percentage points.
+time. The two pulls differ by more than arrivals. By class, against the original pull
+(`formula_calibration_ablation_results.txt`), the export has Lumen −1, Sentinel −6,
+Vigil −1, Watcher −9, default +41, and none of the 42 `ephemeral` rows: 59 rows fewer
+and 41 more. The ephemeral −42 and default +41 suggest those agents were reclassified
+between the two runs; that is not verified. This is the source of the 28.9% / 28.8%
+difference, and per-class rates agree within 0.6 percentage points.
 
-The export also carries five classes, not six. The 42 `ephemeral` rows in the paper's
-§3.4 table have no counterpart here; they had no frozen Phase 2 envelope, fell through
-the fleet fallback, flipped zero times, and are not interpreted in the paper either.
+The export therefore carries five classes, not six. The 42 `ephemeral` rows had no
+frozen Phase 2 envelope, fell through to the fleet fallback, flipped zero times, and
+are not interpreted in the paper either.
 
-## Between-window variance
+## The second window
 
-The two windows are four days apart with roughly 87% row overlap, and give **28.8%**
-and **44.3%**. That 15.5-point spread against a within-window sampling CI of ±0.8
-points is why the paper quotes the existence and order of magnitude of the
-disagreement rather than the third digit. Neither snapshot is privileged; the 2026-04-18
-window is reported because it is the one the v6 measurement was taken on.
+The two windows end on 2026-04-18 and 2026-04-23, four to five days apart, and give
+**28.8%** and **44.3%**. The export carries no timestamps or row identifiers, so rows
+are matched on their stored values, counted with multiplicity: 12,177 value tuples
+occur in both windows, 91.6% of the first and 72.1% of the second. That is a multiset
+intersection, not a row-by-row join. The key is seven columns: class, E, I, S, V,
+risk and c_legacy (c_grounded is left out; it is computed from unrounded coordinates).
+On that key the first window has 377 groups of rows that share all seven values,
+holding 1,228 rows. Rows in a group carry identical stored labels, so the counts are
+unaffected, but the match does not establish that two windows contain the same
+observation.
+
+Basin labels are a deterministic function of the stored values and the frozen
+constants, so the difference is composition, not sampling variance. Flip rates below
+use the labels stored in the export. Rows in both windows flip at
+30.3%, first-window-only rows at 13.1%, and second-window-only rows (inferred to be
+recorded after 2026-04-18) at 80.6%. The flip rate therefore tracks how far the state
+distribution has moved from the frozen anchors (paper §4.2 and Appendix B). Run
+`flatness_and_windows.py` for the full decomposition. The 2026-04-18 window is reported
+because it is the one the v6 measurement was taken on.
 
 ## What is *not* reproducible from these files
 
 `formula_calibration_ablation.py` computes the four-condition ablation (LF / GF / GC /
-LC, paper §3.7). Its GF and LC conditions need a fleet-wide healthy slice, which
+LC, paper §4.3). Its GF and LC conditions need a fleet-wide healthy slice, which
 requires the per-row `regime` column — and `regime` is not in the export. That script
 therefore still requires the production database, which no longer holds the window.
 Its recorded output is preserved verbatim in `formula_calibration_ablation_results.txt`

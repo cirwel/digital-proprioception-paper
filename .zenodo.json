@@ -1,6 +1,6 @@
 {
-  "title": "Digital Proprioception and Allostatic Load: A Deployed Synthetic-System Report on the Cumulative-Deviation Hypothesis",
-  "description": "<p>Allostatic load (McEwen and Stellar 1993) &mdash; the time-integrated cost of regulating an adaptive system away from its operating point &mdash; has been an influential theoretical construct in physiology and psychiatry for thirty years. Its mathematical core has remained, in clinical practice, difficult to test as a real-time control signal. This paper presents UNITARES, a governance framework for heterogeneous AI agent fleets in production since November 2025, as a deployed structural analogue for the mathematical core of allostatic load on a four-dimensional informational manifold. The Anima Void Integral V_anima has its integrand recorded at every check-in, making the integral computable end-to-end over any window; its coupling to intervention is specified by the companion trajectory-identity framework but not yet wired in production. It is a control-signal analogue, not a biological or clinical allostatic-load measure.</p><p>The paper makes four bounded contributions: V_anima as a deployed cumulative-deviation control-signal analogue; class-conditional calibration as a quantified anti-homogenization intervention, now bounded by a same-row formula-vs-calibration ablation; McEwen's Four Types as an imported but non-exhaustive failure-mode taxonomy; and a synthetic-psychology stance for generating and stress-testing informational hypotheses about adaptive systems. A Lumen case study that initially appeared Type-3-like under a stale calibration anchor is resolved by recalibration as a candidate substrate-associated basin transition. That case is provenance-backed single-agent case-report evidence for the transition's date, magnitude, and shape, and anomaly-grade for substrate causality pending artifact release, independent audit, or replication.</p>",
+  "title": "A Flat Coherence Score: What a Production-Data Replay Does and Does Not Show About Agent Self-State Gating",
+  "description": "<p>A running multi-agent system I operate computes a scalar \"coherence\" for every agent check-in and uses it, among other inputs, to place each state in one of three basins (high, boundary, low). On a 30-day production slice of 13,292 rows, the deployed score was flat within a narrow band: its 1st to 99th percentile range was 0.447 to 0.499. It never reached the 0.40 threshold below which it could push a state into the low basin, and it cleared the 0.45 high-basin threshold for 98.7% of rows, so it almost never decided a basin. The score is not empty. It carries some class information (its distributions for two classes separate with an AUC of 0.88), and it correlates r = 0.73 with a smoothed energy-integrity imbalance. But within each class, its association with distance from that class's own healthy operating point was weak and went both ways: Spearman ρ from -0.37 to +0.18 across classes, with the wrong sign in two of five, and in three of five in a later window.</p><p>I replaced the score with a class-conditional \"grounded\" form on the same rows and recomputed every basin under both forms. The grounded form spans 0 to 0.995, and on the full substitution every row whose recomputed basin changes moves downward (§4). The replay is an offline counterfactual on frozen data. It shows that the old score was inert at its decision thresholds. It does not show that the new labels are right, and no outcome, harm or operator judgment was used to grade either form. The rate of label change rose from 28.8% to 44.3% between two public windows whose end dates are four to five days apart. That rise is not noise. Rows whose stored values occur in both windows flip at 30.3%, and rows that appear only in the later window, inferred to be recorded after 2026-04-18, flip at 80.6%. The flip rate therefore depends on how far the state distribution has moved from the frozen class anchors; it is not a fixed property of the formula swap.</p><p>Three adjacent results bound the claim. Whether per-agent state forecasts bad outcomes is unresolved, pending one pre-registered read (§6). A genesis-anchored lineage check meant to catch slow drift does not discriminate as instrumented (§7). The cumulative-deviation integral that motivated earlier versions of this paper is specified but not computed by any production code path (§8). A single-agent case study tests an apparent \"delayed shut-down\" reading: the April anchor's calibration window ended a day after a shift in the agent's operating point, and recalibration moves toward the current state, as staleness predicts. That result does not by itself exclude a persistent shift, and the cause is open (§5).</p>",
   "creators": [
     {
       "name": "Wang, Kenny",
@@ -13,15 +13,12 @@
   "access_right": "open",
   "license": "CC-BY-4.0",
   "keywords": [
-    "allostatic load",
-    "allostasis",
-    "AI agent governance",
-    "trajectory identity",
-    "digital proprioception",
-    "synthetic psychology",
-    "embodied AI",
-    "McEwen Four Types",
-    "cumulative deviation"
+    "agent state monitoring",
+    "coherence score",
+    "class-conditional calibration",
+    "counterfactual replay",
+    "calibration staleness",
+    "digital proprioception"
   ],
   "related_identifiers": [
     {
@@ -57,6 +54,6 @@
       "resource_type": "publication-preprint"
     }
   ],
-  "notes": "Bridges UNITARES governance to McEwen allostatic-load theory as a deployed synthetic-system report. The Lumen case is framed as a Type-3-like stale-anchor reading resolved by recalibration as a candidate substrate-associated basin transition; substrate causality remains anomaly-grade pending independent audit or replication. Companion to Wang 2026a (UNITARES v6) on Zenodo at 10.5281/zenodo.19647159.",
-  "version": "v1.2"
+  "notes": "Version 2.0 is a short-form rewrite that replaces the 27,800-word v1.2 and is retitled around what was measured. It corrects v1.2: outcome forecasting, which v1.2 called \"measured and negative\", is unresolved following the 2026-08-26 withdrawal; the cumulative-deviation integral named in v1.2's title is specified but not computed in production; and the change in flip rate between the two public windows is a deterministic composition effect, not window sensitivity. Appendix B lists every correction. Earlier versions remain available under this concept DOI.",
+  "version": "v2.0"
 }
