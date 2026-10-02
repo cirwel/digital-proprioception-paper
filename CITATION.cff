@@ -51,14 +51,15 @@ abstract: >
   distribution has moved from the frozen class anchors; it is not a
   fixed property of the formula swap.
 
-  Three adjacent results bound the claim. Whether per-agent state
+  Three adjacent results bound the claim (§6). Whether per-agent state
   forecasts bad outcomes is unresolved, pending one pre-registered
-  read (§6). A genesis-anchored lineage check meant to catch slow
-  drift does not discriminate as instrumented (§7). The cumulative-
-  deviation integral that motivated earlier versions of this paper is
-  specified but not computed by any production code path (§8). A
-  single-agent case study tests an apparent "delayed shut-down"
-  reading: the April anchor's calibration window ended a day after a
-  shift in the agent's operating point, and recalibration moves toward
-  the current state, as staleness predicts. That result does not by
-  itself exclude a persistent shift, and the cause is open (§5).
+  read. A genesis-anchored lineage check meant to catch slow drift
+  does not discriminate as instrumented. The cumulative-deviation
+  integral that motivated earlier versions of this paper is specified
+  but not computed by any production code path. A single-agent case
+  study tests an apparent "delayed shut-down" reading: the April
+  anchor's calibration window ended a day after a shift in Lumen's
+  recorded state, and recalibration moves toward the current state on
+  two of three coordinates, as staleness predicts. That result does
+  not by itself exclude a persistent shift, and the cause is open
+  (§5).
