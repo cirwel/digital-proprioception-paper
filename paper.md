@@ -4,7 +4,7 @@
 
 **Author:** Kenny Wang, Independent Researcher
 **ORCID:** 0009-0006-7544-2374
-**Version:** v2.0, 2026-10-02. A short-form rewrite that replaces the 27,800-word v1.2; corrections to v1.2 are listed in Appendix B.
+**Version:** v2.0.1-draft, 2026-10-11 (unpublished revision). Clarifies the operational continuation gate and the scope of the conclusion; results are unchanged. The v2.0 short-form rewrite replaced the 27,800-word v1.2; corrections are listed in Appendix B.
 
 ---
 
@@ -232,7 +232,7 @@ None of these has reproducible evidence in this repository, so each is stated as
 
 **Anchor staleness.** The replay's rate depends on how far the state distribution has moved from frozen anchors (§4.2). Any deployment of class-conditional calibration would need a recalibration policy, which this paper does not test.
 
-**What would change the picture.** If the 2026-12-01 read passes on its own pre-registered terms, outcome forecasting moves from unresolved to a positive finding about rework prediction, with the label-class bound intact. If it fails, outcome grounding closes for this label channel, and reopening needs a new label channel or measurement process, not more labels. If an independent deployment shows a legacy-style score that reaches its thresholds and tracks within-class distance, the §3 result is specific to this system's demoted coordinate.
+**What would change the picture.** If the December 1 read passes all four registered conditions, it meets the operational continuation gate: outcome-grounding remains open and Stage B may be reconsidered. Report the observed discrimination with the specified cohort, dependence, power and interim-access disclosures. PASS does not itself establish decision benefit. If the read fails, report the failed conditions and honor closure for this measurement premise; insufficient support is not scientific disproof. Reopening requires a materially different label channel or measurement process under the registered rule, not more of the same labels. If an independent deployment shows a legacy-style score that reaches its thresholds and tracks within-class distance, the §3 result is specific to this system's demoted coordinate.
 
 ---
 
@@ -242,7 +242,7 @@ The deployed coherence score was flat within a band from 0.447 to 0.499 (1st to 
 
 The single-agent case is consistent with a calibration anchor whose window closed a day after a shift in recorded state, but neither a persistent shift in the agent nor an instrument change is excluded. Of the adjacent questions in §6, outcome forecasting is unresolved, the lineage check does not discriminate, and the integral is not computed in production.
 
-The practical lesson is about instruments. A scalar that looks like a health score on a dashboard can sit where its thresholds never touch it, and the way to find out is to measure its spread against the thresholds and against the thing it is supposed to distinguish. The next step is an outcome-graded test of any replacement, with a recalibration policy and a label source wider than task failures, before calling it a measurement of anything.
+The practical lesson is about instruments. A scalar that looks like a health score on a dashboard can sit where its thresholds never touch it, and the way to find out is to measure its spread against the thresholds and against the thing it is supposed to distinguish. The next step for a replacement is an outcome-graded comparison, a tested recalibration policy, and a label source suited to the intended claim before describing it as a validated health indicator or using claimed benefit to justify a policy change.
 
 ---
 
@@ -250,19 +250,26 @@ The practical lesson is about instruments. A scalar that looks like a health sco
 
 | Object | Status | What can be checked now | What is missing |
 |---|---|---|---|
-| Flatness and within-class statistics (§3) | **Recomputable offline** | `flatness_and_windows.py`: percentiles, threshold shares, within-class Spearman, far/near medians, class AUCs, both windows | Independent deployment |
-| Full-substitution replay (§4.2) | **Recomputable offline** | `reproduce_basinflip.py`: 28.84% (3,834 / 13,292 from recomputed labels; the labels stored in the export give 3,831), per-class rates within 0.6 points of the original pull, 26,574 of 26,584 labels exact | Independent deployment |
-| Window decomposition (§4.2) | **Recomputable offline** | `flatness_and_windows.py`, matching stored values with multiplicity: a multiset count, not a row-level join (no row identifiers exist) | Row identifiers; timestamps |
-| Formula-versus-calibration ablation (§4.3) | Provenance-backed only | Recorded output in `formula_calibration_ablation_results.txt` | Needs a per-row `regime` column absent from the export; the production window is no longer retained |
+| Flatness and within-class statistics (§3) | **Recomputable offline** | [Flatness script](analysis/phase-2-2026-04-18/flatness_and_windows.py): percentiles, threshold shares, within-class Spearman, far/near medians, class AUCs, both windows | Independent deployment |
+| Full-substitution replay (§4.2) | **Recomputable offline** | [Replay script](analysis/phase-2-2026-04-18/reproduce_basinflip.py): 28.84% (3,834 / 13,292 from recomputed labels; the labels stored in the export give 3,831), per-class rates within 0.6 points of the original pull, 26,574 of 26,584 labels exact | Independent deployment |
+| Window decomposition (§4.2) | **Recomputable offline** | [Flatness script](analysis/phase-2-2026-04-18/flatness_and_windows.py), matching stored values with multiplicity: a multiset count, not a row-level join (no row identifiers exist) | Row identifiers; timestamps |
+| Formula-versus-calibration ablation (§4.3) | Provenance-backed only | [Recorded ablation output](analysis/phase-2-2026-04-18/formula_calibration_ablation_results.txt) | Needs a per-row `regime` column absent from the export; the production window is no longer retained |
 | Lumen recalibration case (§5) | Provenance-backed only | 86-minute protocol, recalibration criterion, reported recalibration values and reported summaries of the weekly bins, as recorded in this repository on the day of measurement (commits ebbe7d3 and f03cfc6, 2026-05-09); merge times of the 2026-04-17 pull requests (GitHub) | The raw samples and the recalibration query output were not kept; state history for 2026-02 to 2026-04 aged out; CPU and memory series, deploy times and restart times for 2026-04-17 not retained |
-| Cumulative-deviation integral (§6) | Specified; function exists as an uncalled research diagnostic | `compute_void_integral` and its tests in the embodied agent's repository | Any production use |
+| Cumulative-deviation integral (§6) | Specified; function exists as an uncalled research diagnostic | Integral function and its tests in the embodied agent's repository | Any production use |
 | Outcome forecasting (§6) | Unresolved | Ontology contract item 4 and the pre-registered stop rule | The 2026-12-01 read |
-| Row-level export | **Public**, Zenodo data DOI 10.5281/zenodo.19705151, mirrored here, SHA-256 pinned in `reproduce_basinflip.py` | 13,292 and 16,879 class-pseudonymized rows with state, risk, both coherences, both recomputed basin labels | Nothing for §3 and §4.2 |
+| Row-level export | **Public**, Zenodo data DOI 10.5281/zenodo.19705151, mirrored here, SHA-256 pinned in the [replay script](analysis/phase-2-2026-04-18/reproduce_basinflip.py) | 13,292 and 16,879 class-pseudonymized rows with state, risk, both coherences, both recomputed basin labels | Nothing for §3 and §4.2 |
 | Raw production relation | Withheld and no longer retained | Schema and provenance | Unavailable in principle |
 
-Both scripts are in `analysis/phase-2-2026-04-18/` and use the standard library only.
+The flatness script is `flatness_and_windows.py`; the replay script is `reproduce_basinflip.py`. Both are in `analysis/phase-2-2026-04-18/` and use the standard library only. Recorded ablation output is `formula_calibration_ablation_results.txt` in the same directory. The integral function is `compute_void_integral` in the embodied agent's repository.
 
-## Appendix B: Corrections to v1.2
+## Appendix B: Corrections
+
+### v2.0.1-draft (unpublished)
+
+- §7 now states the registered consequence of December PASS: outcome-grounding remains open and Stage B may be reconsidered. PASS does not automatically validate forecasting or establish decision benefit; FAIL closes the measurement premise without making insufficient support scientific disproof.
+- §8 now distinguishes the retained descriptive information from validation as a health indicator or evidence of policy benefit. The replay results, thresholds and registered conditions are unchanged.
+
+### Corrections to v1.2
 
 - v1.2 called outcome forecasting "measured and negative". That claim was withdrawn on 2026-08-26 (§6). The question is unresolved.
 - v1.2 said in one place that the genesis signature is "captured trivially" and in another that Lumen's was not persisted. §6 states what is stored, when it can be reseeded, and that Lumen has none.

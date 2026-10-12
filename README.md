@@ -3,7 +3,8 @@
 Notes toward digital proprioception.
 
 **Author:** Kenny Wang (Independent Researcher, CIRWEL Systems) — ORCID [0009-0006-7544-2374](https://orcid.org/0009-0006-7544-2374)  
-**Status:** v2.0 (2026-10-02). A short-form rewrite that replaces the 27,800-word v1.2; corrections are listed in the paper's Appendix B.  
+**Status:** v2.0.1-draft (2026-10-11), unpublished revision. Clarifies the December continuation gate and the conclusion's measurement claim; results are unchanged. The v2.0 short-form rewrite replaced the 27,800-word v1.2; corrections are listed in the paper's Appendix B.
+
 **License:** [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)
 
 > **Plain-language summary.** A multi-agent system I run gives every agent check-in a "coherence" score and uses it to sort agent states into high, boundary and low basins. On 13,292 production rows that score sat in a band too narrow to reach its own thresholds, so it almost never decided a basin. Replacing it with a score measured against each agent class's own healthy point changes about 29% of the recomputed labels, and more in a later window as recorded states moved away from those reference points. The paper shows the old score was inert at its thresholds. It does not show that the new labels are right, and whether any of this forecasts bad outcomes is unresolved.
@@ -18,10 +19,10 @@ Three adjacent results bound the claim (§6). Whether per-agent state forecasts 
 
 ## Read
 
-- **[paper.md](paper.md)**: the paper (v2.0)
-- **[digital-proprioception.pdf](digital-proprioception.pdf)**: the distribution PDF
+- **[paper.md](paper.md)**: the paper (v2.0.1-draft)
+- **[digital-proprioception.pdf](digital-proprioception.pdf)**: the matching unpublished draft PDF
 - **[CITATION.cff](CITATION.cff)**: citation metadata
-- **[.zenodo.json](.zenodo.json)**: Zenodo deposit metadata
+- **[.zenodo.json](.zenodo.json)**: draft metadata for a future Zenodo deposit
 - Earlier versions, including the long-form v1.2, stay available as tags and under the Zenodo concept DOI.
 
 ## Companion artefacts
@@ -43,4 +44,4 @@ Two limits are disclosed. The production database no longer retains the measurem
 
 ## Citation
 
-See [CITATION.cff](CITATION.cff). Zenodo concept DOI (resolves to latest version): [10.5281/zenodo.21930092](https://doi.org/10.5281/zenodo.21930092).
+See [CITATION.cff](CITATION.cff) for this unpublished draft. This revision has not been tagged, released or deposited. Zenodo concept DOI (resolves to latest version): [10.5281/zenodo.21930092](https://doi.org/10.5281/zenodo.21930092).
