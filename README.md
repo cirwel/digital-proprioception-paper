@@ -3,7 +3,7 @@
 Notes toward digital proprioception.
 
 **Author:** Kenny Wang (Independent Researcher, CIRWEL Systems) — ORCID [0009-0006-7544-2374](https://orcid.org/0009-0006-7544-2374)  
-**Status:** v2.0.1-draft (2026-10-11), unpublished revision. Clarifies the December continuation gate and the conclusion's measurement claim; results are unchanged. The v2.0 short-form rewrite replaced the 27,800-word v1.2; corrections are listed in the paper's Appendix B.
+**Status:** v2.0.1-draft (2026-10-13), unpublished revision. Clarifies the December continuation gate, the conclusion's measurement claim and inferred observation dates; results are unchanged. The v2.0 short-form rewrite replaced the 27,800-word v1.2; corrections are listed in the paper's Appendix B.
 
 **License:** [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)
 
@@ -22,6 +22,7 @@ Three adjacent results bound the claim (§6). Whether per-agent state forecasts 
 - **[paper.md](paper.md)**: the paper (v2.0.1-draft)
 - **[digital-proprioception.pdf](digital-proprioception.pdf)**: the matching unpublished draft PDF
 - **[CITATION.cff](CITATION.cff)**: citation metadata
+- **[references.bib](references.bib)**: BibTeX entries matching the paper's reference list
 - **[.zenodo.json](.zenodo.json)**: draft metadata for a future Zenodo deposit
 - Earlier versions, including the long-form v1.2, stay available as tags and under the Zenodo concept DOI.
 
@@ -36,12 +37,17 @@ Three adjacent results bound the claim (§6). Whether per-agent state forecasts 
 
 ```
 python3 analysis/phase-2-2026-04-18/reproduce_basinflip.py
+python3 analysis/phase-2-2026-04-18/flatness_and_windows.py
 ```
 
 Standard library only — no database, no network, no third-party packages. It runs against the frozen, de-identified row-level export (13,292 rows, archived under Zenodo data DOI [10.5281/zenodo.19705151](https://doi.org/10.5281/zenodo.19705151), mirrored here with its SHA-256 pinned), recomputes the grounded coherence and both basin labels from the published state coordinates and the published Phase 2 constants, and counts the flip rate from the recomputed labels. It returns **28.84%** against the 28.9% reported, with 26,574 of 26,584 basin labels reproducing exactly.
 
 Two limits are disclosed. The production database no longer retains the measurement window, so the export is the surviving record and a private audit of the production rows is not available. And a second public window gives 44.3% instead of 28.8%: that difference is a deterministic composition effect, which `flatness_and_windows.py` decomposes by exact count (paper §4.2). See [`analysis/phase-2-2026-04-18/REPRO.md`](analysis/phase-2-2026-04-18/REPRO.md).
 
+## Building the PDF
+
+Install Pandoc and Tectonic, then run `bash scripts/build-pdf.sh` from the repository root. The build fails on compiler errors or missing glyphs and replaces the distribution PDF only after a successful build.
+
 ## Citation
 
-See [CITATION.cff](CITATION.cff) for this unpublished draft. This revision has not been tagged, released or deposited. Zenodo concept DOI (resolves to latest version): [10.5281/zenodo.21930092](https://doi.org/10.5281/zenodo.21930092).
+See [CITATION.cff](CITATION.cff) for this unpublished draft. This revision has not been tagged, released or deposited. The [v2.0 release](https://github.com/cirwel/digital-proprioception-paper/releases/tag/paper-v2.0) points to [its archived version](https://doi.org/10.5281/zenodo.23110718); it does not contain these draft corrections. Zenodo concept DOI (resolves to the latest deposited version, not this branch): [10.5281/zenodo.21930092](https://doi.org/10.5281/zenodo.21930092).

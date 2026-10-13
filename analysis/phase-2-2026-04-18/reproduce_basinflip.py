@@ -201,6 +201,10 @@ def main():
     print(f"    the original pull gave 28.9% on N=13,310 production rows (paper §4.2, §4.3);")
     print(f"    the export is 18 rows short of that pull (see REPRO.md).")
 
+    print("    Wilson intervals assume independent rows; repeated agent observations")
+    print("    violate that assumption. These are binomial references, not calibrated")
+    print("    uncertainty bounds for this fleet or another deployment.")
+
     print("\n  per class (original 13,310-row pull in parentheses):")
     for cls, (f, t) in sorted(per_class.items(), key=lambda kv: -kv[1][1]):
         clo, chi = wilson_ci(f, t)
