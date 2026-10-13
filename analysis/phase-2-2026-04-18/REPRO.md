@@ -31,7 +31,10 @@ the export, and counts the flip rate from the recomputed labels. Expected output
 6.7e-4 of a threshold: the export stores floats at 4 decimal places, and
 recomputing a distance from rounded coordinates and dividing by a class radius as
 small as 0.1187 amplifies that rounding. The script reports the margin rather
-than asserting exactness.
+than asserting exactness. Its Wilson intervals are binomial references that assume
+independent observations. These rows repeatedly measure a small number of agents,
+so the intervals are not calibrated uncertainty bounds for this fleet or another
+deployment. The frozen-window counts themselves are descriptive totals.
 
 ## What the inputs are
 

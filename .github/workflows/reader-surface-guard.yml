@@ -41,3 +41,9 @@ jobs:
             bad=1
           fi
           exit $bad
+      - name: PDF build failure regression
+        run: bash scripts/test-build-pdf.sh
+      - name: frozen offline reproduction
+        run: |
+          python3 analysis/phase-2-2026-04-18/reproduce_basinflip.py
+          python3 analysis/phase-2-2026-04-18/flatness_and_windows.py

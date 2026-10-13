@@ -4,7 +4,7 @@
 
 **Author:** Kenny Wang, Independent Researcher
 **ORCID:** 0009-0006-7544-2374
-**Version:** v2.0.1-draft, 2026-10-11 (unpublished revision). Clarifies the operational continuation gate and the scope of the conclusion; results are unchanged. The v2.0 short-form rewrite replaced the 27,800-word v1.2; corrections are listed in Appendix B.
+**Version:** v2.0.1-draft, 2026-10-13 (unpublished revision). Clarifies the operational continuation gate, the scope of the conclusion and inferred observation dates; results are unchanged. The v2.0 short-form rewrite replaced the 27,800-word v1.2; corrections are listed in Appendix B.
 
 ---
 
@@ -104,10 +104,10 @@ The grounded score spans the unit interval. 6.8% of rows sit exactly at zero, 15
 
 The legacy score correlates r = 0.73 with the surfaced V, and it carries some class information: the probability that a random row of one class scores above a random row of another (the AUC) ranges from 0.54 to 0.88 across class pairs, highest for Lumen against default.
 
-A working distance-from-healthy-point score should fall as a state moves away from its class's healthy point, within every class. The legacy score did not:
+A working distance-from-healthy-point score should fall as a state moves away from its class's healthy point, within every class. The legacy score did not. Far rows have C_grounded < 0.1; near rows have C_grounded > 0.8:
 
-| Class | n | Spearman ρ, C_legacy vs distance | C_legacy p50, far rows (C_grounded < 0.1) | C_legacy p50, near rows (C_grounded > 0.8) |
-|---|---|---|---|---|
+| Class | n | Spearman ρ, legacy vs distance | Legacy p50, far rows | Legacy p50, near rows |
+|------------|--------|----------------|------------------------|------------------------|
 | Lumen | 7,889 | -0.27 | 0.480 (n = 646) | 0.482 (n = 2,343) |
 | Sentinel | 2,221 | +0.18 | 0.472 (n = 161) | 0.482 (n = 343) |
 | Vigil | 471 | +0.07 | 0.495 (n = 37) | 0.483 (n = 76) |
@@ -152,7 +152,8 @@ On the public export of the first window, 28.8% of rows (3,834 of 13,292, counte
 | of which default | 1,288 | 73.6% |
 | of which Watcher | 524 | 0.0% |
 
-  In three classes, rows recorded after 2026-04-18 flip almost without exception, and most of them fall below the 0.40 grounded threshold (Lumen 100%, Vigil 87%, Sentinel 70%). Far fewer lie outside the frozen envelope altogether, at C_grounded = 0 (16.6%, 12.1% and 3.1%). The flip rate therefore tracks how far the current state distribution has moved from the frozen anchors. That is what anchor staleness would produce, but flips also depend on the other basin coordinates and on risk, so the rate is not a direct measure of staleness. A sampling interval (about $\pm$0.8 points within one window) does not describe this kind of movement. The first-window rate is a property of that window and those anchors, not of the formula swap in general. The second window also shows the row rate rising: 4,702 rows between the two window ends, four to five days apart, against about 440 per day across the first window.
+  In three classes, second-window-only rows flip almost without exception, and most of them fall below the 0.40 grounded threshold (Lumen 100%, Vigil 87%, Sentinel 70%). Far fewer lie outside the frozen envelope altogether, at C_grounded = 0 (16.6%, 12.1% and 3.1%). The flip rate therefore tracks how far the current state distribution has moved from the frozen anchors. That is what anchor staleness would produce, but flips also depend on the other basin coordinates and on risk, so the rate is not a direct measure of staleness. A row-wise Wilson interval (about $\pm$0.8 points within one window) assumes independent observations. Repeated measurements of a few agents do not justify that assumption, and the interval does not describe between-window composition changes. The first-window rate is a property of that window and those anchors, not of the formula swap in general. If second-window-only rows were all recorded between the two window ends, they would imply a higher row rate: 4,702 rows in four to five days, against about 440 per day across the first window. Without timestamps or row identifiers, that rate change remains inferred.
+
 - **Two measurement caveats from the original pull.** The 30-day window overlaps identity-system revisions in mid-to-late April 2026, so some rows may carry class assignments inherited from cached bindings or from archived predecessors. And 42 rows of an `ephemeral` class fell through to the fleet fallback and are not interpreted; the export carries none of them (§2.3).
 
 ### 4.3 A same-row ablation, with a boundary
@@ -160,7 +161,7 @@ On the public export of the first window, 28.8% of rows (3,834 of 13,292, counte
 The replay changes two things at once: the formula (tanh of the void coordinate, versus distance in E, I, S) and the calibration target (one fleet-wide constant, versus per-class constants). I separated them on the same 13,310 rows from the original pull, where GF is the grounded formula against a single fleet-wide healthy point and radius measured from the same slice:
 
 | Comparison | Flips / N | Rate |
-|---|---:|---:|
+|------------------------------------------------|-------------------:|-----------:|
 | Legacy $\rightarrow$ grounded fleet-wide (formula change) | 1,496 / 13,310 | 11.2% |
 | Grounded fleet-wide $\rightarrow$ grounded class-conditional (calibration change) | 3,133 / 13,310 | 23.5% |
 | Legacy $\rightarrow$ grounded class-conditional (full substitution) | 3,844 / 13,310 | 28.9% |
@@ -192,7 +193,7 @@ McEwen's four types of allostatic load (McEwen 1998; 2007) describe four ways th
 
 The case study specified a test in advance: if the healthy point moves toward Lumen's current state on recalibration, read the elevation as calibration staleness, not a persistent failure. I recalibrated on the 30-day window ending 2026-05-09 (11,472 rows). The record written that day describes the method as means over sessions with no pause or reject verdict, which is not what the Phase 2 script does (§2.1), so the two calibrations may not be comparable. Against the observed state in §5.1 (E 0.791, I 0.695, S 0.159), the reported healthy point moved toward it on two coordinates (E from 0.745 to 0.7706, I from 0.800 to 0.7335) and away from it on the third (S from 0.168 to 0.1893), and the envelope grew from 0.119 to 0.1279. On two coordinates of three, that is the result the criterion treats as staleness. The criterion cannot carry the conclusion, though: a reference refit on data from a persistently shifted state would also move toward that state, so the test separates the two readings only if the newer window is itself healthy, and nothing independent of the system confirms that. It would also pass if the shift were in the instrument rather than the agent, which §5.3 shows is possible.
 
-Weekly bins of Lumen's state over 90 days show three regimes, and sub-day resolution places the change at a single ten-hour event on 2026-04-17 UTC (E falling from 0.749 to 0.350 and recovering to 0.787), after which the new regime held for 22 days. About 96.7% of the Phase 2 window's duration (2026-03-19 to 2026-04-18) predates the event. The share of its rows is not recoverable, because the exports carry no timestamps. How much of the anchor's data comes from each regime is therefore unknown. What is known is that the new regime spans at most the window's last day. The second-window rows in §4.2 show that the anchor does not describe the later state: every Lumen row recorded after 2026-04-18 flips and falls below the 0.40 grounded threshold against the April anchor, and 16.6% of them lie outside its envelope altogether.
+Weekly bins of Lumen's state over 90 days show three regimes, and sub-day resolution places the change at a single ten-hour event on 2026-04-17 UTC (E falling from 0.749 to 0.350 and recovering to 0.787), after which the new regime held for 22 days. About 96.7% of the Phase 2 window's duration (2026-03-19 to 2026-04-18) predates the event. The share of its rows is not recoverable, because the exports carry no timestamps. How much of the anchor's data comes from each regime is therefore unknown. What is known is that the new regime spans at most the window's last day. The second-window rows in §4.2 show that the anchor does not describe the later state: every second-window-only Lumen row flips and falls below the 0.40 grounded threshold against the April anchor, and 16.6% of them lie outside its envelope altogether.
 
 ### 5.3 Cause: open
 
@@ -200,9 +201,9 @@ Sixteen pull requests merged into the governance server on 2026-04-17 (CIRWEL 20
 
 The explanations divide into a change in the agent and a change in the instrument, and the record cannot separate them. There are three instrument candidates. #15, merged at the start of the recovery, would have changed Lumen's readings only if some of its check-ins still went through the removed fallback, which is not known. A restart can produce a trough: an operational note of 2026-06-03, which is not public, records a server restart resetting Lumen's server-side trajectory to a fallback in which E sat near 0.30. Whether that mechanism existed in April is not verified; the trough on 2026-04-17 was 0.35. The third is a CPU artifact. The E coordinate derives in part from CPU utilization, and a day of deployments generates load. At the time, a single CPU reading entered two anima dimensions, suppressing E and inflating I at once, a defect repaired in August 2026 (CIRWEL 2026, anima-mcp, PRs #173 and #176). A deploy-driven CPU excursion amplified by that defect could produce an energy collapse and recovery on this timescale with no change in the agent. The identity changes are a weaker candidate than any of these, given #8's own check. The CPU and memory series for that day are no longer retained, so I cannot re-derive E with the corrected mapping.
 
-One observation from the public export bears on this without settling it. Rows recorded after 2026-04-18 flip at 96% for Sentinel and Vigil, as well as 100% for Lumen, and fall below the 0.40 grounded threshold at 70% (Sentinel) and 87% (Vigil), as well as 100% (Lumen) (§4.2). The CPU defect was in Lumen's sensor mapping. A shift shared by the autonomous services points toward a server-side change. #15's description also says it fixed a latent bug by which one agent's sensor values could be inherited by another, so it may bear on the other classes as well. The export has no timestamps, so this cannot place the other classes' shift on 2026-04-17.
+One observation from the public export bears on this without settling it. Second-window-only rows flip at 96% for Sentinel and Vigil, as well as 100% for Lumen, and fall below the 0.40 grounded threshold at 70% (Sentinel) and 87% (Vigil), as well as 100% (Lumen) (§4.2). The CPU defect was in Lumen's sensor mapping. A shift shared by the autonomous services points toward a server-side change. #15's description also says it fixed a latent bug by which one agent's sensor values could be inherited by another, so it may bear on the other classes as well. The export has no timestamps, so this cannot place the other classes' shift on 2026-04-17.
 
-Two further limits. The recalibration windows are not sampling-matched: the Phase 2 Lumen healthy slice held 7,320 rows and the recalibration window 11,472, and I have not confirmed that both counts apply the same healthy filter. The rise in row rate visible in §4.2 would account for part of the difference. The production server flagged no anomaly throughout, but the deployment's degradation paths fail toward healthy rather than toward unknown, so the silence carries little weight.
+Two further limits. The recalibration windows are not sampling-matched: the Phase 2 Lumen healthy slice held 7,320 rows and the recalibration window 11,472, and I have not confirmed that both counts apply the same healthy filter. The higher row rate inferred in §4.2 could account for part of the difference. The production server flagged no anomaly throughout, but the deployment's degradation paths fail toward healthy rather than toward unknown, so the silence carries little weight.
 
 What survives every one of these explanations is narrower: the April anchor's window closed a day after the shift, and the anchor no longer describes Lumen's current readings. Whether the new state is healthy is not established. The case is a single-agent report. Its date, magnitude and shape are provenance-backed, its causal reading is open, and the longitudinal data that would test it have aged out of the production database. It is not evidence for or against McEwen's taxonomy in biology. It does suggest a category the four types do not cover, a shift in the operating point itself, but one case does not establish a category, and if the shift was in the instrument it is not a property of the agent at all.
 
@@ -250,14 +251,14 @@ The practical lesson is about instruments. A scalar that looks like a health sco
 
 | Object | Status | What can be checked now | What is missing |
 |---|---|---|---|
-| Flatness and within-class statistics (§3) | **Recomputable offline** | [Flatness script](analysis/phase-2-2026-04-18/flatness_and_windows.py): percentiles, threshold shares, within-class Spearman, far/near medians, class AUCs, both windows | Independent deployment |
-| Full-substitution replay (§4.2) | **Recomputable offline** | [Replay script](analysis/phase-2-2026-04-18/reproduce_basinflip.py): 28.84% (3,834 / 13,292 from recomputed labels; the labels stored in the export give 3,831), per-class rates within 0.6 points of the original pull, 26,574 of 26,584 labels exact | Independent deployment |
-| Window decomposition (§4.2) | **Recomputable offline** | [Flatness script](analysis/phase-2-2026-04-18/flatness_and_windows.py), matching stored values with multiplicity: a multiset count, not a row-level join (no row identifiers exist) | Row identifiers; timestamps |
-| Formula-versus-calibration ablation (§4.3) | Provenance-backed only | [Recorded ablation output](analysis/phase-2-2026-04-18/formula_calibration_ablation_results.txt) | Needs a per-row `regime` column absent from the export; the production window is no longer retained |
+| Flatness and within-class statistics (§3) | **Recomputable offline** | [Flatness script](https://github.com/cirwel/digital-proprioception-paper/blob/899fe6091c8cf42d9e38bc1206f57c2aebd3e88b/analysis/phase-2-2026-04-18/flatness_and_windows.py): percentiles, threshold shares, within-class Spearman, far/near medians, class AUCs, both windows | Independent deployment |
+| Full-substitution replay (§4.2) | **Recomputable offline** | [Replay script](https://github.com/cirwel/digital-proprioception-paper/blob/899fe6091c8cf42d9e38bc1206f57c2aebd3e88b/analysis/phase-2-2026-04-18/reproduce_basinflip.py): 28.84% (3,834 / 13,292 from recomputed labels; the labels stored in the export give 3,831), per-class rates within 0.6 points of the original pull, 26,574 of 26,584 labels exact | Independent deployment |
+| Window decomposition (§4.2) | **Recomputable offline** | [Flatness script](https://github.com/cirwel/digital-proprioception-paper/blob/899fe6091c8cf42d9e38bc1206f57c2aebd3e88b/analysis/phase-2-2026-04-18/flatness_and_windows.py), matching stored values with multiplicity: a multiset count, not a row-level join (no row identifiers exist) | Row identifiers; timestamps |
+| Formula-versus-calibration ablation (§4.3) | Provenance-backed only | [Recorded ablation output](https://github.com/cirwel/digital-proprioception-paper/blob/899fe6091c8cf42d9e38bc1206f57c2aebd3e88b/analysis/phase-2-2026-04-18/formula_calibration_ablation_results.txt) | Needs a per-row `regime` column absent from the export; the production window is no longer retained |
 | Lumen recalibration case (§5) | Provenance-backed only | 86-minute protocol, recalibration criterion, reported recalibration values and reported summaries of the weekly bins, as recorded in this repository on the day of measurement (commits ebbe7d3 and f03cfc6, 2026-05-09); merge times of the 2026-04-17 pull requests (GitHub) | The raw samples and the recalibration query output were not kept; state history for 2026-02 to 2026-04 aged out; CPU and memory series, deploy times and restart times for 2026-04-17 not retained |
 | Cumulative-deviation integral (§6) | Specified; function exists as an uncalled research diagnostic | Integral function and its tests in the embodied agent's repository | Any production use |
 | Outcome forecasting (§6) | Unresolved | Ontology contract item 4 and the pre-registered stop rule | The 2026-12-01 read |
-| Row-level export | **Public**, Zenodo data DOI 10.5281/zenodo.19705151, mirrored here, SHA-256 pinned in the [replay script](analysis/phase-2-2026-04-18/reproduce_basinflip.py) | 13,292 and 16,879 class-pseudonymized rows with state, risk, both coherences, both recomputed basin labels | Nothing for §3 and §4.2 |
+| Row-level export | **Public**, Zenodo data DOI 10.5281/zenodo.19705151, mirrored here, SHA-256 pinned in the [replay script](https://github.com/cirwel/digital-proprioception-paper/blob/899fe6091c8cf42d9e38bc1206f57c2aebd3e88b/analysis/phase-2-2026-04-18/reproduce_basinflip.py) | 13,292 and 16,879 class-pseudonymized rows with state, risk, both coherences, both recomputed basin labels | Nothing for §3 and §4.2 |
 | Raw production relation | Withheld and no longer retained | Schema and provenance | Unavailable in principle |
 
 The flatness script is `flatness_and_windows.py`; the replay script is `reproduce_basinflip.py`. Both are in `analysis/phase-2-2026-04-18/` and use the standard library only. Recorded ablation output is `formula_calibration_ablation_results.txt` in the same directory. The integral function is `compute_void_integral` in the embodied agent's repository.
@@ -267,12 +268,13 @@ The flatness script is `flatness_and_windows.py`; the replay script is `reproduc
 ### v2.0.1-draft (unpublished)
 
 - §7 now states the registered consequence of December PASS: outcome-grounding remains open and Stage B may be reconsidered. PASS does not automatically validate forecasting or establish decision benefit; FAIL closes the measurement premise without making insufficient support scientific disproof.
+- §§4.2 and 5 consistently describe second-window-only rows by membership. Their dates and any implied row-rate increase remain inferred because the exports contain no timestamps or row identifiers. Appendix B limits the missing-genesis statement to first onboarding.
 - §8 now distinguishes the retained descriptive information from validation as a health indicator or evidence of policy benefit. The replay results, thresholds and registered conditions are unchanged.
 
 ### Corrections to v1.2
 
 - v1.2 called outcome forecasting "measured and negative". That claim was withdrawn on 2026-08-26 (§6). The question is unresolved.
-- v1.2 said in one place that the genesis signature is "captured trivially" and in another that Lumen's was not persisted. §6 states what is stored, when it can be reseeded, and that Lumen has none.
+- v1.2 said in one place that the genesis signature is "captured trivially" and in another that Lumen's was not persisted. §6 states what is stored, when it can be reseeded, and that no genesis was persisted for Lumen at first onboarding.
 - v1.2's title named a cumulative-deviation integral that is not computed in production (§6).
 - v1.2 described the two public windows as roughly 87% overlapping in rows and read the change in flip rate between them as window sensitivity. The row overlap is 91.6% of the first window and 72.1% of the second, and the change is a deterministic composition effect (§4.2).
 - v1.2 described the Phase 2 procedure as means over sessions with no pause or reject verdict. The calibration script selects rows by regime label and uses medians (§2.1). The May recalibration was recorded under the v1.2 description, so its comparability is uncertain (§5.2).
@@ -283,22 +285,22 @@ The flatness script is `flatness_and_windows.py`; the replay script is `reproduc
 
 ## References
 
-CIRWEL (2026). *anima-mcp: Lumen — Pi-based creature with sensors, display, and UNITARES governance*. Software repository. https://github.com/CIRWEL/anima-mcp.
+CIRWEL (2026). *anima-mcp: Lumen — Pi-based creature with sensors, display, and UNITARES governance*. Software repository. <https://github.com/CIRWEL/anima-mcp>.
 
-CIRWEL (2026). *unitares: Digital proprioception for AI agents*. Software repository. https://github.com/CIRWEL/unitares
+CIRWEL (2026). *unitares: Digital proprioception for AI agents*. Software repository. <https://github.com/CIRWEL/unitares>
 
-Gratton, C., Laumann, T. O., Nielsen, A. N., Greene, D. J., Gordon, E. M., Gilmore, A. W., Nelson, S. M., Coalson, R. S., Snyder, A. Z., Schlaggar, B. L., Dosenbach, N. U. F., and Petersen, S. E. (2018). Functional brain networks are dominated by stable group and individual factors, not cognitive or daily variation. *Neuron* 98(2): 439–452.
+Gratton, C., Laumann, T. O., Nielsen, A. N., Greene, D. J., Gordon, E. M., Gilmore, A. W., Nelson, S. M., Coalson, R. S., Snyder, A. Z., Schlaggar, B. L., Dosenbach, N. U. F., and Petersen, S. E. (2018). Functional brain networks are dominated by stable group and individual factors, not cognitive or daily variation. *Neuron* 98(2): 439–452.e5. <https://doi.org/10.1016/j.neuron.2018.03.035>.
 
-Krakauer, J. W., Ghazanfar, A. A., Gomez-Marin, A., MacIver, M. A., and Poeppel, D. (2017). Neuroscience needs behavior: correcting a reductionist bias. *Neuron* 93(3): 480–490.
+Krakauer, J. W., Ghazanfar, A. A., Gomez-Marin, A., MacIver, M. A., and Poeppel, D. (2017). Neuroscience needs behavior: correcting a reductionist bias. *Neuron* 93(3): 480–490. <https://doi.org/10.1016/j.neuron.2016.12.041>.
 
-McEwen, B. S. (1998). Protective and damaging effects of stress mediators. *New England Journal of Medicine* 338(3): 171–179.
+McEwen, B. S. (1998). Protective and damaging effects of stress mediators. *New England Journal of Medicine* 338(3): 171–179. <https://doi.org/10.1056/NEJM199801153380307>.
 
-McEwen, B. S. (2007). Physiology and neurobiology of stress and adaptation: central role of the brain. *Physiological Reviews* 87(3): 873–904.
+McEwen, B. S. (2007). Physiology and neurobiology of stress and adaptation: central role of the brain. *Physiological Reviews* 87(3): 873–904. <https://doi.org/10.1152/physrev.00041.2006>.
 
-McEwen, B. S., and Stellar, E. (1993). Stress and the individual: mechanisms leading to disease. *Archives of Internal Medicine* 153(18): 2093–2101.
+McEwen, B. S., and Stellar, E. (1993). Stress and the individual: mechanisms leading to disease. *Archives of Internal Medicine* 153(18): 2093–2101. <https://doi.org/10.1001/archinte.1993.00410180039004>.
 
-Proske, U., and Gandevia, S. C. (2012). The proprioceptive senses: their roles in signaling body shape, body position and movement, and muscle force. *Physiological Reviews* 92(4): 1651–1697.
+Proske, U., and Gandevia, S. C. (2012). The proprioceptive senses: their roles in signaling body shape, body position and movement, and muscle force. *Physiological Reviews* 92(4): 1651–1697. <https://doi.org/10.1152/physrev.00048.2011>.
 
-Wang, K. (2026a). UNITARES: Information-theoretic governance of heterogeneous agent fleets. Published April 20, 2026. *Zenodo*. https://doi.org/10.5281/zenodo.19647159 (concept DOI; v6.9.1 https://doi.org/10.5281/zenodo.19722512, April 24, 2026).
+Wang, K. (2026a). UNITARES: Information-theoretic governance of heterogeneous agent fleets. Published April 20, 2026. *Zenodo*. <https://doi.org/10.5281/zenodo.19647159> (concept DOI; v6.9.1 <https://doi.org/10.5281/zenodo.19722512>, April 24, 2026).
 
-Wang, K. (2026b). Trajectory Identity: A Mathematical Framework for Enactive AI Self-Hood. Published May 9, 2026. *Zenodo*. https://doi.org/10.5281/zenodo.20098168 (concept DOI; v0.11.1 https://doi.org/10.5281/zenodo.20098169). Source repository: https://github.com/cirwel/trajectory-identity-paper.
+Wang, K. (2026b). Trajectory Identity: A Mathematical Framework for Enactive AI Self-Hood. Published May 9, 2026. *Zenodo*. <https://doi.org/10.5281/zenodo.20098168> (concept DOI; v0.11.1 <https://doi.org/10.5281/zenodo.20098169>). The [v0.15 correction](https://github.com/cirwel/trajectory-identity-paper/tree/d653996c407e81f2b6730af92688a77162106755) is cited in §6 ([source repository](https://github.com/cirwel/trajectory-identity-paper)).
