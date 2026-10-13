@@ -1,14 +1,13 @@
 cff-version: 1.2.0
 title: "A Flat Coherence Score: What a Production-Data Replay Does and Does Not Show About Agent Self-State Gating"
-message: "If you use or cite this work, please cite it as below."
+message: "Unpublished v2.0.1-draft revision. If you cite this draft, identify its version and repository commit; it has not been released or deposited."
 type: article
 authors:
   - family-names: Wang
     given-names: Kenny
     affiliation: "CIRWEL Systems"
     orcid: "https://orcid.org/0009-0006-7544-2374"
-date-released: 2026-10-02
-version: "v2.0"
+version: "v2.0.1-draft"
 url: "https://github.com/cirwel/digital-proprioception-paper"
 license: CC-BY-4.0
 keywords:
