@@ -43,6 +43,10 @@ jobs:
           exit $bad
       - name: PDF build failure regression
         run: bash scripts/test-build-pdf.sh
+      - name: publication metadata consistency and offline negative controls
+        run: |
+          python3 scripts/check_metadata.py
+          python3 scripts/test_publication_guards.py
       - name: frozen offline reproduction
         run: |
           python3 analysis/phase-2-2026-04-18/reproduce_basinflip.py

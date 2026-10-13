@@ -11,19 +11,24 @@
 #   https://zenodo.org/account/settings/github/repository/cirwel/digital-proprioception-paper
 #
 # Usage (from repo root):
-#   ZENODO_TOKEN=xxx ./scripts/publish-to-zenodo.sh paper-v6.8.2 unitares-v6.pdf [source.zip]
+#   ZENODO_TOKEN=xxx ./scripts/publish-to-zenodo.sh paper-v2.0.1 digital-proprioception.pdf [source.zip]
+#
+# Metadata and its checker always come from this script's checkout. PDF and
+# optional ZIP arguments resolve relative to the caller's working directory;
+# use absolute file paths when invoking this script from another directory.
 #
 # The source-zip argument is optional. Omit it to publish a PDF-only record
 # (cleaner for readers; avoids shipping .github/FUNDING.yml and other repo
 # bric-a-brac inside the archive).
 #
 # Optional env:
-#   ZENODO_CONCEPT_RECID  Concept record ID (default: 19647159 — the v6 concept DOI)
+#   ZENODO_CONCEPT_RECID  Must be 21930092 if set (this paper's concept)
+#   ZENODO_VERSION        Must match .zenodo.json if set (for example v2.0.1)
 #   ZENODO_API_BASE       API base (default: https://zenodo.org; sandbox.zenodo.org for testing)
 #   DRY_RUN               If "1", print actions without calling write endpoints
 #
-# Run locally for one-off backfills (e.g. add the PDF to an already-published version
-# by minting v6.8.2 with no other content changes).
+# The tag must be paper- followed by the metadata version. Published versions
+# cannot be reused; prepare a new version's metadata and tag before publishing.
 
 set -euo pipefail
 
@@ -35,14 +40,15 @@ fi
 TAG="$1"
 PDF_PATH="$2"
 ZIP_PATH="${3:-}"
-# Zenodo version string. Defaults to the full tag, because the v6 concept's
-# existing history uses that form (e.g. "paper-v6.8.1"). But concepts differ:
-# this paper's concept (21930092) was deposited as "v1.0" / "v1.0.2", with no
-# "paper-" prefix, so depositing "paper-v1.1" there would leave a permanently
-# inconsistent version list. Set ZENODO_VERSION to override — the workflow
-# passes the value from .zenodo.json, which is the metadata source of truth.
-VERSION="${ZENODO_VERSION:-$TAG}"
-: "${ZENODO_CONCEPT_RECID:=19647159}"
+script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+metadata_path="${script_dir}/../.zenodo.json"
+# This publisher belongs to this paper only. Refuse stale shell overrides
+# before even looking up a record, not merely before creating a new version.
+if [[ "${ZENODO_CONCEPT_RECID-21930092}" != "21930092" ]]; then
+  echo "error: ZENODO_CONCEPT_RECID must be 21930092 for this paper" >&2
+  exit 64
+fi
+readonly ZENODO_CONCEPT_RECID=21930092
 : "${ZENODO_API_BASE:=https://zenodo.org}"
 : "${DRY_RUN:=0}"
 
@@ -51,7 +57,7 @@ if [[ -z "${ZENODO_TOKEN:-}" ]]; then
   exit 64
 fi
 
-required_files=("$PDF_PATH" .zenodo.json)
+required_files=("$PDF_PATH" "$metadata_path" "${script_dir}/check_metadata.py")
 [[ -n "$ZIP_PATH" ]] && required_files+=("$ZIP_PATH")
 for f in "${required_files[@]}"; do
   [[ -f "$f" ]] || { echo "error: missing file: $f" >&2; exit 66; }
@@ -59,6 +65,30 @@ done
 
 command -v jq >/dev/null || { echo "error: jq required" >&2; exit 69; }
 command -v curl >/dev/null || { echo "error: curl required" >&2; exit 69; }
+command -v python3 >/dev/null || { echo "error: python3 required" >&2; exit 69; }
+
+python3 "${script_dir}/check_metadata.py" || {
+  echo "error: publication metadata is inconsistent; no API lookup performed" >&2
+  exit 64
+}
+# Keep the reviewed metadata, including publication_date, unchanged throughout
+# the network operation. Do not replace its date with the machine's current day.
+metadata=$(jq -c '{metadata: .}' "$metadata_path")
+
+# The concept's versions omit the paper- tag prefix. Metadata is the source
+# of truth for manual runs as well as the release workflow.
+VERSION=$(printf '%s' "$metadata" | jq -er '.metadata.version | select(type == "string") | select(test("^v[0-9]+(\\.[0-9]+)+$"))') || {
+  echo "error: .zenodo.json must contain a release version such as v2.0.1" >&2
+  exit 64
+}
+if [[ "${ZENODO_VERSION-$VERSION}" != "$VERSION" ]]; then
+  echo "error: ZENODO_VERSION must match .zenodo.json (${VERSION})" >&2
+  exit 64
+fi
+if [[ "$TAG" != "paper-${VERSION}" ]]; then
+  echo "error: tag must be paper-${VERSION} to match .zenodo.json" >&2
+  exit 64
+fi
 
 API_AUTH=(-H "Authorization: Bearer ${ZENODO_TOKEN}")
 API_JSON=(-H "Content-Type: application/json")
@@ -105,6 +135,11 @@ rm -f /tmp/zenodo-latest.$$
 }
 latest_recid="$(printf '%s' "$latest_resp" | jq -r '.id')"
 latest_version="$(printf '%s' "$latest_resp" | jq -r '.metadata.version // "(none)"')"
+latest_concept="$(printf '%s' "$latest_resp" | jq -r '.conceptrecid // empty')"
+if [[ "$latest_concept" != "$ZENODO_CONCEPT_RECID" ]]; then
+  echo "error: latest record does not belong to concept ${ZENODO_CONCEPT_RECID}; no draft created" >&2
+  exit 70
+fi
 [[ "$latest_recid" != "null" && -n "$latest_recid" ]] || {
   echo "error: could not resolve latest record id" >&2
   echo "$latest_resp" | head -c 500 >&2
@@ -183,11 +218,6 @@ if [[ -n "$ZIP_PATH" ]]; then
 fi
 
 echo "==> Updating metadata"
-metadata="$(jq --arg v "$VERSION" \
-              --arg d "$(date -u +%Y-%m-%d)" \
-              '{metadata: (. + {version: $v, publication_date: $d})}' \
-              .zenodo.json)"
-
 meta_out="$(api PUT "/api/deposit/depositions/${draft_id}" -d "$metadata")"
 meta_status="$(printf '%s' "$meta_out" | tail -n1)"
 [[ "$meta_status" =~ ^20[01]$ ]] || {
