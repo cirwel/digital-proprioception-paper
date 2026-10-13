@@ -21,6 +21,10 @@ class PublicationGuards(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory(dir=ROOT / ".scratch", prefix="publication-test-")
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
+        self.repo = self.root / "repo"
+        (self.repo / "scripts").mkdir(parents=True)
+        for name in ("publish-to-zenodo.sh", "check_metadata.py"):
+            shutil.copyfile(ROOT / "scripts" / name, self.repo / "scripts" / name)
         self.bin = self.root / "bin"
         self.bin.mkdir()
         self.calls = self.root / "calls.jsonl"
@@ -28,38 +32,73 @@ class PublicationGuards(unittest.TestCase):
         self.response.write_text(json.dumps({
             "id": 23110718, "conceptrecid": "21930092", "metadata": {"version": "v2.0"},
         }))
-        (self.root / ".zenodo.json").write_text('{"version":"v2.0.1"}')
-        (self.root / "paper.pdf").write_text("fixture PDF")
+        (self.repo / ".zenodo.json").write_text(json.dumps({
+            "title": "Fixture paper", "version": "v2.0.1",
+            "publication_date": "2000-01-02", "description": "<p>Fixture abstract.</p>",
+        }))
+        (self.repo / "paper.md").write_text(
+            "# Fixture paper\n\n**Version:** v2.0.1, 2000-01-02.\n\n"
+            "## Abstract\n\nFixture abstract.\n\n**Keywords:** fixture\n")
+        (self.repo / "CITATION.cff").write_text(
+            'title: "Fixture paper"\nversion: "v2.0.1"\ndate-released: "2000-01-02"\n'
+            'abstract: >\n  Fixture abstract.\n')
+        (self.repo / "paper.pdf").write_text("fixture PDF")
         curl = self.bin / "curl"
         curl.write_text('''#!/usr/bin/env python3
 import json, os, pathlib, sys
 args = sys.argv[1:]
-method = args[args.index("-X") + 1] if "-X" in args else "GET"
+method = args[args.index("-X") + 1] if "-X" in args else ("PUT" if "--upload-file" in args else "GET")
 url = next((arg for arg in args if arg.startswith("https://")), "")
+call = {"method": method, "url": url}
+if "-d" in args:
+    call["data"] = json.loads(args[args.index("-d") + 1])
 with open(os.environ["PUBLICATION_TEST_CALLS"], "a") as out:
-    out.write(json.dumps({"method": method, "url": url}) + "\\n")
-# This stub never performs network I/O and refuses every mutation.
-if method != "GET" or not url.endswith("/versions/latest"):
+    out.write(json.dumps(call) + "\\n")
+# No network I/O. Mutations are refused except in the explicit payload test,
+# which simulates the complete API locally to inspect the submitted metadata.
+if not url.startswith("https://offline.invalid/"):
     sys.exit(97)
-pathlib.Path(args[args.index("-o") + 1]).write_bytes(
-    pathlib.Path(os.environ["PUBLICATION_TEST_RESPONSE"]).read_bytes())
-print("200", end="")
+if method == "GET" and url.endswith("/versions/latest"):
+    body = json.loads(pathlib.Path(os.environ["PUBLICATION_TEST_RESPONSE"]).read_text())
+    status = 200
+elif os.environ["PUBLICATION_TEST_ALLOW_MUTATIONS"] != "1":
+    sys.exit(97)
+elif method == "POST" and url.endswith("/actions/newversion"):
+    body = {"links": {"latest_draft": "https://offline.invalid/api/deposit/depositions/90001"}}
+    status = 201
+elif method == "GET" and url.endswith("/depositions/90001"):
+    body = {"links": {"bucket": "https://offline.invalid/bucket/90001"}, "files": []}
+    status = 200
+elif method == "PUT":
+    body, status = {}, 201
+elif method == "POST" and url.endswith("/actions/publish"):
+    body = {"doi": "10.5281/zenodo.90001", "links": {"record_html": "https://offline.invalid/records/90001"}}
+    status = 202
+else:
+    sys.exit(97)
+if "-o" in args:
+    pathlib.Path(args[args.index("-o") + 1]).write_text(json.dumps(body))
+    print(status, end="")
+else:
+    print(json.dumps(body) + "\\n" + str(status))
 ''')
         curl.chmod(0o755)
 
-    def run_publisher(self, overrides: dict | None = None, tag: str = "paper-v2.0.1"):
+    def run_publisher(self, overrides: dict | None = None, tag: str = "paper-v2.0.1",
+                      cwd: Path | None = None, pdf: str = "paper.pdf"):
         env = {k: v for k, v in os.environ.items() if not k.startswith("ZENODO_")}
         env.update(
             PATH=str(self.bin) + os.pathsep + os.environ["PATH"],
             ZENODO_TOKEN="offline-fixture-token", ZENODO_API_BASE="https://offline.invalid",
             PUBLICATION_TEST_CALLS=str(self.calls), PUBLICATION_TEST_RESPONSE=str(self.response),
+            PUBLICATION_TEST_ALLOW_MUTATIONS="0",
             DRY_RUN="0",
         )
         env.update(overrides or {})
         self.calls.unlink(missing_ok=True)
         result = subprocess.run(
-            ["bash", str(ROOT / "scripts/publish-to-zenodo.sh"), tag, "paper.pdf"],
-            cwd=self.root, env=env, text=True, capture_output=True, timeout=10,
+            ["bash", str(self.repo / "scripts/publish-to-zenodo.sh"), tag, pdf],
+            cwd=cwd or self.repo, env=env, text=True, capture_output=True, timeout=10,
         )
         calls = [json.loads(line) for line in self.calls.read_text().splitlines()] if self.calls.exists() else []
         return result, calls
@@ -97,7 +136,10 @@ print("200", end="")
     def test_bad_metadata_version_is_rejected_without_network(self) -> None:
         for version in (None, "paper-v2.0.1", "v2.0.1-draft", ""):
             with self.subTest(version=version):
-                (self.root / ".zenodo.json").write_text(json.dumps({"version": version}))
+                metadata_path = self.repo / ".zenodo.json"
+                value = json.loads(metadata_path.read_text())
+                value["version"] = version
+                metadata_path.write_text(json.dumps(value))
                 result, calls = self.run_publisher()
                 self.assertEqual(result.returncode, 64)
                 self.assertEqual(calls, [])
@@ -115,6 +157,35 @@ print("200", end="")
         self.assertEqual(result.returncode, 65)
         self.assertIn("version v2.0.1 already published", result.stderr)
         self.assertEqual([call["method"] for call in calls], ["GET"])
+
+    def test_foreign_cwd_uses_repo_metadata_and_caller_pdf_path(self) -> None:
+        foreign = self.root / "other-repo"
+        foreign.mkdir()
+        (foreign / ".zenodo.json").write_text('{"title":"Foreign paper","version":"v99.9"}')
+        (foreign / "caller.pdf").write_text("caller-selected fixture PDF")
+        result, calls = self.run_publisher({"DRY_RUN": "1"}, cwd=foreign, pdf="caller.pdf")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(len(calls), 1)
+        (self.repo / ".zenodo.json").unlink()
+        result, calls = self.run_publisher(cwd=foreign, pdf="caller.pdf")
+        self.assertEqual(result.returncode, 66)
+        self.assertEqual(calls, [])
+
+    def test_manual_metadata_drift_is_rejected_without_network(self) -> None:
+        cff = self.repo / "CITATION.cff"
+        cff.write_text(cff.read_text().replace("Fixture paper", "Changed title"))
+        result, calls = self.run_publisher()
+        self.assertEqual(result.returncode, 64)
+        self.assertIn("publication metadata is inconsistent", result.stderr)
+        self.assertEqual(calls, [])
+
+    def test_validated_publication_date_is_preserved_in_submitted_payload(self) -> None:
+        result, calls = self.run_publisher({"PUBLICATION_TEST_ALLOW_MUTATIONS": "1"})
+        self.assertEqual(result.returncode, 0, result.stderr)
+        payloads = [call["data"]["metadata"] for call in calls if "data" in call]
+        self.assertEqual(payloads, [json.loads((self.repo / ".zenodo.json").read_text())])
+        self.assertEqual(payloads[0]["publication_date"], "2000-01-02")
+        self.assertEqual(payloads[0]["version"], "v2.0.1")
 
 
 class MetadataGuards(unittest.TestCase):

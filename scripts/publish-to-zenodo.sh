@@ -13,6 +13,10 @@
 # Usage (from repo root):
 #   ZENODO_TOKEN=xxx ./scripts/publish-to-zenodo.sh paper-v2.0.1 digital-proprioception.pdf [source.zip]
 #
+# Metadata and its checker always come from this script's checkout. PDF and
+# optional ZIP arguments resolve relative to the caller's working directory;
+# use absolute file paths when invoking this script from another directory.
+#
 # The source-zip argument is optional. Omit it to publish a PDF-only record
 # (cleaner for readers; avoids shipping .github/FUNDING.yml and other repo
 # bric-a-brac inside the archive).
@@ -36,6 +40,8 @@ fi
 TAG="$1"
 PDF_PATH="$2"
 ZIP_PATH="${3:-}"
+script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+metadata_path="${script_dir}/../.zenodo.json"
 # This publisher belongs to this paper only. Refuse stale shell overrides
 # before even looking up a record, not merely before creating a new version.
 if [[ "${ZENODO_CONCEPT_RECID-21930092}" != "21930092" ]]; then
@@ -51,7 +57,7 @@ if [[ -z "${ZENODO_TOKEN:-}" ]]; then
   exit 64
 fi
 
-required_files=("$PDF_PATH" .zenodo.json)
+required_files=("$PDF_PATH" "$metadata_path" "${script_dir}/check_metadata.py")
 [[ -n "$ZIP_PATH" ]] && required_files+=("$ZIP_PATH")
 for f in "${required_files[@]}"; do
   [[ -f "$f" ]] || { echo "error: missing file: $f" >&2; exit 66; }
@@ -59,10 +65,19 @@ done
 
 command -v jq >/dev/null || { echo "error: jq required" >&2; exit 69; }
 command -v curl >/dev/null || { echo "error: curl required" >&2; exit 69; }
+command -v python3 >/dev/null || { echo "error: python3 required" >&2; exit 69; }
+
+python3 "${script_dir}/check_metadata.py" || {
+  echo "error: publication metadata is inconsistent; no API lookup performed" >&2
+  exit 64
+}
+# Keep the reviewed metadata, including publication_date, unchanged throughout
+# the network operation. Do not replace its date with the machine's current day.
+metadata=$(jq -c '{metadata: .}' "$metadata_path")
 
 # The concept's versions omit the paper- tag prefix. Metadata is the source
 # of truth for manual runs as well as the release workflow.
-VERSION=$(jq -er '.version | select(type == "string") | select(test("^v[0-9]+(\\.[0-9]+)+$"))' .zenodo.json) || {
+VERSION=$(printf '%s' "$metadata" | jq -er '.metadata.version | select(type == "string") | select(test("^v[0-9]+(\\.[0-9]+)+$"))') || {
   echo "error: .zenodo.json must contain a release version such as v2.0.1" >&2
   exit 64
 }
@@ -203,11 +218,6 @@ if [[ -n "$ZIP_PATH" ]]; then
 fi
 
 echo "==> Updating metadata"
-metadata="$(jq --arg v "$VERSION" \
-              --arg d "$(date -u +%Y-%m-%d)" \
-              '{metadata: (. + {version: $v, publication_date: $d})}' \
-              .zenodo.json)"
-
 meta_out="$(api PUT "/api/deposit/depositions/${draft_id}" -d "$metadata")"
 meta_status="$(printf '%s' "$meta_out" | tail -n1)"
 [[ "$meta_status" =~ ^20[01]$ ]] || {
