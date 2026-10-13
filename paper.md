@@ -4,7 +4,7 @@
 
 **Author:** Kenny Wang, Independent Researcher
 **ORCID:** 0009-0006-7544-2374
-**Version:** v2.0.1-draft, 2026-10-13 (unpublished revision). Clarifies the operational continuation gate, the scope of the conclusion and inferred observation dates; results are unchanged. The v2.0 short-form rewrite replaced the 27,800-word v1.2; corrections are listed in Appendix B.
+**Version:** v2.0.1, 2026-10-13. Clarifies the operational continuation gate, the scope of the conclusion and inferred observation dates; results are unchanged. The v2.0 short-form rewrite replaced the 27,800-word v1.2; corrections are listed in Appendix B.
 
 ---
 
@@ -265,7 +265,7 @@ The flatness script is `flatness_and_windows.py`; the replay script is `reproduc
 
 ## Appendix B: Corrections
 
-### v2.0.1-draft (unpublished)
+### v2.0.1
 
 - §7 now states the registered consequence of December PASS: outcome-grounding remains open and Stage B may be reconsidered. PASS does not automatically validate forecasting or establish decision benefit; FAIL closes the measurement premise without making insufficient support scientific disproof.
 - §§4.2 and 5 consistently describe second-window-only rows by membership. Their dates and any implied row-rate increase remain inferred because the exports contain no timestamps or row identifiers. Appendix B limits the missing-genesis statement to first onboarding.

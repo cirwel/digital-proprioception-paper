@@ -3,7 +3,7 @@
 Notes toward digital proprioception.
 
 **Author:** Kenny Wang (Independent Researcher, CIRWEL Systems) — ORCID [0009-0006-7544-2374](https://orcid.org/0009-0006-7544-2374)  
-**Status:** v2.0.1-draft (2026-10-13), unpublished revision. Clarifies the December continuation gate, the conclusion's measurement claim and inferred observation dates; results are unchanged. The v2.0 short-form rewrite replaced the 27,800-word v1.2; corrections are listed in the paper's Appendix B.
+**Status:** v2.0.1 (2026-10-13), release revision. Clarifies the December continuation gate, the conclusion's measurement claim and inferred observation dates; results are unchanged. The v2.0 short-form rewrite replaced the 27,800-word v1.2; corrections are listed in the paper's Appendix B.
 
 **License:** [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)
 
@@ -19,11 +19,11 @@ Three adjacent results bound the claim (§6). Whether per-agent state forecasts 
 
 ## Read
 
-- **[paper.md](paper.md)**: the paper (v2.0.1-draft)
-- **[digital-proprioception.pdf](digital-proprioception.pdf)**: the matching unpublished draft PDF
+- **[paper.md](paper.md)**: the paper (v2.0.1)
+- **[digital-proprioception.pdf](digital-proprioception.pdf)**: the matching v2.0.1 PDF
 - **[CITATION.cff](CITATION.cff)**: citation metadata
 - **[references.bib](references.bib)**: BibTeX entries matching the paper's reference list
-- **[.zenodo.json](.zenodo.json)**: draft metadata for a future Zenodo deposit
+- **[.zenodo.json](.zenodo.json)**: versioned Zenodo deposit metadata
 - Earlier versions, including the long-form v1.2, stay available as tags and under the Zenodo concept DOI.
 
 ## Companion artefacts
@@ -50,4 +50,4 @@ Install Pandoc and Tectonic, then run `bash scripts/build-pdf.sh` from the repos
 
 ## Citation
 
-See [CITATION.cff](CITATION.cff) for this unpublished draft. This revision has not been tagged, released or deposited. The [v2.0 release](https://github.com/cirwel/digital-proprioception-paper/releases/tag/paper-v2.0) points to [its archived version](https://doi.org/10.5281/zenodo.23110718); it does not contain these draft corrections. Zenodo concept DOI (resolves to the latest deposited version, not this branch): [10.5281/zenodo.21930092](https://doi.org/10.5281/zenodo.21930092).
+See [CITATION.cff](CITATION.cff) for v2.0.1. Identify the version and repository commit, or use its version-specific archive record once available. Release and archival status are recorded in the [GitHub releases](https://github.com/cirwel/digital-proprioception-paper/releases). The earlier [v2.0 release](https://github.com/cirwel/digital-proprioception-paper/releases/tag/paper-v2.0) points to [its archived version](https://doi.org/10.5281/zenodo.23110718); it does not contain the v2.0.1 corrections. Zenodo concept DOI (resolves to the latest deposited version, which may differ from this repository revision): [10.5281/zenodo.21930092](https://doi.org/10.5281/zenodo.21930092).
